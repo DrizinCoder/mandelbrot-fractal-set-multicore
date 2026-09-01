@@ -21,7 +21,8 @@ VALGRIND_ARGS = 768 432 $(MIN_X) $(MAX_X) $(MIN_Y) $(MAX_Y) 100 pictures/$(MACHI
 
 # ── Build principal (requisito do enunciado) ──────────────────────────────────
 compile:
-	$(CC) $(CFLAGS)  code/complex.c code/image_generator.c code/mandelbrot.c -o build/programa $(LIBS)
+	mkdir -p build
+	$(CC) $(CFLAGS)  serial_c_code/complex.c serial_c_code/image_generator.c serial_c_code/mandelbrot.c -o build/programa $(LIBS)
 
 run:
 	mkdir -p pictures/$(MACHINE_NAME)
@@ -57,7 +58,8 @@ hardware-info:
 
 # ── gprof ─────────────────────────────────────────────────────────────────────
 compile-profile:
-	$(CC) $(CFLAGS) -pg code/complex.c code/image_generator.c code/mandelbrot.c -o build/programa_profile $(LIBS)
+	mkdir -p build
+	$(CC) $(CFLAGS) -pg serial_c_code/complex.c serial_c_code/image_generator.c serial_c_code/mandelbrot.c -o build/programa_profile $(LIBS)
 
 gprof: compile-profile hardware-info
 	mkdir -p pictures/$(MACHINE_NAME) reports/$(MACHINE_NAME)/gprof
