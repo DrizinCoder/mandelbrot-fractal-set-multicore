@@ -1,10 +1,10 @@
 CC     = gcc
-CFLAGS = -O0 -g
+CFLAGS = -O2 -g
 LIBS   = -lm
 
 # ── Configurações do Fractal ──────────────────────────────────────────────────
-WIDTH    ?= 3840
-HEIGHT   ?= 2160
+WIDTH    ?= 7680
+HEIGHT   ?= 4320
 MIN_X    ?= -2
 MAX_X    ?= 1
 MIN_Y    ?= -1
@@ -15,8 +15,9 @@ MACHINE_NAME := $(shell hostname)
 TIMESTAMP    := $(shell date +%Y%m%d_%H%M%S)
 
 ARGS = $(WIDTH) $(HEIGHT) $(MIN_X) $(MAX_X) $(MIN_Y) $(MAX_Y) $(MAX_ITER) pictures/$(MACHINE_NAME)/fractal_$(WIDTH)_$(HEIGHT)_iter$(MAX_ITER)_$(TIMESTAMP).ppm
+VALGRIND_ARGS = 768 432 $(MIN_X) $(MAX_X) $(MIN_Y) $(MAX_Y) 100 pictures/$(MACHINE_NAME)/fractal_valgrind_768_432_iter100_$(TIMESTAMP).ppm
 
-.PHONY: compile run hardware-info time gprof perf valgrind strace analyze-all benchmark-iter clean
+.PHONY: compile run hardware-info time gprof perf valgrind strace analyze-all benchmark-iter clean python-cprofile python-perf python-strace
 
 # ── Build principal (requisito do enunciado) ──────────────────────────────────
 compile:
@@ -94,7 +95,7 @@ valgrind: compile hardware-info
 	@echo "[Callgrind] Contando instruções e chamadas por função..."
 	valgrind --tool=callgrind \
 		--callgrind-out-file=reports/$(MACHINE_NAME)/valgrind/callgrind.out \
-		./build/programa $(ARGS)
+		./build/programa $(VALGRIND_ARGS)
 	@echo "[Callgrind] Gerando relatório de texto..."
 	callgrind_annotate --auto=yes reports/$(MACHINE_NAME)/valgrind/callgrind.out \
 		> reports/$(MACHINE_NAME)/valgrind/callgrind_report.txt
@@ -105,7 +106,7 @@ valgrind: compile hardware-info
 	@echo "[Cachegrind] Analisando acessos e misses de cache (L1/L2)..."
 	valgrind --tool=cachegrind \
 		--cachegrind-out-file=reports/$(MACHINE_NAME)/valgrind/cachegrind.out \
-		./build/programa $(ARGS)
+		./build/programa $(VALGRIND_ARGS)
 	@echo "[Cachegrind] Gerando relatório anotado por linha..."
 	cg_annotate --auto=yes reports/$(MACHINE_NAME)/valgrind/cachegrind.out \
 		> reports/$(MACHINE_NAME)/valgrind/cachegrind_report.txt
@@ -132,6 +133,43 @@ strace: compile hardware-info
 		| head -n 3
 	@echo "---------------------------------------------------------"
 	@echo "Relatório salvo em reports/$(MACHINE_NAME)/strace/strace_report.txt"
+
+# ── cProfile (Python) ────────────────────────────────────────────────────────
+python-cprofile: hardware-info
+	mkdir -p pictures/$(MACHINE_NAME) reports/$(MACHINE_NAME)/python_serial
+	@echo "Executando cProfile no script serial..."
+	python3 -m cProfile -s cumulative python_serial_code/python_serial.py $(ARGS) > reports/$(MACHINE_NAME)/python_serial/cprofile_report.txt
+	@echo "---------------------------------------------------------"
+	@echo "Relatório salvo em reports/$(MACHINE_NAME)/python_serial/cprofile_report.txt"
+	@head -n 25 reports/$(MACHINE_NAME)/python_serial/cprofile_report.txt
+	@echo "---------------------------------------------------------"
+
+# ── perf (Python) ────────────────────────────────────────────────────────────
+python-perf: hardware-info
+	mkdir -p pictures/$(MACHINE_NAME) reports/$(MACHINE_NAME)/python_serial
+	@echo "Executando perf stat no script serial Python..."
+	perf stat -e cycles,instructions,cache-misses,cache-references,branch-misses,branches,L1-dcache-load-misses,LLC-load-misses -o reports/$(MACHINE_NAME)/python_serial/perf_stat.txt python3 python_serial_code/python_serial.py $(ARGS)
+	@echo "---------------------------------------------------------"
+	@echo "Relatório perf stat salvo em reports/$(MACHINE_NAME)/python_serial/perf_stat.txt:"
+	@cat reports/$(MACHINE_NAME)/python_serial/perf_stat.txt
+	@echo "---------------------------------------------------------"
+
+# ── strace (Python) ──────────────────────────────────────────────────────────
+python-strace: hardware-info
+	mkdir -p pictures/$(MACHINE_NAME) reports/$(MACHINE_NAME)/python_serial
+	@echo "Executando strace no script serial Python..."
+	strace -c -o reports/$(MACHINE_NAME)/python_serial/strace_report.txt python3 python_serial_code/python_serial.py $(ARGS)
+	@echo "---------------------------------------------------------"
+	@echo "Resumo de syscalls (strace):"
+	@cat reports/$(MACHINE_NAME)/python_serial/strace_report.txt
+	@echo "---------------------------------------------------------"
+
+# ── Análises Python ──────────────────────────────────────────────────────────
+python-analyze: python-cprofile python-perf python-strace
+	@echo "========================================================="
+	@echo "Todas as análises Python (cProfile, perf, strace) concluídas!"
+	@echo "Relatórios em: reports/$$(hostname)/python_serial/"
+	@echo "========================================================="
 
 # ── Todas as análises ─────────────────────────────────────────────────────────
 analyze-all: clean time gprof perf valgrind strace
