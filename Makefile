@@ -10,14 +10,17 @@ MAX_X    ?= 1
 MIN_Y    ?= -1
 MAX_Y    ?= 1
 MAX_ITER ?= 500
+NUM_PROCESSOS ?= 4
 
 MACHINE_NAME := $(shell hostname)
 TIMESTAMP    := $(shell date +%Y%m%d_%H%M%S)
 
 ARGS = $(WIDTH) $(HEIGHT) $(MIN_X) $(MAX_X) $(MIN_Y) $(MAX_Y) $(MAX_ITER) pictures/$(MACHINE_NAME)/fractal_$(WIDTH)_$(HEIGHT)_iter$(MAX_ITER)_$(TIMESTAMP).ppm
 VALGRIND_ARGS = 768 432 $(MIN_X) $(MAX_X) $(MIN_Y) $(MAX_Y) 100 pictures/$(MACHINE_NAME)/fractal_valgrind_768_432_iter100_$(TIMESTAMP).ppm
+PYTHON_PARALLEL_OUTPUT = pictures/$(MACHINE_NAME)/fractal_multiprocessing_$(WIDTH)_$(HEIGHT)_iter$(MAX_ITER)_$(TIMESTAMP).ppm
+PYTHON_PARALLEL_ARGS = $(WIDTH) $(HEIGHT) $(MIN_X) $(MAX_X) $(MIN_Y) $(MAX_Y) $(MAX_ITER) $(PYTHON_PARALLEL_OUTPUT) $(NUM_PROCESSOS)
 
-.PHONY: compile run hardware-info time gprof perf valgrind strace analyze-all benchmark-iter clean python-cprofile python-perf python-strace
+.PHONY: compile run hardware-info time gprof perf valgrind strace analyze-all benchmark-iter clean python-cprofile python-perf python-strace python-multiprocessing python-parallel
 
 # ── Build principal (requisito do enunciado) ──────────────────────────────────
 compile:
@@ -191,6 +194,11 @@ benchmark-iter: compile
 		echo "$$iter,$$tempo" >> reports/$(MACHINE_NAME)/benchmark/iter_log.txt; \
 	done
 	@echo "Dados salvos em reports/$(MACHINE_NAME)/benchmark/iter_log.txt"
+# ── Execução Python Multiprocessing ───────────────────────────────────────────
+python-multiprocessing python-parallel:
+	mkdir -p pictures/$(MACHINE_NAME)
+	python3 python_pararell_multiprocessing/python_pararell_multiprocessing.py $(PYTHON_PARALLEL_ARGS)
+
 # ── Limpeza ───────────────────────────────────────────────────────────────────
 clean:
 	rm -f build/programa build/programa_profile

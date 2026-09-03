@@ -66,6 +66,7 @@ def mandelbrot_pixel(px: int, py: int,
 
     c = complex(cx, cy)
     _, _, iterations = check_mandelbrot(c, max_iter)
+    
     return iterations
 
 
