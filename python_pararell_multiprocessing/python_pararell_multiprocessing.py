@@ -3,20 +3,22 @@ from multiprocessing import Process, Queue
 from multiprocessing.shared_memory import SharedMemory
 
 
-def check_mandelbrot(c: complex, max_iter: int):
+def check_mandelbrot(cx, cy, max_iter: int):
     fr = 0.0
     fi = 0.0
+
 
     for i in range(max_iter):
         fr2 = fr * fr
         fi2 = fi * fi
-        fi = 2.0 * fr * fi + c.imag   
-        fr = fr2 - fi2 + c.real        
+        
+        if fr2 + fi2 > 4.0:
+                return i+1
 
-        if fr * fr + fi * fi > 4.0:
-            return (False, complex(fr, fi), i + 1)
+        fi = 2.0 * fr * fi + cy  
+        fr = fr2 - fi2 + cx        
 
-    return (True, complex(fr, fi), max_iter)
+    return max_iter
 
 
 def mandelbrot_pixel(px: int, py: int,
@@ -37,8 +39,7 @@ def mandelbrot_pixel(px: int, py: int,
     cx = min_x + deslocamento_x
     cy = max_y - deslocamento_y
 
-    c = complex(cx, cy)
-    _, _, iterations = check_mandelbrot(c, max_iter)
+    iterations = check_mandelbrot(cx, cy, max_iter)
     
     return iterations
 
@@ -62,7 +63,7 @@ def worker_mandelbrot_line(shm_name: str, queue: Queue,
                             width: int, height: int,
                             min_x: float, max_x: float,
                             min_y: float, max_y: float,
-                            max_iter: int):
+                            max_iter: int, color_table):
     shm = SharedMemory(name=shm_name)
     
     while True:
@@ -77,11 +78,8 @@ def worker_mandelbrot_line(shm_name: str, queue: Queue,
                 max_iter
             )
             
-            if iters == max_iter:
-                r = g = b = 0
-            else:
-                tom = int(taylor_series_sin(0.1 * iters) * 127.5 + 127.5)
-                r = g = b = tom
+            tom = color_table[iters]
+            r = g = b = tom
             
             pos = (py * width + px) * 3
             shm.buf[pos]     = r
@@ -94,7 +92,7 @@ def worker_mandelbrot_line(shm_name: str, queue: Queue,
 def generate_image_parallel(width: int, height: int,
                             min_x: float, max_x: float,
                             min_y: float, max_y: float,
-                            max_iter: int, filename: str,
+                            max_iter: int, filename: str, color_table,
                             num_processos: int = 4) -> float:
 
     total_bytes = width * height * 3
@@ -111,7 +109,7 @@ def generate_image_parallel(width: int, height: int,
     for _ in range(num_processos):
         p = Process(
             target=worker_mandelbrot_line,
-            args=(shm.name, queue, width, height, min_x, max_x, min_y, max_y, max_iter)
+            args=(shm.name, queue, width, height, min_x, max_x, min_y, max_y, max_iter, color_table)
         )
         p.start()
         processos.append(p)
@@ -155,10 +153,17 @@ def main():
     print(f"num_processos: {num_processos}")
     print(f"Salvando imagem em: {filename}")
 
+    color_table = []
+    for i in range(max_iter + 1):
+        if i == max_iter:
+            color_table.append(0)
+        else:
+            color_table.append(int(taylor_series_sin(0.1 * i) * 127.5 + 127.5))
+
     generate_image_parallel(
         width, height,
         min_x, max_x, min_y, max_y,
-        max_iter, filename, num_processos
+        max_iter, filename, color_table, num_processos
     )
 
 if __name__ == "__main__":
