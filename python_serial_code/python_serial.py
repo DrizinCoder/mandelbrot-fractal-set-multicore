@@ -69,7 +69,18 @@ def mandelbrot_pixel(px: int, py: int,
     
     return iterations
 
+def taylor_series_sin(x: float) -> float:
+    PI = 3.141592653589793
+    x = x % (2 * PI)
+    if x > PI:
+        x -= 2 * PI
+        
+    x3 = x * x * x
+    x5 = x3 * x * x
+    x7 = x5 * x * x
+    x9 = x7 * x * x
 
+    return x - (x3 / 6.0) + (x5 / 120.0) - (x7 / 5040.0) + (x9 / 362880.0)
 
 # Geração da imagem PPM 
 def generate_image(width: int, height: int,
@@ -101,7 +112,7 @@ def generate_image(width: int, height: int,
                 if iters == max_iter:
                     r = g = b = 0
                 else:
-                    tom = int(math.sin(0.1 * iters) * 127.5 + 127.5)
+                    tom = int(taylor_series_sin(0.1 * iters) * 127.5 + 127.5)
                     r = g = b = tom
 
                 linha.extend((r, g, b))
