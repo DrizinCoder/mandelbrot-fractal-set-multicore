@@ -12,7 +12,7 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    omp_set_num_threads(4);
+    int nthreads = omp_get_max_threads();
 
     int width = atoi(argv[1]);
     printf("width: %d\n", width);
@@ -49,7 +49,7 @@ int main(int argc, char *argv[]) {
     double unidades_largura = maxX - minX;
     double unidades_altura  = maxY - minY;
 
-    #pragma omp parallel for schedule(dynamic, 1)
+    #pragma omp parallel for schedule(dynamic, 4)
     for (int py = 0; py < height; py++) {
         double proporcao_y          = py / (double)height;
         double enquadramento_eixo_y = maxY - (unidades_altura * proporcao_y);
