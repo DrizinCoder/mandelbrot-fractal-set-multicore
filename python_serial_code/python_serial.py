@@ -17,29 +17,17 @@ import struct
 
 
 # Verificação do conjunto de Mandelbrot
-def check_mandelbrot(c: complex, max_iter: int):
-    """
-    Itera z = z² + c partindo de z = 0.
-
-    Retorna (in_set, fval, iterations) onde:
-        in_set     – True se o ponto pertence ao conjunto
-        fval       – complex com o valor final de z
-        iterations – número de iterações até escapar (ou max_iter se não escapou)
-    """
+def check_mandelbrot(cr: float, ci: float, max_iter: int):
     fr = 0.0
     fi = 0.0
-
     for i in range(max_iter):
-        # z² = (fr + fi·i)² = (fr²-fi²) + (2·fr·fi)·i
         fr2 = fr * fr
         fi2 = fi * fi
-        fi = 2.0 * fr * fi + c.imag   # parte imaginária nova
-        fr = fr2 - fi2 + c.real        # parte real nova
-
-        if fr * fr + fi * fi > 4.0:
-            return (False, complex(fr, fi), i + 1)
-
-    return (True, complex(fr, fi), max_iter)
+        if fr2 + fi2 > 4.0:
+            return i
+        fi = 2.0 * fr * fi + ci
+        fr = fr2 - fi2 + cr
+    return max_iter
 
 
 # Mapeamento pixel
@@ -64,8 +52,7 @@ def mandelbrot_pixel(px: int, py: int,
     cx = min_x + deslocamento_x
     cy = max_y - deslocamento_y
 
-    c = complex(cx, cy)
-    _, _, iterations = check_mandelbrot(c, max_iter)
+    iterations = check_mandelbrot(cx, cy, max_iter)
     
     return iterations
 
@@ -87,7 +74,7 @@ def generate_image(width: int, height: int,
                    min_x: float, max_x: float,
                    min_y: float, max_y: float,
                    max_iter: int,
-                   filename: str) -> float:
+                   filename: str, color_table) -> float:
     """
     Gera o conjunto de Mandelbrot e salva no arquivo PPM (P6).
     Retorna o tempo de processamento em segundos.
@@ -109,13 +96,7 @@ def generate_image(width: int, height: int,
                     max_iter
                 )
 
-                if iters == max_iter:
-                    r = g = b = 0
-                else:
-                    tom = int(taylor_series_sin(0.1 * iters) * 127.5 + 127.5)
-                    r = g = b = tom
-
-                linha.extend((r, g, b))
+                linha.extend(color_table[iters])
             img.write(linha)
 
         t_end = time.perf_counter()
@@ -150,10 +131,18 @@ def main():
     print(f"max_iter: {max_iter}")
     print(f"Salvando imagem em: {filename}")
 
+    color_table = []
+    for i in range(max_iter + 1):
+        if i == max_iter:
+            color_table.append(bytes([0, 0, 0]))
+        else:
+            tom = int(taylor_series_sin(0.1 * i) * 127.5 + 127.5)
+            color_table.append(bytes([tom, tom, tom]))
+
     elapsed = generate_image(
         width, height,
         min_x, max_x, min_y, max_y,
-        max_iter, filename
+        max_iter, filename, color_table
     )
 
     print(f"Tempo de processamento (perf_counter): {elapsed:.6f} segundos")
