@@ -1,0 +1,32 @@
+# started on Sat Sep  5 22:29:45 2026
+
+
+ Performance counter stats for 'python3 python_pararell_multithreading.py 800 600 -2.0 1.0 -1.0 1.0 1000 ../pictures/LOQ/output_perf_stat_20260905_222909.ppm 4':
+
+             7,196      context-switches                 #   1046.5 cs/sec  cs_per_second     
+               240      cpu-migrations                   #     34.9 migrations/sec  migrations_per_second
+             1,577      page-faults                      #    229.3 faults/sec  page_faults_per_second
+          6,876.21 msec task-clock                       #      1.0 CPUs  CPUs_utilized       
+         2,996,208      cpu_core/branch-misses/          #      0.0 %  branch_miss_rate         (98.32%)
+    23,262,223,733      cpu_core/branches/               #   3383.0 M/sec  branch_frequency     (98.32%)
+    26,562,008,048      cpu_core/cpu-cycles/             #      3.9 GHz  cycles_frequency       (98.32%)
+   142,047,860,013      cpu_core/instructions/           #      5.3 instructions  insn_per_cycle  (98.32%)
+         9,785,355      cpu_atom/branch-misses/          #      0.1 %  branch_miss_rate         (1.25%)
+     9,861,133,726      cpu_atom/branches/               #   1434.1 M/sec  branch_frequency     (0.97%)
+    16,087,604,735      cpu_atom/cpu-cycles/             #      2.3 GHz  cycles_frequency       (1.04%)
+    57,596,919,550      cpu_atom/instructions/           #      3.6 instructions  insn_per_cycle  (1.07%)
+             TopdownL1 (cpu_core)                        #      3.7 %  tma_bad_speculation    
+                                                         #      4.5 %  tma_frontend_bound       (98.32%)
+                                                         #      4.2 %  tma_backend_bound      
+                                                         #     87.6 %  tma_retiring             (98.32%)
+             TopdownL1 (cpu_atom)                        #      4.6 %  tma_backend_bound        (1.31%)
+                                                         #     14.8 %  tma_frontend_bound       (1.31%)
+                                                         #     20.2 %  tma_bad_speculation    
+                                                         #     60.4 %  tma_retiring             (1.62%)
+
+       6.796164091 seconds time elapsed
+
+       6.803145000 seconds user
+       0.126710000 seconds sys
+
+

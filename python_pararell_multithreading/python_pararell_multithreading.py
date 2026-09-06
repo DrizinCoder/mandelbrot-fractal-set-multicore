@@ -1,5 +1,6 @@
 import sys
 import threading
+import time
 from queue import Queue
 
 
@@ -122,10 +123,7 @@ def generate_image_parallel(width: int, height: int,
 
 def main():
     if len(sys.argv) < 9:
-        print(
-            f"Uso: python3 {sys.argv[0]} "
-            "<width> <height> <minX> <maxX> <minY> <maxY> <max_iter> <output_filename> [num_threads]"
-        )
+       
         sys.exit(1)
 
     width         = int(sys.argv[1])
@@ -138,16 +136,6 @@ def main():
     filename      = sys.argv[8]
     num_threads   = int(sys.argv[9]) if len(sys.argv) > 9 else 4
 
-    print(f"width:         {width}")
-    print(f"height:        {height}")
-    print(f"minX:          {min_x}")
-    print(f"maxX:          {max_x}")
-    print(f"minY:          {min_y}")
-    print(f"maxY:          {max_y}")
-    print(f"max_iter:      {max_iter}")
-    print(f"num_threads:   {num_threads}")
-    print(f"Salvando imagem em: {filename}")
-
     color_table = []
     for i in range(max_iter + 1):
         if i == max_iter:
@@ -155,11 +143,15 @@ def main():
         else:
             color_table.append(int(taylor_series_sin(0.1 * i) * 127.5 + 127.5))
 
+    start_time = time.perf_counter()
     generate_image_parallel(
         width, height,
         min_x, max_x, min_y, max_y,
         max_iter, filename, color_table, num_threads
     )
+    end_time = time.perf_counter()
+    elapsed_time = end_time - start_time
+    print(f"Tempo de processamento (perf_counter): {elapsed_time:.4f} segundos\n")
 
 if __name__ == "__main__":
     main()
