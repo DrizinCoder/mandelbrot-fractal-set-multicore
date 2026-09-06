@@ -1,6 +1,6 @@
 import sys
 import time
-from multiprocessing import Process, Queue
+from multiprocessing import Process, Queue, set_start_method
 from multiprocessing.shared_memory import SharedMemory
 
 
@@ -127,6 +127,7 @@ def generate_image_parallel(width: int, height: int,
     shm.unlink()
 
 def main():
+
     if len(sys.argv) < 9:
         sys.exit(1)
 
@@ -163,4 +164,8 @@ def main():
     print(f"Tempo de processamento (perf_counter): {elapsed_time:.4f} segundos\n")
 
 if __name__ == "__main__":
+    try:
+        set_start_method('fork')
+    except RuntimeError:
+        pass
     main()
