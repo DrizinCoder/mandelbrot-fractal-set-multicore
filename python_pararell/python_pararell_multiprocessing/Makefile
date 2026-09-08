@@ -13,8 +13,8 @@ MAX_Y = 1.0
 MAX_ITER = 1000
 
 # Diretórios de saída
-REPORTS_DIR = ../reports/$(MACHINE_NAME)/python_multiprocessing
-PICTURES_DIR = ../pictures/$(MACHINE_NAME)
+REPORTS_DIR = ../../reports/$(MACHINE_NAME)/python_multiprocessing
+PICTURES_DIR = ../../pictures/$(MACHINE_NAME)
 
 # Script Python
 SCRIPT = python_pararell_multiprocessing.py

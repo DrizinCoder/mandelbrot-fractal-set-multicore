@@ -3,13 +3,13 @@ CFLAGS = -O2 -g
 LIBS   = -lm
 
 # ── Configurações do Fractal ──────────────────────────────────────────────────
-WIDTH    ?= 30720
-HEIGHT   ?= 17280
+WIDTH = 15360
+HEIGHT = 10240
 MIN_X    ?= -2
 MAX_X    ?= 1
 MIN_Y    ?= -1
 MAX_Y    ?= 1
-MAX_ITER ?= 2000
+MAX_ITER ?= 1000
 NUM_PROCESSOS ?= 4
 
 MACHINE_NAME := $(shell hostname)
