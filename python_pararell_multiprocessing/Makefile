@@ -4,8 +4,8 @@ MACHINE_NAME := $(shell hostname)
 TIMESTAMP    := $(shell date +%Y%m%d_%H%M%S)
 
 # Parâmetros padrão do fractal de Mandelbrot
-WIDTH = 800
-HEIGHT = 600
+WIDTH = 15360
+HEIGHT = 10240
 MIN_X = -2.0
 MAX_X = 1.0
 MIN_Y = -1.0
