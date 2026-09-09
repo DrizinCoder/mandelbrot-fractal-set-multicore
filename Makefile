@@ -212,3 +212,43 @@ clean:
 	rm -f build/programa build/programa_profile
 	rm -rf reports/$(MACHINE_NAME)
 
+
+time-benchamark: 
+	@echo "Executar o time com 1, 2, 3 e 4 cores."
+	@echo "a ideia aqui /e"
+
+
+
+# ── Análises para o segundo trabalho ──────────────────────────────────── 
+
+# ── Análises C ────────────────────────────────────────────────────────── 
+analyze-c-serial: clean time-benchamark gprof perf valgrind strace
+	@echo "========================================================="
+	@echo "Todas as análises (time, gprof, perf, valgrind, strace) foram concluídas!"
+	@echo "Os relatórios estão salvos na pasta reports/$$(MACHINE_NAME)/c-serial/"
+	@echo "========================================================="
+
+analyze-c-parallel: time-benchamark perf 
+	@echo "========================================================="
+	@echo "Todas as análises (perf) foram concluídas!"
+	@echo "Os relatórios estão salvos na pasta reports/$$(MACHINE_NAME)/c-parallel/"
+	@echo "========================================================="
+
+# ── Análises Python ──────────────────────────────────────────────────────────
+python-serial: time-benchamark python-cprofile python-perf python-strace
+	@echo "========================================================="
+	@echo "Todas as análises Python (cProfile, perf, strace) concluídas!"
+	@echo "Os relatórios estão salvos na pasta reports/$$(hostname)/python_serial/"
+	@echo "========================================================="
+
+python-parallel-multithreading: time-benchamark python-cprofile python-perf
+	@echo "========================================================="
+	@echo "Todas as análises Python (cProfile, perf, strace) concluídas!"
+	@echo "Relatórios em: reports/$$(hostname)/python_parallel_multithreading/"
+	@echo "========================================================="
+
+python-parallel-multiprocessing: time-benchamark python-cprofile python-perf
+	@echo "========================================================="
+	@echo "Todas as análises Python (cProfile, perf, strace) concluídas!"
+	@echo "Relatórios em: reports/$$(hostname)/python_parallel_multiprocessing/"
+	@echo "========================================================="
