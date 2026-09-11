@@ -10,7 +10,7 @@ MIN_X = -2.0
 MAX_X = 1.0
 MIN_Y = -1.0
 MAX_Y = 1.0
-MAX_ITER = 1000
+MAX_ITER = 500
 
 # Diretórios de saída
 REPORTS_DIR = ../../reports/$(MACHINE_NAME)/python_multiprocessing
