@@ -1,0 +1,9 @@
+width:    15360
+height:   10240
+minX:     -2.0
+maxX:     1.0
+minY:     -1.0
+maxY:     1.0
+max_iter: 250
+Salvando imagem em: pictures/debian/fractal_15360_10240_iter250_20260911_105531.ppm
+Tempo de processamento (perf_counter): 711.650695 segundos
