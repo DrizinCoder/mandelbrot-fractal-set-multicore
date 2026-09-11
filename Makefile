@@ -33,19 +33,19 @@ run:
 
 # ── Medição de tempo com /usr/bin/time ───────────────────────────────────────
 time: compile hardware-info
-	mkdir -p pictures/$(MACHINE_NAME) reports/$(MACHINE_NAME)/time
+	mkdir -p pictures/$(MACHINE_NAME) reports/$(MACHINE_NAME)/c-serial/time
 	@echo "Executando com /usr/bin/time (medição detalhada de tempo e recursos)..."
-	/usr/bin/time -v ./build/programa $(ARGS) 2>&1 | tee reports/$(MACHINE_NAME)/time/time_report.txt
+	/usr/bin/time -v ./build/programa $(ARGS) 2>&1 | tee reports/$(MACHINE_NAME)/c-serial/time/time_report.txt
 	@echo "---------------------------------------------------------"
-	@echo "Relatório salvo em reports/$(MACHINE_NAME)/time/time_report.txt."
+	@echo "Relatório salvo em reports/$(MACHINE_NAME)/c-serial/time/time_report.txt."
 	@echo "---------------------------------------------------------"
 
 just-time: compile
-	mkdir reports/$(MACHINE_NAME)/time
+	mkdir reports/$(MACHINE_NAME)/c-serial/time
 	@echo "Executando com /usr/bin/time (medição detalhada de tempo e recursos)..."
-	/usr/bin/time -v ./build/programa $(ARGS) 2>&1 | tee reports/$(MACHINE_NAME)/time/time_report.txt
+	/usr/bin/time -v ./build/programa $(ARGS) 2>&1 | tee reports/$(MACHINE_NAME)/c-serial/time/time_report.txt
 	@echo "---------------------------------------------------------"
-	@echo "Relatório salvo em reports/$(MACHINE_NAME)/time/time_report.txt."
+	@echo "Relatório salvo em reports/$(MACHINE_NAME)/c-serial/time/time_report.txt."
 	@echo "---------------------------------------------------------"
 
 # ── Build principal (requisito do enunciado) ──────────────────────────────────
@@ -62,11 +62,11 @@ run:
 	./build/programa $(ARGS)
 
 time-omp: compile-openmp hardware-info
-	mkdir -p pictures/$(MACHINE_NAME) reports/$(MACHINE_NAME)/time
+	mkdir -p pictures/$(MACHINE_NAME) reports/$(MACHINE_NAME)/c-serial/time
 	@echo "Executando com /usr/bin/time (medição detalhada de tempo e recursos)..."
-	/usr/bin/time -v ./build/programa $(ARGS) 2>&1 | tee reports/$(MACHINE_NAME)/time/time_report.txt
+	/usr/bin/time -v ./build/programa $(ARGS) 2>&1 | tee reports/$(MACHINE_NAME)/c-serial/time/time_report.txt
 	@echo "---------------------------------------------------------"
-	@echo "Relatório salvo em reports/$(MACHINE_NAME)/time/time_report.txt."
+	@echo "Relatório salvo em reports/$(MACHINE_NAME)/c-serial/time/time_report.txt."
 	@echo "---------------------------------------------------------"
 
 # ── Relatório de Hardware ───────────────────────────────────────────────────────
@@ -94,124 +94,124 @@ compile-profile:
 	$(CC) $(CFLAGS) -pg serial_c_code/complex.c serial_c_code/image_generator.c serial_c_code/mandelbrot.c -o build/programa_profile $(LIBS)
 
 gprof: compile-profile hardware-info
-	mkdir -p pictures/$(MACHINE_NAME) reports/$(MACHINE_NAME)/gprof
+	mkdir -p pictures/$(MACHINE_NAME) reports/$(MACHINE_NAME)/c-serial/gprof
 	@echo "Executando para coletar dados de profiling..."
 	./build/programa_profile $(ARGS)
-	@if [ -f gmon.out ]; then mv gmon.out reports/$(MACHINE_NAME)/gprof/; fi
+	@if [ -f gmon.out ]; then mv gmon.out reports/$(MACHINE_NAME)/c-serial/gprof/; fi
 	@echo "Gerando relatório do gprof..."
-	gprof ./build/programa_profile reports/$(MACHINE_NAME)/gprof/gmon.out > reports/$(MACHINE_NAME)/gprof/profiling_report.txt
+	gprof ./build/programa_profile reports/$(MACHINE_NAME)/c-serial/gprof/gmon.out > reports/$(MACHINE_NAME)/c-serial/gprof/profiling_report.txt
 	@echo "---------------------------------------------------------"
-	@echo "Relatório salvo em reports/$(MACHINE_NAME)/gprof/profiling_report.txt."
+	@echo "Relatório salvo em reports/$(MACHINE_NAME)/c-serial/gprof/profiling_report.txt."
 	@echo "Top 10 gargalos (flat profile):"
-	@head -n 15 reports/$(MACHINE_NAME)/gprof/profiling_report.txt
+	@head -n 15 reports/$(MACHINE_NAME)/c-serial/gprof/profiling_report.txt
 	@echo "---------------------------------------------------------"
 
 # ── perf ──────────────────────────────────────────────────────────────────────
 perf: compile hardware-info
-	mkdir -p pictures/$(MACHINE_NAME) reports/$(MACHINE_NAME)/perf
+	mkdir -p pictures/$(MACHINE_NAME) reports/$(MACHINE_NAME)/c-serial/perf
 	@echo "Executando com perf stat (coletando métricas de hardware)..."
-	perf stat -e cycles,instructions,cache-misses,cache-references,branch-misses,branches,L1-dcache-load-misses,LLC-load-misses -o reports/$(MACHINE_NAME)/perf/perf_stat.txt ./build/programa $(ARGS)
+	perf stat -e cycles,instructions,cache-misses,cache-references,branch-misses,branches,L1-dcache-load-misses,LLC-load-misses -o reports/$(MACHINE_NAME)/c-serial/perf/perf_stat.txt ./build/programa $(ARGS)
 	@echo "Executando com perf record (coletando call graph)..."
-	perf record -o reports/$(MACHINE_NAME)/perf/perf.data -g ./build/programa $(ARGS)
+	perf record -o reports/$(MACHINE_NAME)/c-serial/perf/perf.data -g ./build/programa $(ARGS)
 	@echo "Gerando relatório do perf..."
-	perf report -f -i reports/$(MACHINE_NAME)/perf/perf.data --stdio > reports/$(MACHINE_NAME)/perf/perf_report.txt
+	perf report -f -i reports/$(MACHINE_NAME)/c-serial/perf/perf.data --stdio > reports/$(MACHINE_NAME)/c-serial/perf/perf_report.txt
 	@echo "---------------------------------------------------------"
-	@echo "Relatório perf stat salvo em reports/$(MACHINE_NAME)/perf/perf_stat.txt:"
-	@cat reports/$(MACHINE_NAME)/perf/perf_stat.txt
+	@echo "Relatório perf stat salvo em reports/$(MACHINE_NAME)/c-serial/perf/perf_stat.txt:"
+	@cat reports/$(MACHINE_NAME)/c-serial/perf/perf_stat.txt
 	@echo "---------------------------------------------------------"
-	@echo "Relatório perf record (amostragem) salvo em reports/$(MACHINE_NAME)/perf/perf_report.txt."
-	@head -n 30 reports/$(MACHINE_NAME)/perf/perf_report.txt
+	@echo "Relatório perf record (amostragem) salvo em reports/$(MACHINE_NAME)/c-serial/perf/perf_report.txt."
+	@head -n 30 reports/$(MACHINE_NAME)/c-serial/perf/perf_report.txt
 	@echo "---------------------------------------------------------"
 
 # ── Valgrind (Callgrind + Cachegrind) ────────────────────────────────────────
 valgrind: compile hardware-info
-	mkdir -p pictures/$(MACHINE_NAME) reports/$(MACHINE_NAME)/valgrind
+	mkdir -p pictures/$(MACHINE_NAME) reports/$(MACHINE_NAME)/c-serial/valgrind
 	@echo "[Callgrind] Contando instruções e chamadas por função..."
 	valgrind --tool=callgrind \
-		--callgrind-out-file=reports/$(MACHINE_NAME)/valgrind/callgrind.out \
+		--callgrind-out-file=reports/$(MACHINE_NAME)/c-serial/valgrind/callgrind.out \
 		./build/programa $(VALGRIND_ARGS)
 	@echo "[Callgrind] Gerando relatório de texto..."
-	callgrind_annotate --auto=yes reports/$(MACHINE_NAME)/valgrind/callgrind.out \
-		> reports/$(MACHINE_NAME)/valgrind/callgrind_report.txt
+	callgrind_annotate --auto=yes reports/$(MACHINE_NAME)/c-serial/valgrind/callgrind.out \
+		> reports/$(MACHINE_NAME)/c-serial/valgrind/callgrind_report.txt
 	@echo "---------------------------------------------------------"
 	@echo "Top funções (Callgrind):"
-	@head -n 40 reports/$(MACHINE_NAME)/valgrind/callgrind_report.txt
+	@head -n 40 reports/$(MACHINE_NAME)/c-serial/valgrind/callgrind_report.txt
 	@echo "---------------------------------------------------------"
 	@echo "[Cachegrind] Analisando acessos e misses de cache (L1/L2)..."
 	valgrind --tool=cachegrind \
-		--cachegrind-out-file=reports/$(MACHINE_NAME)/valgrind/cachegrind.out \
+		--cachegrind-out-file=reports/$(MACHINE_NAME)/c-serial/valgrind/cachegrind.out \
 		./build/programa $(VALGRIND_ARGS)
 	@echo "[Cachegrind] Gerando relatório anotado por linha..."
-	cg_annotate --auto=yes reports/$(MACHINE_NAME)/valgrind/cachegrind.out \
-		> reports/$(MACHINE_NAME)/valgrind/cachegrind_report.txt
+	cg_annotate --auto=yes reports/$(MACHINE_NAME)/c-serial/valgrind/cachegrind.out \
+		> reports/$(MACHINE_NAME)/c-serial/valgrind/cachegrind_report.txt
 	@echo "---------------------------------------------------------"
 	@echo "Resumo de cache (Cachegrind):"
-	@head -n 30 reports/$(MACHINE_NAME)/valgrind/cachegrind_report.txt
+	@head -n 30 reports/$(MACHINE_NAME)/c-serial/valgrind/cachegrind_report.txt
 	@echo "---------------------------------------------------------"
-	@echo "Relatórios salvos em reports/$(MACHINE_NAME)/valgrind/"
+	@echo "Relatórios salvos em reports/$(MACHINE_NAME)/c-serial/valgrind/"
 
 # ── strace ───────────────────────────────────────────────────────────────────
 strace: compile hardware-info
-	mkdir -p pictures/$(MACHINE_NAME) reports/$(MACHINE_NAME)/strace
+	mkdir -p pictures/$(MACHINE_NAME) reports/$(MACHINE_NAME)/c-serial/strace
 	@echo "[strace] Rastreando syscalls do programa..."
-	strace -c -o reports/$(MACHINE_NAME)/strace/strace_report.txt \
+	strace -c -o reports/$(MACHINE_NAME)/c-serial/strace/strace_report.txt \
 		./build/programa $(ARGS)
 	@echo "---------------------------------------------------------"
 	@echo "Resumo de syscalls:"
-	@cat reports/$(MACHINE_NAME)/strace/strace_report.txt
+	@cat reports/$(MACHINE_NAME)/c-serial/strace/strace_report.txt
 	@echo "---------------------------------------------------------"
 	@echo "Top 3 syscalls mais frequentes:"
-	@tail -n +3 reports/$(MACHINE_NAME)/strace/strace_report.txt \
+	@tail -n +3 reports/$(MACHINE_NAME)/c-serial/strace/strace_report.txt \
 		| grep -v 'total\|calls\|errors\|---' \
 		| sort -k4 -rn \
 		| head -n 3
 	@echo "---------------------------------------------------------"
-	@echo "Relatório salvo em reports/$(MACHINE_NAME)/strace/strace_report.txt"
+	@echo "Relatório salvo em reports/$(MACHINE_NAME)/c-serial/strace/strace_report.txt"
 
 # ── time (Python) ────────────────────────────────────────────────────────
 python-time: 
-	mkdir -p pictures/$(MACHINE_NAME) reports/$(MACHINE_NAME)/python_serial/time
+	mkdir -p pictures/$(MACHINE_NAME) reports/$(MACHINE_NAME)/python-serial/time
 	@echo "Executando com /usr/bin/time (medição detalhada de tempo e recursos)..."
-	/usr/bin/time -v python3 python_serial_code/python_serial.py $(ARGS) > reports/$(MACHINE_NAME)/python_serial/time/time.txt
+	/usr/bin/time -v python3 python_serial_code/python_serial.py $(ARGS) > reports/$(MACHINE_NAME)/python-serial/time/time.txt
 	@echo "---------------------------------------------------------"
-	@echo "Relatório salvo em reports/$(MACHINE_NAME)/time/time_report.txt."
+	@echo "Relatório salvo em reports/$(MACHINE_NAME)/c-serial/time/time_report.txt."
 	@echo "---------------------------------------------------------"
 
 # ── cProfile (Python) ────────────────────────────────────────────────────────
 python-cprofile: hardware-info
-	mkdir -p pictures/$(MACHINE_NAME) reports/$(MACHINE_NAME)/python_serial
+	mkdir -p pictures/$(MACHINE_NAME) reports/$(MACHINE_NAME)/python-serial
 	@echo "Executando cProfile no script serial..."
-	python3 -m cProfile -s cumulative python_serial_code/python_serial.py $(ARGS) > reports/$(MACHINE_NAME)/python_serial/cprofile_report.txt
+	python3 -m cProfile -s cumulative python_serial_code/python_serial.py $(ARGS) > reports/$(MACHINE_NAME)/python-serial/cprofile_report.txt
 	@echo "---------------------------------------------------------"
-	@echo "Relatório salvo em reports/$(MACHINE_NAME)/python_serial/cprofile_report.txt"
-	@head -n 25 reports/$(MACHINE_NAME)/python_serial/cprofile_report.txt
+	@echo "Relatório salvo em reports/$(MACHINE_NAME)/python-serial/cprofile_report.txt"
+	@head -n 25 reports/$(MACHINE_NAME)/python-serial/cprofile_report.txt
 	@echo "---------------------------------------------------------"
 
 # ── perf (Python) ────────────────────────────────────────────────────────────
 python-perf: hardware-info
-	mkdir -p pictures/$(MACHINE_NAME) reports/$(MACHINE_NAME)/python_serial
+	mkdir -p pictures/$(MACHINE_NAME) reports/$(MACHINE_NAME)/python-serial
 	@echo "Executando perf stat no script serial Python..."
-	perf stat -e cycles,instructions,cache-misses,cache-references,branch-misses,branches,L1-dcache-load-misses,LLC-load-misses -o reports/$(MACHINE_NAME)/python_serial/perf_stat.txt python3 python_serial_code/python_serial.py $(ARGS)
+	perf stat -e cycles,instructions,cache-misses,cache-references,branch-misses,branches,L1-dcache-load-misses,LLC-load-misses -o reports/$(MACHINE_NAME)/python-serial/perf_stat.txt python3 python_serial_code/python_serial.py $(ARGS)
 	@echo "---------------------------------------------------------"
-	@echo "Relatório perf stat salvo em reports/$(MACHINE_NAME)/python_serial/perf_stat.txt:"
-	@cat reports/$(MACHINE_NAME)/python_serial/perf_stat.txt
+	@echo "Relatório perf stat salvo em reports/$(MACHINE_NAME)/python-serial/perf_stat.txt:"
+	@cat reports/$(MACHINE_NAME)/python-serial/perf_stat.txt
 	@echo "---------------------------------------------------------"
 
 # ── strace (Python) ──────────────────────────────────────────────────────────
 python-strace: hardware-info
-	mkdir -p pictures/$(MACHINE_NAME) reports/$(MACHINE_NAME)/python_serial
+	mkdir -p pictures/$(MACHINE_NAME) reports/$(MACHINE_NAME)/python-serial
 	@echo "Executando strace no script serial Python..."
-	strace -c -o reports/$(MACHINE_NAME)/python_serial/strace_report.txt python3 python_serial_code/python_serial.py $(ARGS)
+	strace -c -o reports/$(MACHINE_NAME)/python-serial/strace_report.txt python3 python_serial_code/python_serial.py $(ARGS)
 	@echo "---------------------------------------------------------"
 	@echo "Resumo de syscalls (strace):"
-	@cat reports/$(MACHINE_NAME)/python_serial/strace_report.txt
+	@cat reports/$(MACHINE_NAME)/python-serial/strace_report.txt
 	@echo "---------------------------------------------------------"
 
 # ── Análises Python ──────────────────────────────────────────────────────────
 python-analyze: python-cprofile python-perf python-strace
 	@echo "========================================================="
 	@echo "Todas as análises Python (cProfile, perf, strace) concluídas!"
-	@echo "Relatórios em: reports/$$(hostname)/python_serial/"
+	@echo "Relatórios em: reports/$$(hostname)/python-serial/"
 	@echo "========================================================="
 
 # ── Todas as análises ─────────────────────────────────────────────────────────
@@ -245,11 +245,11 @@ clean:
 
 time-benchamark: compile hardware-info
 	@echo "Executando o time-benchmark serial."
-	@mkdir -p reports/$(MACHINE_NAME)/time pictures/$(MACHINE_NAME)
+	@mkdir -p reports/$(MACHINE_NAME)/c-serial/time pictures/$(MACHINE_NAME)
 	@echo "========================================================="; \
 	echo "Rodando benchmark de tempo (Serial)..."; \
 	OUTPUT_FILE=pictures/$(MACHINE_NAME)/fractal_$(WIDTH)_$(HEIGHT)_iter$(MAX_ITER)_time_serial_$(TIMESTAMP).ppm; \
-	/usr/bin/time -v ./build/programa $(WIDTH) $(HEIGHT) $(MIN_X) $(MAX_X) $(MIN_Y) $(MAX_Y) $(MAX_ITER) $$OUTPUT_FILE 2>&1 | tee reports/$(MACHINE_NAME)/time/time_report_serial.txt || true
+	/usr/bin/time -v ./build/programa $(WIDTH) $(HEIGHT) $(MIN_X) $(MAX_X) $(MIN_Y) $(MAX_Y) $(MAX_ITER) $$OUTPUT_FILE 2>&1 | tee reports/$(MACHINE_NAME)/c-serial/time/time_report_serial.txt || true
 
 
 # ── Análises para o segundo trabalho ──────────────────────────────────── 
@@ -258,7 +258,7 @@ time-benchamark: compile hardware-info
 analyze-c-serial: clean time-benchamark gprof perf valgrind strace
 	@echo "========================================================="
 	@echo "Todas as análises (time, gprof, perf, valgrind, strace) foram concluídas!"
-	@echo "Os relatórios estão salvos na pasta reports/$$(MACHINE_NAME)/c-serial/"
+	@echo "Os relatórios estão salvos na pasta reports/$(MACHINE_NAME)/c-serial/"
 	@echo "========================================================="
 
 c-parallel-benchmark: compile-openmp hardware-info
@@ -267,21 +267,27 @@ c-parallel-benchmark: compile-openmp hardware-info
 		echo "========================================================="; \
 		echo "Rodando C OpenMP com $$threads thread(s)..."; \
 		mkdir -p reports/$(MACHINE_NAME)/c-parallel/threads_$$threads pictures/$(MACHINE_NAME); \
-		OUTPUT_FILE=pictures/$(MACHINE_NAME)/fractal_omp_$$(WIDTH)_$$(HEIGHT)_iter$$(MAX_ITER)_threads$$$${threads}_$$(TIMESTAMP).ppm; \
-		OMP_NUM_THREADS=$$threads /usr/bin/time -v ./build/programa $$(WIDTH) $$(HEIGHT) $$(MIN_X) $$(MAX_X) $$(MIN_Y) $$(MAX_Y) $$(MAX_ITER) $$OUTPUT_FILE 2>&1 | tee reports/$$(MACHINE_NAME)/c-parallel/threads_$$threads/time_report.txt || true; \
+		OUTPUT_FILE=pictures/$(MACHINE_NAME)/fractal_omp_$(WIDTH)_$(HEIGHT)_iter$(MAX_ITER)_threads$${threads}_$(TIMESTAMP).ppm; \
+		OMP_NUM_THREADS=$$threads /usr/bin/time -v ./build/programa $(WIDTH) $(HEIGHT) $(MIN_X) $(MAX_X) $(MIN_Y) $(MAX_Y) $(MAX_ITER) $$OUTPUT_FILE 2>&1 | tee reports/$(MACHINE_NAME)/c-parallel/threads_$$threads/time_report.txt || true; \
 	done
 
-analyze-c-parallel: c-parallel-benchmark perf 
+perf-c-parallel: compile-openmp hardware-info
+	mkdir -p pictures/$(MACHINE_NAME) reports/$(MACHINE_NAME)/c-parallel/perf
+	@echo "Executando perf no C Paralelo (4 threads)..."
+	OUTPUT_FILE=pictures/$(MACHINE_NAME)/fractal_omp_$(WIDTH)_$(HEIGHT)_iter$(MAX_ITER)_perf_4threads_$(TIMESTAMP).ppm; \
+	OMP_NUM_THREADS=4 perf stat -e cycles,instructions,cache-misses,cache-references,branch-misses,branches,L1-dcache-load-misses,LLC-load-misses -o reports/$(MACHINE_NAME)/c-parallel/perf/perf_stat.txt ./build/programa $(WIDTH) $(HEIGHT) $(MIN_X) $(MAX_X) $(MIN_Y) $(MAX_Y) $(MAX_ITER) $$OUTPUT_FILE
+
+analyze-c-parallel: c-parallel-benchmark perf-c-parallel
 	@echo "========================================================="
 	@echo "Todas as análises (perf) foram concluídas!"
-	@echo "Os relatórios estão salvos na pasta reports/$$(MACHINE_NAME)/c-parallel/"
+	@echo "Os relatórios estão salvos na pasta reports/$(MACHINE_NAME)/c-parallel/"
 	@echo "========================================================="
 
 # ── Análises Python ──────────────────────────────────────────────────────────
 python-serial: time-benchamark python-cprofile python-perf python-strace
 	@echo "========================================================="
 	@echo "Todas as análises Python (cProfile, perf, strace) concluídas!"
-	@echo "Os relatórios estão salvos na pasta reports/$$(hostname)/python_serial/"
+	@echo "Os relatórios estão salvos na pasta reports/$(MACHINE_NAME)/python-serial/"
 	@echo "========================================================="
 
 python-multithreading-benchmark: hardware-info
@@ -289,15 +295,27 @@ python-multithreading-benchmark: hardware-info
 	@for threads in 1 2 4 8; do \
 		echo "========================================================="; \
 		echo "Rodando Python Multithreading com $$threads thread(s)..."; \
-		mkdir -p reports/$$(MACHINE_NAME)/python-multithreading/threads_$$threads pictures/$$(MACHINE_NAME); \
-		OUTPUT_FILE=pictures/$$(MACHINE_NAME)/fractal_py_mt_$$(WIDTH)_$$(HEIGHT)_iter$$(MAX_ITER)_threads$$$${threads}_$$(TIMESTAMP).ppm; \
-		/usr/bin/time -v python3 python_pararell/python_pararell_multithreading/python_pararell_multithreading.py $$(WIDTH) $$(HEIGHT) $$(MIN_X) $$(MAX_X) $$(MIN_Y) $$(MAX_Y) $$(MAX_ITER) $$OUTPUT_FILE $$threads 2>&1 | tee reports/$$(MACHINE_NAME)/python-multithreading/threads_$$threads/time_report.txt || true; \
+		mkdir -p reports/$(MACHINE_NAME)/python-multithreading/threads_$$threads pictures/$(MACHINE_NAME); \
+		OUTPUT_FILE=pictures/$(MACHINE_NAME)/fractal_py_mt_$(WIDTH)_$(HEIGHT)_iter$(MAX_ITER)_threads$${threads}_$(TIMESTAMP).ppm; \
+		/usr/bin/time -v python3 python_pararell/python_pararell_multithreading/python_pararell_multithreading.py $(WIDTH) $(HEIGHT) $(MIN_X) $(MAX_X) $(MIN_Y) $(MAX_Y) $(MAX_ITER) $$OUTPUT_FILE $$threads 2>&1 | tee reports/$(MACHINE_NAME)/python-multithreading/threads_$$threads/time_report.txt || true; \
 	done
 
-python-parallel-multithreading: python-multithreading-benchmark python-cprofile python-perf
+python-multithreading-cprofile: hardware-info
+	mkdir -p pictures/$(MACHINE_NAME) reports/$(MACHINE_NAME)/python-multithreading/cprofile
+	@echo "Executando cProfile no script Multithreading (4 threads)..."
+	OUTPUT_FILE=pictures/$(MACHINE_NAME)/fractal_py_mt_$(WIDTH)_$(HEIGHT)_iter$(MAX_ITER)_cprofile_4threads_$(TIMESTAMP).ppm; \
+	python3 -m cProfile -s cumulative python_pararell/python_pararell_multithreading/python_pararell_multithreading.py $(WIDTH) $(HEIGHT) $(MIN_X) $(MAX_X) $(MIN_Y) $(MAX_Y) $(MAX_ITER) $$OUTPUT_FILE 4 > reports/$(MACHINE_NAME)/python-multithreading/cprofile/cprofile_report.txt
+
+python-multithreading-perf: hardware-info
+	mkdir -p pictures/$(MACHINE_NAME) reports/$(MACHINE_NAME)/python-multithreading/perf
+	@echo "Executando perf stat no script Multithreading (4 threads)..."
+	OUTPUT_FILE=pictures/$(MACHINE_NAME)/fractal_py_mt_$(WIDTH)_$(HEIGHT)_iter$(MAX_ITER)_perf_4threads_$(TIMESTAMP).ppm; \
+	perf stat -e cycles,instructions,cache-misses,cache-references,branch-misses,branches,L1-dcache-load-misses,LLC-load-misses -o reports/$(MACHINE_NAME)/python-multithreading/perf/perf_stat.txt python3 python_pararell/python_pararell_multithreading/python_pararell_multithreading.py $(WIDTH) $(HEIGHT) $(MIN_X) $(MAX_X) $(MIN_Y) $(MAX_Y) $(MAX_ITER) $$OUTPUT_FILE 4
+
+python-parallel-multithreading: python-multithreading-benchmark python-multithreading-cprofile python-multithreading-perf
 	@echo "========================================================="
 	@echo "Todas as análises Python (cProfile, perf, strace) concluídas!"
-	@echo "Relatórios em: reports/$$(hostname)/python-multithreading/"
+	@echo "Relatórios em: reports/$(MACHINE_NAME)/python-multithreading/"
 	@echo "========================================================="
 
 python-multiprocessing-benchmark: hardware-info
@@ -305,13 +323,25 @@ python-multiprocessing-benchmark: hardware-info
 	@for threads in 1 2 4 8; do \
 		echo "========================================================="; \
 		echo "Rodando Python Multiprocessing com $$threads thread(s)..."; \
-		mkdir -p reports/$$(MACHINE_NAME)/python-multiprocessing/threads_$$threads pictures/$$(MACHINE_NAME); \
-		OUTPUT_FILE=pictures/$$(MACHINE_NAME)/fractal_py_mp_$$(WIDTH)_$$(HEIGHT)_iter$$(MAX_ITER)_threads$$$${threads}_$$(TIMESTAMP).ppm; \
-		/usr/bin/time -v python3 python_pararell/python_pararell_multiprocessing/python_pararell_multiprocessing.py $$(WIDTH) $$(HEIGHT) $$(MIN_X) $$(MAX_X) $$(MIN_Y) $$(MAX_Y) $$(MAX_ITER) $$OUTPUT_FILE $$threads 2>&1 | tee reports/$$(MACHINE_NAME)/python-multiprocessing/threads_$$threads/time_report.txt || true; \
+		mkdir -p reports/$(MACHINE_NAME)/python-multiprocessing/threads_$$threads pictures/$(MACHINE_NAME); \
+		OUTPUT_FILE=pictures/$(MACHINE_NAME)/fractal_py_mp_$(WIDTH)_$(HEIGHT)_iter$(MAX_ITER)_threads$${threads}_$(TIMESTAMP).ppm; \
+		/usr/bin/time -v python3 python_pararell/python_pararell_multiprocessing/python_pararell_multiprocessing.py $(WIDTH) $(HEIGHT) $(MIN_X) $(MAX_X) $(MIN_Y) $(MAX_Y) $(MAX_ITER) $$OUTPUT_FILE $$threads 2>&1 | tee reports/$(MACHINE_NAME)/python-multiprocessing/threads_$$threads/time_report.txt || true; \
 	done
 
-python-parallel-multiprocessing: python-multiprocessing-benchmark python-cprofile python-perf
+python-multiprocessing-cprofile: hardware-info
+	mkdir -p pictures/$(MACHINE_NAME) reports/$(MACHINE_NAME)/python-multiprocessing/cprofile
+	@echo "Executando cProfile no script Multiprocessing (4 processos)..."
+	OUTPUT_FILE=pictures/$(MACHINE_NAME)/fractal_py_mp_$(WIDTH)_$(HEIGHT)_iter$(MAX_ITER)_cprofile_4procs_$(TIMESTAMP).ppm; \
+	python3 -m cProfile -s cumulative python_pararell/python_pararell_multiprocessing/python_pararell_multiprocessing.py $(WIDTH) $(HEIGHT) $(MIN_X) $(MAX_X) $(MIN_Y) $(MAX_Y) $(MAX_ITER) $$OUTPUT_FILE 4 > reports/$(MACHINE_NAME)/python-multiprocessing/cprofile/cprofile_report.txt
+
+python-multiprocessing-perf: hardware-info
+	mkdir -p pictures/$(MACHINE_NAME) reports/$(MACHINE_NAME)/python-multiprocessing/perf
+	@echo "Executando perf stat no script Multiprocessing (4 processos)..."
+	OUTPUT_FILE=pictures/$(MACHINE_NAME)/fractal_py_mp_$(WIDTH)_$(HEIGHT)_iter$(MAX_ITER)_perf_4procs_$(TIMESTAMP).ppm; \
+	perf stat -e cycles,instructions,cache-misses,cache-references,branch-misses,branches,L1-dcache-load-misses,LLC-load-misses -o reports/$(MACHINE_NAME)/python-multiprocessing/perf/perf_stat.txt python3 python_pararell/python_pararell_multiprocessing/python_pararell_multiprocessing.py $(WIDTH) $(HEIGHT) $(MIN_X) $(MAX_X) $(MIN_Y) $(MAX_Y) $(MAX_ITER) $$OUTPUT_FILE 4
+
+python-parallel-multiprocessing: python-multiprocessing-benchmark python-multiprocessing-cprofile python-multiprocessing-perf
 	@echo "========================================================="
 	@echo "Todas as análises Python (cProfile, perf, strace) concluídas!"
-	@echo "Relatórios em: reports/$$(hostname)/python-multiprocessing/"
+	@echo "Relatórios em: reports/$(MACHINE_NAME)/python-multiprocessing/"
 	@echo "========================================================="

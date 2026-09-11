@@ -1,0 +1,28 @@
+# started on Fri Sep 11 11:32:46 2026
+
+
+ Performance counter stats for './build/programa 15360 10240 -2 1 -1 1 250 pictures/LOQ/fractal_omp_15360_10240_iter250_perf_4threads_20260911_113157.ppm':
+
+    77,785,294,679      cpu_atom/cycles/                                                        (1.18%)
+   109,014,794,464      cpu_core/cycles/                                                        (98.86%)
+   131,087,390,265      cpu_atom/instructions/                                                  (1.18%)
+   211,692,782,131      cpu_core/instructions/                                                  (98.86%)
+        12,937,855      cpu_atom/cache-misses/                                                  (1.18%)
+        27,198,717      cpu_core/cache-misses/                                                  (98.86%)
+        29,853,571      cpu_atom/cache-references/                                              (1.18%)
+        39,928,566      cpu_core/cache-references/                                              (98.86%)
+        33,228,612      cpu_atom/branch-misses/                                                 (1.18%)
+        48,901,433      cpu_core/branch-misses/                                                 (98.86%)
+    14,745,222,486      cpu_atom/branches/                                                      (1.18%)
+    23,851,753,482      cpu_core/branches/                                                      (98.86%)
+   <not supported>      cpu_atom/L1-dcache-load-misses/                                       
+         8,345,076      cpu_core/L1-dcache-load-misses/                                         (98.86%)
+             8,879      cpu_atom/LLC-load-misses/                                               (1.18%)
+         5,869,266      cpu_core/LLC-load-misses/                                               (98.86%)
+
+       8.181803022 seconds time elapsed
+
+      25.848276000 seconds user
+       0.226335000 seconds sys
+
+
