@@ -244,9 +244,9 @@ clean:
 
 
 time-benchamark: compile hardware-info
-	@echo "Executar o time com 1, 2, 3 e 4 cores."
+	@echo "Executar o time com 1, 2, 4, 8 e 12 cores."
 	@mkdir -p reports/$(MACHINE_NAME)/time pictures/$(MACHINE_NAME)
-	@for core in 1 2 3 4; do \
+	@for core in 1 2 4 8 12; do \
 		echo "========================================================="; \
 		echo "Rodando benchmark de tempo com $$core core(s)..."; \
 		OUTPUT_FILE=pictures/$(MACHINE_NAME)/fractal_$(WIDTH)_$(HEIGHT)_iter$(MAX_ITER)_time_core$${core}_$(TIMESTAMP).ppm; \
@@ -263,7 +263,17 @@ analyze-c-serial: clean time-benchamark gprof perf valgrind strace
 	@echo "Os relatórios estão salvos na pasta reports/$$(MACHINE_NAME)/c-serial/"
 	@echo "========================================================="
 
-analyze-c-parallel: time-benchamark perf 
+c-parallel-benchmark: compile-openmp hardware-info
+	@echo "Executar C paralelo com 1, 2, 4 e 8 threads."
+	@for threads in 1 2 4 8; do \
+		echo "========================================================="; \
+		echo "Rodando C OpenMP com $$threads thread(s)..."; \
+		mkdir -p reports/$(MACHINE_NAME)/c-parallel/threads_$$threads pictures/$(MACHINE_NAME); \
+		OUTPUT_FILE=pictures/$(MACHINE_NAME)/fractal_omp_$$(WIDTH)_$$(HEIGHT)_iter$$(MAX_ITER)_threads$$$${threads}_$$(TIMESTAMP).ppm; \
+		OMP_NUM_THREADS=$$threads /usr/bin/time -v ./build/programa $$(WIDTH) $$(HEIGHT) $$(MIN_X) $$(MAX_X) $$(MIN_Y) $$(MAX_Y) $$(MAX_ITER) $$OUTPUT_FILE 2>&1 | tee reports/$$(MACHINE_NAME)/c-parallel/threads_$$threads/time_report.txt || true; \
+	done
+
+analyze-c-parallel: c-parallel-benchmark perf 
 	@echo "========================================================="
 	@echo "Todas as análises (perf) foram concluídas!"
 	@echo "Os relatórios estão salvos na pasta reports/$$(MACHINE_NAME)/c-parallel/"
@@ -276,14 +286,34 @@ python-serial: time-benchamark python-cprofile python-perf python-strace
 	@echo "Os relatórios estão salvos na pasta reports/$$(hostname)/python_serial/"
 	@echo "========================================================="
 
-python-parallel-multithreading: time-benchamark python-cprofile python-perf
+python-multithreading-benchmark: hardware-info
+	@echo "Executar Python Multithreading com 1, 2, 4 e 8 threads."
+	@for threads in 1 2 4 8; do \
+		echo "========================================================="; \
+		echo "Rodando Python Multithreading com $$threads thread(s)..."; \
+		mkdir -p reports/$$(MACHINE_NAME)/python-multithreading/threads_$$threads pictures/$$(MACHINE_NAME); \
+		OUTPUT_FILE=pictures/$$(MACHINE_NAME)/fractal_py_mt_$$(WIDTH)_$$(HEIGHT)_iter$$(MAX_ITER)_threads$$$${threads}_$$(TIMESTAMP).ppm; \
+		/usr/bin/time -v python3 python_pararell/python_pararell_multithreading/python_pararell_multithreading.py $$(WIDTH) $$(HEIGHT) $$(MIN_X) $$(MAX_X) $$(MIN_Y) $$(MAX_Y) $$(MAX_ITER) $$OUTPUT_FILE $$threads 2>&1 | tee reports/$$(MACHINE_NAME)/python-multithreading/threads_$$threads/time_report.txt || true; \
+	done
+
+python-parallel-multithreading: python-multithreading-benchmark python-cprofile python-perf
 	@echo "========================================================="
 	@echo "Todas as análises Python (cProfile, perf, strace) concluídas!"
-	@echo "Relatórios em: reports/$$(hostname)/python_parallel_multithreading/"
+	@echo "Relatórios em: reports/$$(hostname)/python-multithreading/"
 	@echo "========================================================="
 
-python-parallel-multiprocessing: time-benchamark python-cprofile python-perf
+python-multiprocessing-benchmark: hardware-info
+	@echo "Executar Python Multiprocessing com 1, 2, 4 e 8 threads."
+	@for threads in 1 2 4 8; do \
+		echo "========================================================="; \
+		echo "Rodando Python Multiprocessing com $$threads thread(s)..."; \
+		mkdir -p reports/$$(MACHINE_NAME)/python-multiprocessing/threads_$$threads pictures/$$(MACHINE_NAME); \
+		OUTPUT_FILE=pictures/$$(MACHINE_NAME)/fractal_py_mp_$$(WIDTH)_$$(HEIGHT)_iter$$(MAX_ITER)_threads$$$${threads}_$$(TIMESTAMP).ppm; \
+		/usr/bin/time -v python3 python_pararell/python_pararell_multiprocessing/python_pararell_multiprocessing.py $$(WIDTH) $$(HEIGHT) $$(MIN_X) $$(MAX_X) $$(MIN_Y) $$(MAX_Y) $$(MAX_ITER) $$OUTPUT_FILE $$threads 2>&1 | tee reports/$$(MACHINE_NAME)/python-multiprocessing/threads_$$threads/time_report.txt || true; \
+	done
+
+python-parallel-multiprocessing: python-multiprocessing-benchmark python-cprofile python-perf
 	@echo "========================================================="
 	@echo "Todas as análises Python (cProfile, perf, strace) concluídas!"
-	@echo "Relatórios em: reports/$$(hostname)/python_parallel_multiprocessing/"
+	@echo "Relatórios em: reports/$$(hostname)/python-multiprocessing/"
 	@echo "========================================================="
