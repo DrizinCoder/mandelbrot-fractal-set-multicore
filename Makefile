@@ -213,10 +213,15 @@ clean:
 	rm -rf reports/$(MACHINE_NAME)
 
 
-time-benchamark: 
+time-benchamark: compile hardware-info
 	@echo "Executar o time com 1, 2, 3 e 4 cores."
-	@echo "a ideia aqui /e"
-
+	@mkdir -p reports/$(MACHINE_NAME)/time pictures/$(MACHINE_NAME)
+	@for core in 1 2 3 4; do \
+		echo "========================================================="; \
+		echo "Rodando benchmark de tempo com $$core core(s)..."; \
+		OUTPUT_FILE=pictures/$(MACHINE_NAME)/fractal_$(WIDTH)_$(HEIGHT)_iter$(MAX_ITER)_time_core$${core}_$(TIMESTAMP).ppm; \
+		/usr/bin/time -v ./build/programa $(WIDTH) $(HEIGHT) $(MIN_X) $(MAX_X) $(MIN_Y) $(MAX_Y) $(MAX_ITER) $$OUTPUT_FILE $$core 2>&1 | tee reports/$(MACHINE_NAME)/time/time_report_core$${core}.txt || true; \
+	done
 
 
 # ── Análises para o segundo trabalho ──────────────────────────────────── 
