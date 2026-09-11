@@ -48,6 +48,27 @@ just-time: compile
 	@echo "Relatório salvo em reports/$(MACHINE_NAME)/time/time_report.txt."
 	@echo "---------------------------------------------------------"
 
+# ── Build principal (requisito do enunciado) ──────────────────────────────────
+compile:
+	mkdir -p build
+	$(CC) $(CFLAGS)  serial_c_code/complex.c serial_c_code/image_generator.c serial_c_code/mandelbrot.c -o build/programa $(LIBS)
+
+compile-openmp:
+	mkdir -p build
+	$(CC) $(CFLAGS) -fopenmp multicore_c_code/complex.c multicore_c_code/image_generator.c multicore_c_code/mandelbrot.c -o build/programa $(LIBS)
+
+run:
+	mkdir -p pictures/$(MACHINE_NAME)
+	./build/programa $(ARGS)
+
+time-omp: compile-openmp hardware-info
+	mkdir -p pictures/$(MACHINE_NAME) reports/$(MACHINE_NAME)/time
+	@echo "Executando com /usr/bin/time (medição detalhada de tempo e recursos)..."
+	/usr/bin/time -v ./build/programa $(ARGS) 2>&1 | tee reports/$(MACHINE_NAME)/time/time_report.txt
+	@echo "---------------------------------------------------------"
+	@echo "Relatório salvo em reports/$(MACHINE_NAME)/time/time_report.txt."
+	@echo "---------------------------------------------------------"
+
 # ── Relatório de Hardware ───────────────────────────────────────────────────────
 hardware-info:
 	@mkdir -p reports/$(MACHINE_NAME)
@@ -146,6 +167,15 @@ strace: compile hardware-info
 		| head -n 3
 	@echo "---------------------------------------------------------"
 	@echo "Relatório salvo em reports/$(MACHINE_NAME)/strace/strace_report.txt"
+
+# ── time (Python) ────────────────────────────────────────────────────────
+python-time: 
+	mkdir -p pictures/$(MACHINE_NAME) reports/$(MACHINE_NAME)/python_serial/time
+	@echo "Executando com /usr/bin/time (medição detalhada de tempo e recursos)..."
+	/usr/bin/time -v python3 python_serial_code/python_serial.py $(ARGS) > reports/$(MACHINE_NAME)/python_serial/time/time.txt
+	@echo "---------------------------------------------------------"
+	@echo "Relatório salvo em reports/$(MACHINE_NAME)/time/time_report.txt."
+	@echo "---------------------------------------------------------"
 
 # ── cProfile (Python) ────────────────────────────────────────────────────────
 python-cprofile: hardware-info
