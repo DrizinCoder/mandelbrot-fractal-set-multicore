@@ -79,7 +79,7 @@ int main(int argc, char *argv[]) {
 
     fwrite(image, sizeof(unsigned char), width * height * 3, file_image);
     free(image);
-    fclose(file_image);   // ← você esqueceu isso também
+    fclose(file_image);
 
     clock_gettime(CLOCK_MONOTONIC, &t_end);
     double elapsed = (t_end.tv_sec - t_start.tv_sec) +
