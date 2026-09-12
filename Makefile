@@ -48,18 +48,13 @@ just-time: compile
 	@echo "Relatório salvo em reports/$(MACHINE_NAME)/c-serial/time/time_report.txt."
 	@echo "---------------------------------------------------------"
 
-# ── Build principal (requisito do enunciado) ──────────────────────────────────
-compile:
-	mkdir -p build
-	$(CC) $(CFLAGS)  serial_c_code/complex.c serial_c_code/image_generator.c serial_c_code/mandelbrot.c -o build/programa $(LIBS)
+
 
 compile-openmp:
 	mkdir -p build
 	$(CC) $(CFLAGS) -fopenmp multicore_c_code/complex.c multicore_c_code/image_generator.c multicore_c_code/mandelbrot.c -o build/programa $(LIBS)
 
-run:
-	mkdir -p pictures/$(MACHINE_NAME)
-	./build/programa $(ARGS)
+
 
 time-omp: compile-openmp hardware-info
 	mkdir -p pictures/$(MACHINE_NAME) reports/$(MACHINE_NAME)/c-serial/time
@@ -138,7 +133,7 @@ valgrind: compile hardware-info
 	@head -n 40 reports/$(MACHINE_NAME)/c-serial/valgrind/callgrind_report.txt
 	@echo "---------------------------------------------------------"
 	@echo "[Cachegrind] Analisando acessos e misses de cache (L1/L2)..."
-	valgrind --tool=cachegrind \
+	valgrind --tool=cachegrind --cache-sim=yes \
 		--cachegrind-out-file=reports/$(MACHINE_NAME)/c-serial/valgrind/cachegrind.out \
 		./build/programa $(VALGRIND_ARGS)
 	@echo "[Cachegrind] Gerando relatório anotado por linha..."
@@ -172,9 +167,9 @@ strace: compile hardware-info
 python-time: 
 	mkdir -p pictures/$(MACHINE_NAME) reports/$(MACHINE_NAME)/python-serial/time
 	@echo "Executando com /usr/bin/time (medição detalhada de tempo e recursos)..."
-	/usr/bin/time -v python3 python_serial_code/python_serial.py $(ARGS) > reports/$(MACHINE_NAME)/python-serial/time/time.txt
+	/usr/bin/time -v python3 python_serial_code/python_serial.py $(ARGS) 2>&1 | tee reports/$(MACHINE_NAME)/python-serial/time/time.txt
 	@echo "---------------------------------------------------------"
-	@echo "Relatório salvo em reports/$(MACHINE_NAME)/c-serial/time/time_report.txt."
+	@echo "Relatório salvo em reports/$(MACHINE_NAME)/python-serial/time/time.txt."
 	@echo "---------------------------------------------------------"
 
 # ── cProfile (Python) ────────────────────────────────────────────────────────
@@ -255,7 +250,7 @@ time-benchamark: compile hardware-info
 # ── Análises para o segundo trabalho ──────────────────────────────────── 
 
 # ── Análises C ────────────────────────────────────────────────────────── 
-analyze-c-serial: clean time-benchamark gprof perf valgrind strace
+analyze-c-serial: time-benchamark gprof perf valgrind strace
 	@echo "========================================================="
 	@echo "Todas as análises (time, gprof, perf, valgrind, strace) foram concluídas!"
 	@echo "Os relatórios estão salvos na pasta reports/$(MACHINE_NAME)/c-serial/"
@@ -273,9 +268,14 @@ c-parallel-benchmark: compile-openmp hardware-info
 
 perf-c-parallel: compile-openmp hardware-info
 	mkdir -p pictures/$(MACHINE_NAME) reports/$(MACHINE_NAME)/c-parallel/perf
-	@echo "Executando perf no C Paralelo (4 threads)..."
+	@echo "Executando perf stat no C Paralelo (4 threads)..."
 	OUTPUT_FILE=pictures/$(MACHINE_NAME)/fractal_omp_$(WIDTH)_$(HEIGHT)_iter$(MAX_ITER)_perf_4threads_$(TIMESTAMP).ppm; \
 	OMP_NUM_THREADS=4 perf stat -e cycles,instructions,cache-misses,cache-references,branch-misses,branches,L1-dcache-load-misses,LLC-load-misses -o reports/$(MACHINE_NAME)/c-parallel/perf/perf_stat.txt ./build/programa $(WIDTH) $(HEIGHT) $(MIN_X) $(MAX_X) $(MIN_Y) $(MAX_Y) $(MAX_ITER) $$OUTPUT_FILE
+	@echo "Executando perf record no C Paralelo (4 threads)..."
+	OUTPUT_FILE=pictures/$(MACHINE_NAME)/fractal_omp_$(WIDTH)_$(HEIGHT)_iter$(MAX_ITER)_perf_record_4threads_$(TIMESTAMP).ppm; \
+	OMP_NUM_THREADS=4 perf record -o reports/$(MACHINE_NAME)/c-parallel/perf/perf.data -g ./build/programa $(WIDTH) $(HEIGHT) $(MIN_X) $(MAX_X) $(MIN_Y) $(MAX_Y) $(MAX_ITER) $$OUTPUT_FILE
+	@echo "Gerando relatório do perf record..."
+	perf report -f -i reports/$(MACHINE_NAME)/c-parallel/perf/perf.data --stdio > reports/$(MACHINE_NAME)/c-parallel/perf/perf_report.txt
 
 analyze-c-parallel: c-parallel-benchmark perf-c-parallel
 	@echo "========================================================="
@@ -284,7 +284,7 @@ analyze-c-parallel: c-parallel-benchmark perf-c-parallel
 	@echo "========================================================="
 
 # ── Análises Python ──────────────────────────────────────────────────────────
-python-serial: time-benchamark python-cprofile python-perf python-strace
+python-serial: python-time python-cprofile python-perf python-strace
 	@echo "========================================================="
 	@echo "Todas as análises Python (cProfile, perf, strace) concluídas!"
 	@echo "Os relatórios estão salvos na pasta reports/$(MACHINE_NAME)/python-serial/"
@@ -311,6 +311,11 @@ python-multithreading-perf: hardware-info
 	@echo "Executando perf stat no script Multithreading (4 threads)..."
 	OUTPUT_FILE=pictures/$(MACHINE_NAME)/fractal_py_mt_$(WIDTH)_$(HEIGHT)_iter$(MAX_ITER)_perf_4threads_$(TIMESTAMP).ppm; \
 	perf stat -e cycles,instructions,cache-misses,cache-references,branch-misses,branches,L1-dcache-load-misses,LLC-load-misses -o reports/$(MACHINE_NAME)/python-multithreading/perf/perf_stat.txt python3 python_pararell/python_pararell_multithreading/python_pararell_multithreading.py $(WIDTH) $(HEIGHT) $(MIN_X) $(MAX_X) $(MIN_Y) $(MAX_Y) $(MAX_ITER) $$OUTPUT_FILE 4
+	@echo "Executando perf record no script Multithreading (4 threads)..."
+	OUTPUT_FILE=pictures/$(MACHINE_NAME)/fractal_py_mt_$(WIDTH)_$(HEIGHT)_iter$(MAX_ITER)_perf_record_4threads_$(TIMESTAMP).ppm; \
+	perf record -o reports/$(MACHINE_NAME)/python-multithreading/perf/perf.data -g python3 python_pararell/python_pararell_multithreading/python_pararell_multithreading.py $(WIDTH) $(HEIGHT) $(MIN_X) $(MAX_X) $(MIN_Y) $(MAX_Y) $(MAX_ITER) $$OUTPUT_FILE 4
+	@echo "Gerando relatório do perf record..."
+	perf report -f -i reports/$(MACHINE_NAME)/python-multithreading/perf/perf.data --stdio > reports/$(MACHINE_NAME)/python-multithreading/perf/perf_report.txt
 
 python-parallel-multithreading: python-multithreading-benchmark python-multithreading-cprofile python-multithreading-perf
 	@echo "========================================================="
@@ -339,6 +344,11 @@ python-multiprocessing-perf: hardware-info
 	@echo "Executando perf stat no script Multiprocessing (4 processos)..."
 	OUTPUT_FILE=pictures/$(MACHINE_NAME)/fractal_py_mp_$(WIDTH)_$(HEIGHT)_iter$(MAX_ITER)_perf_4procs_$(TIMESTAMP).ppm; \
 	perf stat -e cycles,instructions,cache-misses,cache-references,branch-misses,branches,L1-dcache-load-misses,LLC-load-misses -o reports/$(MACHINE_NAME)/python-multiprocessing/perf/perf_stat.txt python3 python_pararell/python_pararell_multiprocessing/python_pararell_multiprocessing.py $(WIDTH) $(HEIGHT) $(MIN_X) $(MAX_X) $(MIN_Y) $(MAX_Y) $(MAX_ITER) $$OUTPUT_FILE 4
+	@echo "Executando perf record no script Multiprocessing (4 processos)..."
+	OUTPUT_FILE=pictures/$(MACHINE_NAME)/fractal_py_mp_$(WIDTH)_$(HEIGHT)_iter$(MAX_ITER)_perf_record_4procs_$(TIMESTAMP).ppm; \
+	perf record -o reports/$(MACHINE_NAME)/python-multiprocessing/perf/perf.data -g python3 python_pararell/python_pararell_multiprocessing/python_pararell_multiprocessing.py $(WIDTH) $(HEIGHT) $(MIN_X) $(MAX_X) $(MIN_Y) $(MAX_Y) $(MAX_ITER) $$OUTPUT_FILE 4
+	@echo "Gerando relatório do perf record..."
+	perf report -f -i reports/$(MACHINE_NAME)/python-multiprocessing/perf/perf.data --stdio > reports/$(MACHINE_NAME)/python-multiprocessing/perf/perf_report.txt
 
 python-parallel-multiprocessing: python-multiprocessing-benchmark python-multiprocessing-cprofile python-multiprocessing-perf
 	@echo "========================================================="

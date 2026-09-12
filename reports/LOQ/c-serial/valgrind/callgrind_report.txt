@@ -1,0 +1,188 @@
+--------------------------------------------------------------------------------
+Profile data file 'reports/LOQ/c-serial/valgrind/callgrind.out' (creator: callgrind-3.26.0)
+--------------------------------------------------------------------------------
+I1 cache: 
+D1 cache: 
+LL cache: 
+Timerange: Basic block 0 - 29467649
+Trigger: Program termination
+Profiled target:  ./build/programa 768 432 -2 1 -1 1 100 pictures/LOQ/fractal_valgrind_768_432_iter100_20260911_211040.ppm (PID 17680, part 1)
+Events recorded:  Ir
+Events shown:     Ir
+Event sort order: Ir
+Thresholds:       99
+Include dirs:     
+User annotated:   
+Auto-annotation:  on
+
+--------------------------------------------------------------------------------
+Ir                   
+--------------------------------------------------------------------------------
+239,560,805 (100.0%)  PROGRAM TOTALS
+
+--------------------------------------------------------------------------------
+Ir                    file:function
+--------------------------------------------------------------------------------
+186,966,762 (78.05%)  serial_c_code/mandelbrot.c:check_mandelbrot [/home/robson/Desktop/github/robson-carvalho/mandelbrot-fractal-set-multicore/build/programa]
+ 21,896,487 ( 9.14%)  ./libio/./libio/fputc.c:fputc [/usr/lib/x86_64-linux-gnu/libc.so.6]
+ 15,240,929 ( 6.36%)  ./math/../sysdeps/ieee754/dbl-64/s_sin.c:__sin_fma [/usr/lib/x86_64-linux-gnu/libm.so.6]
+ 10,269,512 ( 4.29%)  serial_c_code/image_generator.c:main [/home/robson/Desktop/github/robson-carvalho/mandelbrot-fractal-set-multicore/build/programa]
+  2,215,602 ( 0.92%)  ./math/../sysdeps/x86/fpu/fenv_private.h:__sin_fma
+  1,990,656 ( 0.83%)  ???:0x0000000004001130 [???]
+
+--------------------------------------------------------------------------------
+-- Auto-annotated source: serial_c_code/mandelbrot.c
+--------------------------------------------------------------------------------
+Ir                  
+
+         .           #include <stdio.h>
+         .           #include "complex.h"
+         .           #include "mandelbrot.h"
+         .           
+   663,552 ( 0.28%)  Mandelbrot_check_return check_mandelbrot(Complex_number c, int max_iter){
+ 1,658,880 ( 0.69%)      double fr = 0.0, fi = 0.0;
+         .           
+20,963,066 ( 8.75%)      for(int i = 0; i < max_iter; i++){
+         .                   // (fr + fi*i)² + c  →  (fr²-fi²) + (2·fr·fi)·i + c
+         .                   double fr2 = fr * fr;
+         .                   double fi2 = fi * fi;
+30,192,573 (12.60%)          fi = 2.0 * fr * fi + c.imag;
+40,256,764 (16.80%)          fr = fr2 - fi2 + c.real;
+         .           
+80,513,528 (33.61%)          if (fr * fr + fi * fi > 4.0) {
+         .                       Complex_number fval = {fr, fi};
+11,712,583 ( 4.89%)              return (Mandelbrot_check_return){0, fval, i+1};
+         .                   }
+         .               }
+         .           
+         .               Complex_number fval = {fr, fi};
+   342,264 ( 0.14%)      return (Mandelbrot_check_return){1, fval, max_iter};
+   663,552 ( 0.28%)  }
+
+--------------------------------------------------------------------------------
+-- Auto-annotated source: serial_c_code/image_generator.c
+--------------------------------------------------------------------------------
+Ir                 
+
+-- line 6 ----------------------------------------
+        .           #include "mandelbrot.h"
+        .           
+        .           int mandelbrot(int px, int py, int width, int height, double minX, double maxX, double minY, double maxY, int max_iter) {
+        .               Complex_number c;
+        .           
+        .               double unidades_largura = maxX - minX; // Quantidade de unidades de largura do plano
+        .               double unidades_altura = maxY - minY; // Quantidade de unidades de altura do plano
+        .           
+  995,328 ( 0.42%)      double proporcao_x = (px / (double)width); // De 0 a 1
+    1,296 ( 0.00%)      double proporcao_y = (py / (double)height); // De 0 a 1
+        .           
+        .               // Multiplica a proporção pelo tamanho total do plano matemático
+  663,552 ( 0.28%)      double deslocamento_x = unidades_largura * proporcao_x; 
+      432 ( 0.00%)      double deslocamento_y = unidades_altura * proporcao_y;
+        .           
+        .               // Soma o ponto de início (minX) para o X, mas subtrai do topo (maxY) para o Y
+  331,776 ( 0.14%)      double enquadramento_eixo_x = minX + deslocamento_x;
+    1,728 ( 0.00%)      double enquadramento_eixo_y = maxY - deslocamento_y;
+        .           
+        .               // Número complexo que será calculado
+        .               c = (Complex_number){enquadramento_eixo_x, enquadramento_eixo_y};
+        .           
+1,327,104 ( 0.55%)      Mandelbrot_check_return result = check_mandelbrot(c, max_iter);
+186,966,762 (78.05%)  => /home/robson/Desktop/github/robson-carvalho/mandelbrot-fractal-set-multicore/serial_c_code/mandelbrot.c:check_mandelbrot (331,776x)
+        .               
+  331,776 ( 0.14%)      int iter = result.iterations_to_scape;
+        .           
+        .               return iter;
+        .           }
+        .           
+       12 ( 0.00%)  int main(int argc, char *argv[]) {
+        2 ( 0.00%)      if (argc < 9) {
+        .                   printf("Uso: %s <width> <height> <minX> <maxX> <minY> <maxY> <max_iter> <output_filename>\n", argv[0]);
+        .                   return 1;
+        .               }
+        .           
+        .               int width = atoi(argv[1]);
+        .               printf("width: %d\n", width);
+        .               int height = atoi(argv[2]);
+        .               printf("height: %d\n", height);
+-- line 44 ----------------------------------------
+-- line 47 ----------------------------------------
+        .               double maxX = atof(argv[4]);
+        .               printf("maxX: %f\n", maxX);
+        .               double minY = atof(argv[5]);
+        .               printf("minY: %f\n", minY);
+        .               double maxY = atof(argv[6]);
+        .               printf("maxY: %f\n", maxY);
+        .               int max_iter = atoi(argv[7]);
+        .               printf("max_iter: %d\n", max_iter);
+        1 ( 0.00%)      char *filename = argv[8];
+        .           
+        4 ( 0.00%)      FILE *file_image = fopen(filename, "wb");
+      620 ( 0.00%)  => ???:0x0000000004001160 (1x)
+        2 ( 0.00%)      if (!file_image) {
+        .                   perror("Erro ao abrir arquivo");
+        .                   return 1;
+        .               }
+        .               printf("Salvando imagem em: %s\n", filename);
+        .           
+        .               fprintf(file_image, "P6\n%d %d\n255\n", width, height);
+        .           
+        .               // --- Medição interna de tempo (clock_gettime) ---
+        .               struct timespec t_start, t_end;
+        3 ( 0.00%)      clock_gettime(CLOCK_MONOTONIC, &t_start);
+       13 ( 0.00%)  => ???:0x0000000004001100 (1x)
+        .           
+    1,730 ( 0.00%)      for (int py = 0; py < height; py++) {
+        .           
+  995,778 ( 0.42%)           for (int px = 0; px < width; px++) {
+        .           
+        .                       int iter = mandelbrot(px, py, width, height, minX, maxX, minY, maxY, max_iter);
+        .                      
+        .                       unsigned char r, g, b;
+        .           
+        .                       //  dentro do limite (faz parte do conjunto)
+  663,552 ( 0.28%)              if (iter == max_iter) { 
+        .                           r = g = b = 0;
+        .                       } 
+        .                       // fora do limite (não faz parte do conjunto)
+        .                       else {
+  492,356 ( 0.21%)                  double iterm = iter / (double)max_iter;
+        .                           
+1,230,890 ( 0.51%)                  unsigned char tom = (unsigned char)(sin(0.1 * iter) * 127.5 + 127.5);
+18,195,065 ( 7.60%)  => ???:0x0000000004001180 (246,178x)
+        .                           r = g = b = tom;
+        .                       }       
+        .           
+1,241,506 ( 0.52%)              fputc(r, file_image);
+7,976,799 ( 3.33%)  => ???:0x0000000004001130 (331,776x)
+  995,328 ( 0.42%)              fputc(g, file_image);
+7,976,799 ( 3.33%)  => ???:0x0000000004001130 (331,776x)
+  995,328 ( 0.42%)              fputc(b, file_image);
+7,976,799 ( 3.33%)  => ???:0x0000000004001130 (331,776x)
+        .                    }
+        .               }
+        .           
+        3 ( 0.00%)      clock_gettime(CLOCK_MONOTONIC, &t_end);
+       13 ( 0.00%)  => ???:0x0000000004001100 (1x)
+        5 ( 0.00%)      double elapsed = (t_end.tv_sec - t_start.tv_sec) +
+        5 ( 0.00%)                       (t_end.tv_nsec - t_start.tv_nsec) / 1e9;
+        .               printf("Tempo de processamento (clock_gettime): %.6f segundos\n", elapsed);
+        .               // -------------------------------------------------
+        .           
+        2 ( 0.00%)      fclose(file_image);
+      936 ( 0.00%)  => ???:0x0000000004001110 (1x)
+        2 ( 0.00%)      return 0;
+       11 ( 0.00%)  }
+
+--------------------------------------------------------------------------------
+The following files chosen for auto-annotation could not be found:
+--------------------------------------------------------------------------------
+  ./libio/./libio/fputc.c
+  ./math/../sysdeps/ieee754/dbl-64/s_sin.c
+  ./math/../sysdeps/x86/fpu/fenv_private.h
+
+--------------------------------------------------------------------------------
+Ir                   
+--------------------------------------------------------------------------------
+197,236,274 (82.33%)  events annotated
+

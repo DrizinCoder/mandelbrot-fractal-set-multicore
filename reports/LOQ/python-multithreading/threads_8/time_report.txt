@@ -1,0 +1,25 @@
+Tempo de processamento (perf_counter): 526.4370 segundos
+
+	Command being timed: "python3 python_pararell/python_pararell_multithreading/python_pararell_multithreading.py 15360 10240 -2 1 -1 1 250 pictures/LOQ/fractal_py_mt_15360_10240_iter250_threads8_20260911_222142.ppm 8"
+	User time (seconds): 533.04
+	System time (seconds): 6.26
+	Percent of CPU this job got: 102%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 8:46.45
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 472808
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 116548
+	Voluntary context switches: 967626
+	Involuntary context switches: 15006
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 921608
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

@@ -1,28 +1,28 @@
-# started on Fri Sep 11 11:32:46 2026
+# started on Fri Sep 11 21:16:12 2026
 
 
- Performance counter stats for './build/programa 15360 10240 -2 1 -1 1 250 pictures/LOQ/fractal_omp_15360_10240_iter250_perf_4threads_20260911_113157.ppm':
+ Performance counter stats for './build/programa 15360 10240 -2 1 -1 1 250 pictures/LOQ/fractal_omp_15360_10240_iter250_perf_4threads_20260911_211523.ppm':
 
-    77,785,294,679      cpu_atom/cycles/                                                        (1.18%)
-   109,014,794,464      cpu_core/cycles/                                                        (98.86%)
-   131,087,390,265      cpu_atom/instructions/                                                  (1.18%)
-   211,692,782,131      cpu_core/instructions/                                                  (98.86%)
-        12,937,855      cpu_atom/cache-misses/                                                  (1.18%)
-        27,198,717      cpu_core/cache-misses/                                                  (98.86%)
-        29,853,571      cpu_atom/cache-references/                                              (1.18%)
-        39,928,566      cpu_core/cache-references/                                              (98.86%)
-        33,228,612      cpu_atom/branch-misses/                                                 (1.18%)
-        48,901,433      cpu_core/branch-misses/                                                 (98.86%)
-    14,745,222,486      cpu_atom/branches/                                                      (1.18%)
-    23,851,753,482      cpu_core/branches/                                                      (98.86%)
+    69,349,512,017      cpu_atom/cycles/                                                        (1.19%)
+   107,952,000,241      cpu_core/cycles/                                                        (98.97%)
+   123,530,041,742      cpu_atom/instructions/                                                  (1.19%)
+   211,512,459,872      cpu_core/instructions/                                                  (98.97%)
+       121,070,661      cpu_atom/cache-misses/                                                  (1.19%)
+        26,574,857      cpu_core/cache-misses/                                                  (98.97%)
+       203,240,362      cpu_atom/cache-references/                                              (1.19%)
+        38,798,358      cpu_core/cache-references/                                              (98.97%)
+        30,325,198      cpu_atom/branch-misses/                                                 (1.19%)
+        48,812,375      cpu_core/branch-misses/                                                 (98.97%)
+    14,103,601,338      cpu_atom/branches/                                                      (1.19%)
+    23,826,684,867      cpu_core/branches/                                                      (98.97%)
    <not supported>      cpu_atom/L1-dcache-load-misses/                                       
-         8,345,076      cpu_core/L1-dcache-load-misses/                                         (98.86%)
-             8,879      cpu_atom/LLC-load-misses/                                               (1.18%)
-         5,869,266      cpu_core/LLC-load-misses/                                               (98.86%)
+         8,115,368      cpu_core/L1-dcache-load-misses/                                         (98.97%)
+         7,460,183      cpu_atom/LLC-load-misses/                                               (1.19%)
+         5,910,083      cpu_core/LLC-load-misses/                                               (98.97%)
 
-       8.181803022 seconds time elapsed
+       6.870089347 seconds time elapsed
 
-      25.848276000 seconds user
-       0.226335000 seconds sys
+      25.499293000 seconds user
+       0.272088000 seconds sys
 
 

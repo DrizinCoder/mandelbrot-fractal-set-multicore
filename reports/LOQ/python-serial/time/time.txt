@@ -1,0 +1,32 @@
+width:    15360
+height:   10240
+minX:     -2.0
+maxX:     1.0
+minY:     -1.0
+maxY:     1.0
+max_iter: 250
+Salvando imagem em: pictures/LOQ/fractal_15360_10240_iter250_20260911_212124.ppm
+Tempo de processamento (perf_counter): 508.718654 segundos
+	Command being timed: "python3 python_serial_code/python_serial.py 15360 10240 -2 1 -1 1 250 pictures/LOQ/fractal_15360_10240_iter250_20260911_212124.ppm"
+	User time (seconds): 508.40
+	System time (seconds): 0.13
+	Percent of CPU this job got: 99%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 8:28.74
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 10724
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 1
+	Minor (reclaiming a frame) page faults: 1068
+	Voluntary context switches: 27
+	Involuntary context switches: 13123
+	Swaps: 0
+	File system inputs: 1824
+	File system outputs: 921752
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

@@ -1,0 +1,28 @@
+# started on Fri Sep 11 23:44:25 2026
+
+
+ Performance counter stats for 'python3 python_pararell/python_pararell_multiprocessing/python_pararell_multiprocessing.py 15360 10240 -2 1 -1 1 250 pictures/LOQ/fractal_py_mp_15360_10240_iter250_perf_4procs_20260911_232342.ppm 4':
+
+ 1,880,394,180,772      cpu_atom/cycles/                                                        (4.96%)
+ 2,427,497,044,596      cpu_core/cycles/                                                        (95.15%)
+ 7,178,617,317,871      cpu_atom/instructions/                                                  (4.96%)
+12,608,395,158,497      cpu_core/instructions/                                                  (95.15%)
+       297,134,667      cpu_atom/cache-misses/                                                  (4.96%)
+       122,894,361      cpu_core/cache-misses/                                                  (95.15%)
+       944,529,723      cpu_atom/cache-references/                                              (4.96%)
+       315,249,401      cpu_core/cache-references/                                              (95.15%)
+       231,262,146      cpu_atom/branch-misses/                                                 (4.96%)
+       169,926,628      cpu_core/branch-misses/                                                 (95.15%)
+ 1,168,734,094,024      cpu_atom/branches/                                                      (4.96%)
+ 2,055,011,695,341      cpu_core/branches/                                                      (95.15%)
+   <not supported>      cpu_atom/L1-dcache-load-misses/                                       
+       377,332,844      cpu_core/L1-dcache-load-misses/                                         (95.15%)
+            82,659      cpu_atom/LLC-load-misses/                                               (4.96%)
+        15,379,732      cpu_core/LLC-load-misses/                                               (95.15%)
+
+     160.815680212 seconds time elapsed
+
+     640.656788000 seconds user
+       1.045470000 seconds sys
+
+

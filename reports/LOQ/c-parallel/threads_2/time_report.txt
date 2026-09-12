@@ -5,23 +5,23 @@ maxX: 1.000000
 minY: -1.000000
 maxY: 1.000000
 max_iter: 250
-Salvando imagem em: pictures/LOQ/fractal_omp_15360_10240_iter250_threads2_20260911_113157.ppm
-Tempo de processamento (clock_gettime): 12.512990 segundos
-	Command being timed: "./build/programa 15360 10240 -2 1 -1 1 250 pictures/LOQ/fractal_omp_15360_10240_iter250_threads2_20260911_113157.ppm"
-	User time (seconds): 24.65
-	System time (seconds): 0.24
-	Percent of CPU this job got: 198%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:12.51
+Salvando imagem em: pictures/LOQ/fractal_omp_15360_10240_iter250_threads2_20260911_211523.ppm
+Tempo de processamento (clock_gettime): 12.444024 segundos
+	Command being timed: "./build/programa 15360 10240 -2 1 -1 1 250 pictures/LOQ/fractal_omp_15360_10240_iter250_threads2_20260911_211523.ppm"
+	User time (seconds): 24.53
+	System time (seconds): 0.23
+	Percent of CPU this job got: 199%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:12.44
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 463228
+	Maximum resident set size (kbytes): 463192
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 115317
+	Minor (reclaiming a frame) page faults: 115316
 	Voluntary context switches: 4
-	Involuntary context switches: 205
+	Involuntary context switches: 178
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 921608

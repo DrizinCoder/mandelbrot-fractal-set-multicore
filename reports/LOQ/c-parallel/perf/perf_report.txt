@@ -1,0 +1,1920 @@
+# To display the perf.data header info, please use --header/--header-only options.
+#
+#
+# Total Lost Samples: 0
+#
+# Samples: 1K of event 'cpu_atom/cycles/P'
+# Event count (approx.): 946772011
+#
+# Children      Self  Command   Shared Object      Symbol                                
+# ........  ........  ........  .................  ......................................
+#
+    80.58%    79.77%  programa  programa           [.] check_mandelbrot
+            |          
+             --80.25%--check_mandelbrot
+                       |          
+                        --0.73%--asm_sysvec_apic_timer_interrupt
+                                  sysvec_apic_timer_interrupt
+                                  __sysvec_apic_timer_interrupt
+                                  hrtimer_interrupt
+                                  |          
+                                   --0.65%--__hrtimer_run_queues
+                                             tick_nohz_handler
+                                             update_process_times
+                                             |          
+                                              --0.57%--sched_tick
+
+    18.48%     7.12%  programa  programa           [.] main._omp_fn.0
+            |          
+             --18.07%--main._omp_fn.0
+                       |          
+                       |--9.44%--__sin_fma
+                       |          |          
+                       |          |--3.88%--do_sin (inlined)
+                       |          |          
+                       |          |--0.93%--libc_feholdsetround_sse_ctx (inlined)
+                       |          |          
+                       |           --0.73%--do_cos (inlined)
+                       |          
+                        --1.36%--asm_exc_page_fault
+                                  exc_page_fault
+                                  do_user_addr_fault
+                                  |          
+                                   --1.28%--handle_mm_fault
+                                             __handle_mm_fault
+                                             |          
+                                              --1.20%--handle_pte_fault
+                                                        do_anonymous_page
+                                                        |          
+                                                         --0.80%--alloc_anon_folio
+                                                                   |          
+                                                                    --0.63%--vma_alloc_folio_noprof
+                                                                              alloc_pages_mpol
+                                                                              __alloc_frozen_pages_noprof
+                                                                              get_page_from_freelist
+
+     9.95%     9.95%  programa  libm.so.6          [.] __sin_fma
+            |          
+             --9.51%--main._omp_fn.0
+                       |          
+                        --9.44%--__sin_fma
+                                  |          
+                                  |--3.88%--do_sin (inlined)
+                                  |          
+                                  |--0.93%--libc_feholdsetround_sse_ctx (inlined)
+                                  |          
+                                   --0.73%--do_cos (inlined)
+
+     4.04%     0.00%  programa  libm.so.6          [.] do_sin (inlined)
+            |
+            ---do_sin (inlined)
+
+     1.36%     0.00%  programa  [kernel.kallsyms]  [.] asm_exc_page_fault
+            |
+            ---asm_exc_page_fault
+               exc_page_fault
+               do_user_addr_fault
+               |          
+                --1.28%--handle_mm_fault
+                          __handle_mm_fault
+                          |          
+                           --1.20%--handle_pte_fault
+                                     do_anonymous_page
+                                     |          
+                                      --0.80%--alloc_anon_folio
+                                                |          
+                                                 --0.63%--vma_alloc_folio_noprof
+                                                           alloc_pages_mpol
+                                                           __alloc_frozen_pages_noprof
+                                                           get_page_from_freelist
+
+     1.36%     0.00%  programa  [kernel.kallsyms]  [.] exc_page_fault
+            |
+            ---exc_page_fault
+               do_user_addr_fault
+               |          
+                --1.28%--handle_mm_fault
+                          __handle_mm_fault
+                          |          
+                           --1.20%--handle_pte_fault
+                                     do_anonymous_page
+                                     |          
+                                      --0.80%--alloc_anon_folio
+                                                |          
+                                                 --0.63%--vma_alloc_folio_noprof
+                                                           alloc_pages_mpol
+                                                           __alloc_frozen_pages_noprof
+                                                           get_page_from_freelist
+
+     1.36%     0.08%  programa  [kernel.kallsyms]  [.] do_user_addr_fault
+            |          
+             --1.28%--do_user_addr_fault
+                       handle_mm_fault
+                       __handle_mm_fault
+                       |          
+                        --1.20%--handle_pte_fault
+                                  do_anonymous_page
+                                  |          
+                                   --0.80%--alloc_anon_folio
+                                             |          
+                                              --0.63%--vma_alloc_folio_noprof
+                                                        alloc_pages_mpol
+                                                        __alloc_frozen_pages_noprof
+                                                        get_page_from_freelist
+
+     1.28%     0.00%  programa  [kernel.kallsyms]  [.] handle_mm_fault
+            |
+            ---handle_mm_fault
+               __handle_mm_fault
+               |          
+                --1.20%--handle_pte_fault
+                          do_anonymous_page
+                          |          
+                           --0.80%--alloc_anon_folio
+                                     |          
+                                      --0.63%--vma_alloc_folio_noprof
+                                                alloc_pages_mpol
+                                                __alloc_frozen_pages_noprof
+                                                get_page_from_freelist
+
+     1.28%     0.08%  programa  [kernel.kallsyms]  [.] __handle_mm_fault
+            |          
+             --1.20%--__handle_mm_fault
+                       handle_pte_fault
+                       do_anonymous_page
+                       |          
+                        --0.80%--alloc_anon_folio
+                                  |          
+                                   --0.63%--vma_alloc_folio_noprof
+                                             alloc_pages_mpol
+                                             __alloc_frozen_pages_noprof
+                                             get_page_from_freelist
+
+     1.20%     0.00%  programa  [kernel.kallsyms]  [.] handle_pte_fault
+            |
+            ---handle_pte_fault
+               do_anonymous_page
+               |          
+                --0.80%--alloc_anon_folio
+                          |          
+                           --0.63%--vma_alloc_folio_noprof
+                                     alloc_pages_mpol
+                                     __alloc_frozen_pages_noprof
+                                     get_page_from_freelist
+
+     1.20%     0.00%  programa  [kernel.kallsyms]  [.] do_anonymous_page
+            |
+            ---do_anonymous_page
+               |          
+                --0.80%--alloc_anon_folio
+                          |          
+                           --0.63%--vma_alloc_folio_noprof
+                                     alloc_pages_mpol
+                                     __alloc_frozen_pages_noprof
+                                     get_page_from_freelist
+
+     1.11%     0.00%  programa  [kernel.kallsyms]  [.] alloc_pages_mpol
+            |
+            ---alloc_pages_mpol
+               __alloc_frozen_pages_noprof
+               |          
+                --0.63%--get_page_from_freelist
+
+     1.11%     0.00%  programa  [kernel.kallsyms]  [.] __alloc_frozen_pages_noprof
+            |
+            ---__alloc_frozen_pages_noprof
+               |          
+                --0.63%--get_page_from_freelist
+
+     0.93%     0.00%  programa  libm.so.6          [.] libc_feholdsetround_sse_ctx (inlined)
+            |
+            ---libc_feholdsetround_sse_ctx (inlined)
+
+     0.81%     0.00%  programa  [kernel.kallsyms]  [.] asm_sysvec_apic_timer_interrupt
+            |
+            ---asm_sysvec_apic_timer_interrupt
+               sysvec_apic_timer_interrupt
+               __sysvec_apic_timer_interrupt
+               hrtimer_interrupt
+               |          
+                --0.73%--__hrtimer_run_queues
+                          tick_nohz_handler
+                          update_process_times
+                          |          
+                           --0.65%--sched_tick
+
+     0.81%     0.00%  programa  [kernel.kallsyms]  [.] sysvec_apic_timer_interrupt
+            |
+            ---sysvec_apic_timer_interrupt
+               __sysvec_apic_timer_interrupt
+               hrtimer_interrupt
+               |          
+                --0.73%--__hrtimer_run_queues
+                          tick_nohz_handler
+                          update_process_times
+                          |          
+                           --0.65%--sched_tick
+
+     0.81%     0.00%  programa  [kernel.kallsyms]  [.] __sysvec_apic_timer_interrupt
+            |
+            ---__sysvec_apic_timer_interrupt
+               hrtimer_interrupt
+               |          
+                --0.73%--__hrtimer_run_queues
+                          tick_nohz_handler
+                          update_process_times
+                          |          
+                           --0.65%--sched_tick
+
+     0.81%     0.00%  programa  [kernel.kallsyms]  [.] hrtimer_interrupt
+            |
+            ---hrtimer_interrupt
+               |          
+                --0.73%--__hrtimer_run_queues
+                          tick_nohz_handler
+                          update_process_times
+                          |          
+                           --0.65%--sched_tick
+
+     0.81%     0.00%  programa  libm.so.6          [.] do_cos (inlined)
+            |
+            ---do_cos (inlined)
+
+     0.80%     0.00%  programa  [kernel.kallsyms]  [.] alloc_anon_folio
+            |
+            ---alloc_anon_folio
+               |          
+                --0.63%--vma_alloc_folio_noprof
+                          alloc_pages_mpol
+                          __alloc_frozen_pages_noprof
+                          get_page_from_freelist
+
+     0.73%     0.00%  programa  [kernel.kallsyms]  [.] __hrtimer_run_queues
+            |
+            ---__hrtimer_run_queues
+               tick_nohz_handler
+               update_process_times
+               |          
+                --0.65%--sched_tick
+
+     0.73%     0.00%  programa  [kernel.kallsyms]  [.] tick_nohz_handler
+            |
+            ---tick_nohz_handler
+               update_process_times
+               |          
+                --0.65%--sched_tick
+
+     0.73%     0.00%  programa  [kernel.kallsyms]  [.] update_process_times
+            |
+            ---update_process_times
+               |          
+                --0.65%--sched_tick
+
+     0.65%     0.08%  programa  [kernel.kallsyms]  [.] sched_tick
+            |          
+             --0.57%--sched_tick
+
+     0.64%     0.00%  programa  [unknown]          [k] 0x8c8c8c8c8c8c8c8c
+            |
+            ---0x8c8c8c8c8c8c8c8c
+               main
+               _IO_fwrite
+               _IO_acquire_lock_fct (inlined)
+               _IO_new_file_xsputn (inlined)
+               _IO_new_file_xsputn (inlined)
+               new_do_write (inlined)
+               _IO_new_file_write (inlined)
+               __libc_write (inlined)
+               __syscall_cancel_arch (inlined)
+               entry_SYSCALL_64_after_hwframe
+               do_syscall_64
+               x64_sys_call
+               __x64_sys_write
+               ksys_write
+               vfs_write
+               ext4_file_write_iter
+               ext4_buffered_write_iter
+               generic_perform_write
+               ext4_da_write_begin
+
+     0.64%     0.00%  programa  programa           [.] main
+            |
+            ---main
+               _IO_fwrite
+               _IO_acquire_lock_fct (inlined)
+               _IO_new_file_xsputn (inlined)
+               _IO_new_file_xsputn (inlined)
+               new_do_write (inlined)
+               _IO_new_file_write (inlined)
+               __libc_write (inlined)
+               __syscall_cancel_arch (inlined)
+               entry_SYSCALL_64_after_hwframe
+               do_syscall_64
+               x64_sys_call
+               __x64_sys_write
+               ksys_write
+               vfs_write
+               ext4_file_write_iter
+               ext4_buffered_write_iter
+               generic_perform_write
+               ext4_da_write_begin
+
+     0.64%     0.00%  programa  libc.so.6          [.] _IO_fwrite
+            |
+            ---_IO_fwrite
+               _IO_acquire_lock_fct (inlined)
+               _IO_new_file_xsputn (inlined)
+               _IO_new_file_xsputn (inlined)
+               new_do_write (inlined)
+               _IO_new_file_write (inlined)
+               __libc_write (inlined)
+               __syscall_cancel_arch (inlined)
+               entry_SYSCALL_64_after_hwframe
+               do_syscall_64
+               x64_sys_call
+               __x64_sys_write
+               ksys_write
+               vfs_write
+               ext4_file_write_iter
+               ext4_buffered_write_iter
+               generic_perform_write
+               ext4_da_write_begin
+
+     0.64%     0.00%  programa  libc.so.6          [.] _IO_acquire_lock_fct (inlined)
+            |
+            ---_IO_acquire_lock_fct (inlined)
+               _IO_new_file_xsputn (inlined)
+               _IO_new_file_xsputn (inlined)
+               new_do_write (inlined)
+               _IO_new_file_write (inlined)
+               __libc_write (inlined)
+               __syscall_cancel_arch (inlined)
+               entry_SYSCALL_64_after_hwframe
+               do_syscall_64
+               x64_sys_call
+               __x64_sys_write
+               ksys_write
+               vfs_write
+               ext4_file_write_iter
+               ext4_buffered_write_iter
+               generic_perform_write
+               ext4_da_write_begin
+
+     0.64%     0.00%  programa  libc.so.6          [.] _IO_new_file_xsputn (inlined)
+            |
+            ---_IO_new_file_xsputn (inlined)
+               _IO_new_file_xsputn (inlined)
+               new_do_write (inlined)
+               _IO_new_file_write (inlined)
+               __libc_write (inlined)
+               __syscall_cancel_arch (inlined)
+               entry_SYSCALL_64_after_hwframe
+               do_syscall_64
+               x64_sys_call
+               __x64_sys_write
+               ksys_write
+               vfs_write
+               ext4_file_write_iter
+               ext4_buffered_write_iter
+               generic_perform_write
+               ext4_da_write_begin
+
+     0.64%     0.00%  programa  libc.so.6          [.] new_do_write (inlined)
+            |
+            ---new_do_write (inlined)
+               _IO_new_file_write (inlined)
+               __libc_write (inlined)
+               __syscall_cancel_arch (inlined)
+               entry_SYSCALL_64_after_hwframe
+               do_syscall_64
+               x64_sys_call
+               __x64_sys_write
+               ksys_write
+               vfs_write
+               ext4_file_write_iter
+               ext4_buffered_write_iter
+               generic_perform_write
+               ext4_da_write_begin
+
+     0.64%     0.00%  programa  libc.so.6          [.] _IO_new_file_write (inlined)
+            |
+            ---_IO_new_file_write (inlined)
+               __libc_write (inlined)
+               __syscall_cancel_arch (inlined)
+               entry_SYSCALL_64_after_hwframe
+               do_syscall_64
+               x64_sys_call
+               __x64_sys_write
+               ksys_write
+               vfs_write
+               ext4_file_write_iter
+               ext4_buffered_write_iter
+               generic_perform_write
+               ext4_da_write_begin
+
+     0.64%     0.00%  programa  libc.so.6          [.] __libc_write (inlined)
+            |
+            ---__libc_write (inlined)
+               __syscall_cancel_arch (inlined)
+               entry_SYSCALL_64_after_hwframe
+               do_syscall_64
+               x64_sys_call
+               __x64_sys_write
+               ksys_write
+               vfs_write
+               ext4_file_write_iter
+               ext4_buffered_write_iter
+               generic_perform_write
+               ext4_da_write_begin
+
+     0.64%     0.00%  programa  libc.so.6          [.] __syscall_cancel_arch (inlined)
+            |
+            ---__syscall_cancel_arch (inlined)
+               entry_SYSCALL_64_after_hwframe
+               do_syscall_64
+               x64_sys_call
+               __x64_sys_write
+               ksys_write
+               vfs_write
+               ext4_file_write_iter
+               ext4_buffered_write_iter
+               generic_perform_write
+               ext4_da_write_begin
+
+     0.64%     0.00%  programa  [kernel.kallsyms]  [.] entry_SYSCALL_64_after_hwframe
+            |
+            ---entry_SYSCALL_64_after_hwframe
+               do_syscall_64
+               x64_sys_call
+               __x64_sys_write
+               ksys_write
+               vfs_write
+               ext4_file_write_iter
+               ext4_buffered_write_iter
+               generic_perform_write
+               ext4_da_write_begin
+
+     0.64%     0.00%  programa  [kernel.kallsyms]  [.] do_syscall_64
+            |
+            ---do_syscall_64
+               x64_sys_call
+               __x64_sys_write
+               ksys_write
+               vfs_write
+               ext4_file_write_iter
+               ext4_buffered_write_iter
+               generic_perform_write
+               ext4_da_write_begin
+
+     0.64%     0.00%  programa  [kernel.kallsyms]  [.] x64_sys_call
+            |
+            ---x64_sys_call
+               __x64_sys_write
+               ksys_write
+               vfs_write
+               ext4_file_write_iter
+               ext4_buffered_write_iter
+               generic_perform_write
+               ext4_da_write_begin
+
+     0.64%     0.00%  programa  [kernel.kallsyms]  [.] __x64_sys_write
+            |
+            ---__x64_sys_write
+               ksys_write
+               vfs_write
+               ext4_file_write_iter
+               ext4_buffered_write_iter
+               generic_perform_write
+               ext4_da_write_begin
+
+     0.64%     0.00%  programa  [kernel.kallsyms]  [.] ksys_write
+            |
+            ---ksys_write
+               vfs_write
+               ext4_file_write_iter
+               ext4_buffered_write_iter
+               generic_perform_write
+               ext4_da_write_begin
+
+     0.64%     0.00%  programa  [kernel.kallsyms]  [.] vfs_write
+            |
+            ---vfs_write
+               ext4_file_write_iter
+               ext4_buffered_write_iter
+               generic_perform_write
+               ext4_da_write_begin
+
+     0.64%     0.00%  programa  [kernel.kallsyms]  [.] ext4_file_write_iter
+            |
+            ---ext4_file_write_iter
+               ext4_buffered_write_iter
+               generic_perform_write
+               ext4_da_write_begin
+
+     0.64%     0.00%  programa  [kernel.kallsyms]  [.] ext4_buffered_write_iter
+            |
+            ---ext4_buffered_write_iter
+               generic_perform_write
+               ext4_da_write_begin
+
+     0.64%     0.00%  programa  [kernel.kallsyms]  [.] generic_perform_write
+            |
+            ---generic_perform_write
+               ext4_da_write_begin
+
+     0.64%     0.00%  programa  [kernel.kallsyms]  [.] ext4_da_write_begin
+            |
+            ---ext4_da_write_begin
+
+     0.63%     0.00%  programa  [kernel.kallsyms]  [.] vma_alloc_folio_noprof
+            |
+            ---vma_alloc_folio_noprof
+               alloc_pages_mpol
+               __alloc_frozen_pages_noprof
+               get_page_from_freelist
+
+     0.63%     0.00%  programa  [kernel.kallsyms]  [.] get_page_from_freelist
+            |
+            ---get_page_from_freelist
+
+     0.60%     0.28%  programa  programa           [.] sin@plt
+            |
+            ---sin@plt
+
+     0.55%     0.55%  programa  [kernel.kallsyms]  [k] kernel_init_pages
+     0.55%     0.00%  programa  [kernel.kallsyms]  [.] post_alloc_hook
+            |
+            ---post_alloc_hook
+               kernel_init_pages
+
+     0.48%     0.00%  programa  [kernel.kallsyms]  [.] __filemap_get_folio_mpol
+     0.48%     0.00%  programa  [kernel.kallsyms]  [.] filemap_alloc_folio_noprof
+     0.48%     0.00%  programa  [kernel.kallsyms]  [.] folio_alloc_noprof
+     0.48%     0.00%  programa  [kernel.kallsyms]  [.] __alloc_pages_slowpath.constprop.0
+     0.48%     0.00%  programa  [kernel.kallsyms]  [.] __alloc_pages_direct_compact
+     0.40%     0.08%  programa  [kernel.kallsyms]  [k] update_curr
+     0.40%     0.08%  programa  [kernel.kallsyms]  [.] task_tick_fair
+     0.32%     0.00%  programa  [kernel.kallsyms]  [.] folio_add_lru_vma
+     0.32%     0.00%  programa  [kernel.kallsyms]  [.] folio_add_lru
+     0.32%     0.00%  programa  [kernel.kallsyms]  [.] __folio_batch_add_and_move
+     0.32%     0.00%  programa  [kernel.kallsyms]  [.] folio_batch_move_lru
+     0.32%     0.00%  programa  libm.so.6          [.] do_sincos (inlined)
+     0.32%     0.00%  programa  libm.so.6          [.] reduce_sincos (inlined)
+     0.32%     0.00%  programa  [kernel.kallsyms]  [.] try_to_compact_pages
+     0.32%     0.00%  programa  [kernel.kallsyms]  [.] compact_zone_order
+     0.32%     0.00%  programa  [kernel.kallsyms]  [.] compact_zone
+     0.24%     0.00%  programa  libm.so.6          [.] libc_feresetround_sse_ctx (inlined)
+     0.24%     0.00%  programa  [kernel.kallsyms]  [.] rmqueue.isra.0
+     0.24%     0.00%  programa  [kernel.kallsyms]  [.] migrate_pages
+     0.24%     0.00%  programa  [kernel.kallsyms]  [.] migrate_pages_batch
+     0.16%     0.08%  programa  [kernel.kallsyms]  [k] folios_put_refs
+     0.16%     0.16%  programa  [kernel.kallsyms]  [k] try_charge_memcg
+     0.16%     0.00%  programa  [kernel.kallsyms]  [.] __mem_cgroup_charge
+     0.16%     0.00%  programa  [kernel.kallsyms]  [.] charge_memcg
+     0.16%     0.16%  programa  [kernel.kallsyms]  [k] lru_gen_add_folio
+     0.16%     0.00%  programa  [kernel.kallsyms]  [.] lru_add
+     0.16%     0.16%  programa  [kernel.kallsyms]  [k] __rmqueue_pcplist
+     0.16%     0.00%  programa  [kernel.kallsyms]  [.] rmqueue_pcplist
+     0.16%     0.16%  programa  [kernel.kallsyms]  [k] avg_vruntime
+     0.16%     0.16%  programa  [kernel.kallsyms]  [k] __es_insert_extent
+     0.16%     0.00%  programa  [kernel.kallsyms]  [.] ext4_block_write_begin
+     0.16%     0.00%  programa  [kernel.kallsyms]  [.] ext4_da_get_block_prep
+     0.16%     0.00%  programa  [kernel.kallsyms]  [.] ext4_da_map_blocks.constprop.0
+     0.16%     0.00%  programa  [kernel.kallsyms]  [.] ext4_insert_delayed_blocks
+     0.16%     0.00%  programa  [kernel.kallsyms]  [.] ext4_es_insert_delayed_extent
+     0.16%     0.00%  programa  [kernel.kallsyms]  [.] migrate_folio_move
+     0.16%     0.00%  programa  [kernel.kallsyms]  [.] move_to_new_folio
+     0.14%     0.00%  programa  libm.so.6          [.] stmxcsr_inline_asm (inlined)
+     0.08%     0.08%  programa  [kernel.kallsyms]  [k] free_frozen_page_commit.isra.0
+     0.08%     0.00%  programa  [kernel.kallsyms]  [.] free_unref_folios
+     0.08%     0.08%  programa  [kernel.kallsyms]  [k] rcu_pending
+     0.08%     0.00%  programa  [kernel.kallsyms]  [.] rcu_sched_clock_irq
+     0.08%     0.08%  programa  [kernel.kallsyms]  [k] __calc_delta.constprop.0
+     0.08%     0.00%  programa  [kernel.kallsyms]  [.] update_deadline
+     0.08%     0.08%  programa  [kernel.kallsyms]  [k] read_tsc
+     0.08%     0.00%  programa  [kernel.kallsyms]  [.] tick_program_event
+     0.08%     0.00%  programa  [kernel.kallsyms]  [.] clockevents_program_event
+     0.08%     0.08%  programa  [kernel.kallsyms]  [k] _raw_spin_trylock
+     0.08%     0.08%  programa  [kernel.kallsyms]  [k] arch_scale_freq_tick
+     0.08%     0.08%  programa  [kernel.kallsyms]  [k] get_pfnblock_bit
+     0.08%     0.00%  programa  [kernel.kallsyms]  [.] isolate_migratepages
+     0.08%     0.00%  programa  [kernel.kallsyms]  [.] fast_find_migrateblock
+     0.08%     0.08%  programa  [kernel.kallsyms]  [k] kick_ilb
+     0.08%     0.00%  programa  [kernel.kallsyms]  [.] sched_balance_trigger
+     0.08%     0.08%  programa  [kernel.kallsyms]  [k] __irqentry_text_end
+     0.08%     0.08%  programa  [kernel.kallsyms]  [k] copy_mc_enhanced_fast_string
+     0.08%     0.00%  programa  [kernel.kallsyms]  [.] __migrate_folio.isra.0
+     0.08%     0.00%  programa  [kernel.kallsyms]  [.] folio_mc_copy
+     0.08%     0.08%  programa  [kernel.kallsyms]  [k] migrate_folio_unmap
+     0.08%     0.08%  programa  [kernel.kallsyms]  [k] __buffer_migrate_folio
+     0.08%     0.00%  programa  [kernel.kallsyms]  [.] buffer_migrate_folio
+     0.08%     0.08%  programa  [kernel.kallsyms]  [k] mod_memcg_lruvec_state
+     0.08%     0.00%  programa  [kernel.kallsyms]  [.] folio_add_new_anon_rmap
+     0.08%     0.00%  programa  [kernel.kallsyms]  [.] __folio_mod_stat
+     0.08%     0.00%  programa  [kernel.kallsyms]  [.] lruvec_stat_mod_folio
+
+
+# Samples: 103K of event 'cpu_core/cycles/P'
+# Event count (approx.): 107666536734
+#
+# Children      Self  Command   Shared Object         Symbol                                                  
+# ........  ........  ........  ....................  ........................................................
+#
+    95.56%    95.29%  programa  programa              [.] check_mandelbrot
+            |          
+             --95.43%--check_mandelbrot
+
+     3.47%     1.17%  programa  programa              [.] main._omp_fn.0
+            |          
+             --3.20%--main._omp_fn.0
+                       |          
+                        --1.70%--__sin_fma
+                                  |          
+                                   --0.73%--do_sin (inlined)
+
+     1.95%     1.85%  programa  libm.so.6             [.] __sin_fma
+            |          
+             --1.78%--main._omp_fn.0
+                       |          
+                        --1.69%--__sin_fma
+                                  |          
+                                   --0.73%--do_sin (inlined)
+
+     1.09%     0.00%  programa  [kernel.kallsyms]     [.] entry_SYSCALL_64_after_hwframe
+            |
+            ---entry_SYSCALL_64_after_hwframe
+               do_syscall_64
+               x64_sys_call
+               |          
+                --1.00%--__x64_sys_write
+                          ksys_write
+                          vfs_write
+                          ext4_file_write_iter
+                          ext4_buffered_write_iter
+                          generic_perform_write
+                          |          
+                           --0.83%--ext4_da_write_begin
+                                     |          
+                                      --0.75%--__filemap_get_folio_mpol
+                                                filemap_alloc_folio_noprof
+                                                folio_alloc_noprof
+                                                alloc_pages_mpol
+                                                __alloc_frozen_pages_noprof
+                                                |          
+                                                 --0.75%--__alloc_pages_slowpath.constprop.0
+                                                           |          
+                                                            --0.74%--__alloc_pages_direct_compact
+                                                                      |          
+                                                                       --0.62%--try_to_compact_pages
+                                                                                 compact_zone_order
+                                                                                 compact_zone
+                                                                                 |          
+                                                                                  --0.59%--migrate_pages
+                                                                                            |          
+                                                                                             --0.59%--migrate_pages_batch
+
+     1.09%     0.00%  programa  [kernel.kallsyms]     [.] do_syscall_64
+            |
+            ---do_syscall_64
+               x64_sys_call
+               |          
+                --1.00%--__x64_sys_write
+                          ksys_write
+                          vfs_write
+                          ext4_file_write_iter
+                          ext4_buffered_write_iter
+                          generic_perform_write
+                          |          
+                           --0.83%--ext4_da_write_begin
+                                     |          
+                                      --0.75%--__filemap_get_folio_mpol
+                                                filemap_alloc_folio_noprof
+                                                folio_alloc_noprof
+                                                alloc_pages_mpol
+                                                __alloc_frozen_pages_noprof
+                                                |          
+                                                 --0.75%--__alloc_pages_slowpath.constprop.0
+                                                           |          
+                                                            --0.74%--__alloc_pages_direct_compact
+                                                                      |          
+                                                                       --0.62%--try_to_compact_pages
+                                                                                 compact_zone_order
+                                                                                 compact_zone
+                                                                                 |          
+                                                                                  --0.59%--migrate_pages
+                                                                                            |          
+                                                                                             --0.59%--migrate_pages_batch
+
+     1.09%     0.00%  programa  [kernel.kallsyms]     [.] x64_sys_call
+            |
+            ---x64_sys_call
+               |          
+                --1.00%--__x64_sys_write
+                          ksys_write
+                          vfs_write
+                          ext4_file_write_iter
+                          ext4_buffered_write_iter
+                          generic_perform_write
+                          |          
+                           --0.83%--ext4_da_write_begin
+                                     |          
+                                      --0.75%--__filemap_get_folio_mpol
+                                                filemap_alloc_folio_noprof
+                                                folio_alloc_noprof
+                                                alloc_pages_mpol
+                                                __alloc_frozen_pages_noprof
+                                                |          
+                                                 --0.75%--__alloc_pages_slowpath.constprop.0
+                                                           |          
+                                                            --0.74%--__alloc_pages_direct_compact
+                                                                      |          
+                                                                       --0.62%--try_to_compact_pages
+                                                                                 compact_zone_order
+                                                                                 compact_zone
+                                                                                 |          
+                                                                                  --0.59%--migrate_pages
+                                                                                            |          
+                                                                                             --0.59%--migrate_pages_batch
+
+     1.09%     0.00%  programa  programa              [.] main
+            |
+            ---main
+               |          
+                --1.00%--_IO_fwrite
+                          _IO_acquire_lock_fct (inlined)
+                          _IO_new_file_xsputn (inlined)
+                          _IO_new_file_xsputn (inlined)
+                          new_do_write (inlined)
+                          _IO_new_file_write (inlined)
+                          __libc_write (inlined)
+                          __syscall_cancel_arch (inlined)
+                          entry_SYSCALL_64_after_hwframe
+                          do_syscall_64
+                          x64_sys_call
+                          __x64_sys_write
+                          ksys_write
+                          vfs_write
+                          ext4_file_write_iter
+                          ext4_buffered_write_iter
+                          generic_perform_write
+                          |          
+                           --0.83%--ext4_da_write_begin
+                                     |          
+                                      --0.75%--__filemap_get_folio_mpol
+                                                filemap_alloc_folio_noprof
+                                                folio_alloc_noprof
+                                                alloc_pages_mpol
+                                                __alloc_frozen_pages_noprof
+                                                |          
+                                                 --0.75%--__alloc_pages_slowpath.constprop.0
+                                                           |          
+                                                            --0.74%--__alloc_pages_direct_compact
+                                                                      |          
+                                                                       --0.62%--try_to_compact_pages
+                                                                                 compact_zone_order
+                                                                                 compact_zone
+                                                                                 |          
+                                                                                  --0.59%--migrate_pages
+                                                                                            |          
+                                                                                             --0.59%--migrate_pages_batch
+
+     1.00%     0.00%  programa  [unknown]             [k] 0x8c8c8c8c8c8c8c8c
+            |
+            ---0x8c8c8c8c8c8c8c8c
+               main
+               _IO_fwrite
+               _IO_acquire_lock_fct (inlined)
+               _IO_new_file_xsputn (inlined)
+               _IO_new_file_xsputn (inlined)
+               new_do_write (inlined)
+               _IO_new_file_write (inlined)
+               __libc_write (inlined)
+               __syscall_cancel_arch (inlined)
+               entry_SYSCALL_64_after_hwframe
+               do_syscall_64
+               x64_sys_call
+               __x64_sys_write
+               ksys_write
+               vfs_write
+               ext4_file_write_iter
+               ext4_buffered_write_iter
+               generic_perform_write
+               |          
+                --0.83%--ext4_da_write_begin
+                          |          
+                           --0.75%--__filemap_get_folio_mpol
+                                     filemap_alloc_folio_noprof
+                                     folio_alloc_noprof
+                                     alloc_pages_mpol
+                                     __alloc_frozen_pages_noprof
+                                     |          
+                                      --0.75%--__alloc_pages_slowpath.constprop.0
+                                                |          
+                                                 --0.74%--__alloc_pages_direct_compact
+                                                           |          
+                                                            --0.62%--try_to_compact_pages
+                                                                      compact_zone_order
+                                                                      compact_zone
+                                                                      |          
+                                                                       --0.59%--migrate_pages
+                                                                                 |          
+                                                                                  --0.59%--migrate_pages_batch
+
+     1.00%     0.00%  programa  libc.so.6             [.] _IO_fwrite
+            |
+            ---_IO_fwrite
+               _IO_acquire_lock_fct (inlined)
+               _IO_new_file_xsputn (inlined)
+               _IO_new_file_xsputn (inlined)
+               new_do_write (inlined)
+               _IO_new_file_write (inlined)
+               __libc_write (inlined)
+               __syscall_cancel_arch (inlined)
+               entry_SYSCALL_64_after_hwframe
+               do_syscall_64
+               x64_sys_call
+               __x64_sys_write
+               ksys_write
+               vfs_write
+               ext4_file_write_iter
+               ext4_buffered_write_iter
+               generic_perform_write
+               |          
+                --0.83%--ext4_da_write_begin
+                          |          
+                           --0.75%--__filemap_get_folio_mpol
+                                     filemap_alloc_folio_noprof
+                                     folio_alloc_noprof
+                                     alloc_pages_mpol
+                                     __alloc_frozen_pages_noprof
+                                     |          
+                                      --0.75%--__alloc_pages_slowpath.constprop.0
+                                                |          
+                                                 --0.74%--__alloc_pages_direct_compact
+                                                           |          
+                                                            --0.62%--try_to_compact_pages
+                                                                      compact_zone_order
+                                                                      compact_zone
+                                                                      |          
+                                                                       --0.59%--migrate_pages
+                                                                                 |          
+                                                                                  --0.59%--migrate_pages_batch
+
+     1.00%     0.00%  programa  libc.so.6             [.] _IO_acquire_lock_fct (inlined)
+            |
+            ---_IO_acquire_lock_fct (inlined)
+               _IO_new_file_xsputn (inlined)
+               _IO_new_file_xsputn (inlined)
+               new_do_write (inlined)
+               _IO_new_file_write (inlined)
+               __libc_write (inlined)
+               __syscall_cancel_arch (inlined)
+               entry_SYSCALL_64_after_hwframe
+               do_syscall_64
+               x64_sys_call
+               __x64_sys_write
+               ksys_write
+               vfs_write
+               ext4_file_write_iter
+               ext4_buffered_write_iter
+               generic_perform_write
+               |          
+                --0.83%--ext4_da_write_begin
+                          |          
+                           --0.75%--__filemap_get_folio_mpol
+                                     filemap_alloc_folio_noprof
+                                     folio_alloc_noprof
+                                     alloc_pages_mpol
+                                     __alloc_frozen_pages_noprof
+                                     |          
+                                      --0.75%--__alloc_pages_slowpath.constprop.0
+                                                |          
+                                                 --0.74%--__alloc_pages_direct_compact
+                                                           |          
+                                                            --0.62%--try_to_compact_pages
+                                                                      compact_zone_order
+                                                                      compact_zone
+                                                                      |          
+                                                                       --0.59%--migrate_pages
+                                                                                 |          
+                                                                                  --0.59%--migrate_pages_batch
+
+     1.00%     0.00%  programa  libc.so.6             [.] _IO_new_file_xsputn (inlined)
+            |
+            ---_IO_new_file_xsputn (inlined)
+               _IO_new_file_xsputn (inlined)
+               new_do_write (inlined)
+               _IO_new_file_write (inlined)
+               __libc_write (inlined)
+               __syscall_cancel_arch (inlined)
+               entry_SYSCALL_64_after_hwframe
+               do_syscall_64
+               x64_sys_call
+               __x64_sys_write
+               ksys_write
+               vfs_write
+               ext4_file_write_iter
+               ext4_buffered_write_iter
+               generic_perform_write
+               |          
+                --0.83%--ext4_da_write_begin
+                          |          
+                           --0.75%--__filemap_get_folio_mpol
+                                     filemap_alloc_folio_noprof
+                                     folio_alloc_noprof
+                                     alloc_pages_mpol
+                                     __alloc_frozen_pages_noprof
+                                     |          
+                                      --0.75%--__alloc_pages_slowpath.constprop.0
+                                                |          
+                                                 --0.74%--__alloc_pages_direct_compact
+                                                           |          
+                                                            --0.62%--try_to_compact_pages
+                                                                      compact_zone_order
+                                                                      compact_zone
+                                                                      |          
+                                                                       --0.59%--migrate_pages
+                                                                                 |          
+                                                                                  --0.59%--migrate_pages_batch
+
+     1.00%     0.00%  programa  libc.so.6             [.] new_do_write (inlined)
+            |
+            ---new_do_write (inlined)
+               _IO_new_file_write (inlined)
+               __libc_write (inlined)
+               __syscall_cancel_arch (inlined)
+               entry_SYSCALL_64_after_hwframe
+               do_syscall_64
+               x64_sys_call
+               __x64_sys_write
+               ksys_write
+               vfs_write
+               ext4_file_write_iter
+               ext4_buffered_write_iter
+               generic_perform_write
+               |          
+                --0.83%--ext4_da_write_begin
+                          |          
+                           --0.75%--__filemap_get_folio_mpol
+                                     filemap_alloc_folio_noprof
+                                     folio_alloc_noprof
+                                     alloc_pages_mpol
+                                     __alloc_frozen_pages_noprof
+                                     |          
+                                      --0.75%--__alloc_pages_slowpath.constprop.0
+                                                |          
+                                                 --0.74%--__alloc_pages_direct_compact
+                                                           |          
+                                                            --0.62%--try_to_compact_pages
+                                                                      compact_zone_order
+                                                                      compact_zone
+                                                                      |          
+                                                                       --0.59%--migrate_pages
+                                                                                 |          
+                                                                                  --0.59%--migrate_pages_batch
+
+     1.00%     0.00%  programa  libc.so.6             [.] _IO_new_file_write (inlined)
+            |
+            ---_IO_new_file_write (inlined)
+               __libc_write (inlined)
+               __syscall_cancel_arch (inlined)
+               entry_SYSCALL_64_after_hwframe
+               do_syscall_64
+               x64_sys_call
+               __x64_sys_write
+               ksys_write
+               vfs_write
+               ext4_file_write_iter
+               ext4_buffered_write_iter
+               generic_perform_write
+               |          
+                --0.83%--ext4_da_write_begin
+                          |          
+                           --0.75%--__filemap_get_folio_mpol
+                                     filemap_alloc_folio_noprof
+                                     folio_alloc_noprof
+                                     alloc_pages_mpol
+                                     __alloc_frozen_pages_noprof
+                                     |          
+                                      --0.75%--__alloc_pages_slowpath.constprop.0
+                                                |          
+                                                 --0.74%--__alloc_pages_direct_compact
+                                                           |          
+                                                            --0.62%--try_to_compact_pages
+                                                                      compact_zone_order
+                                                                      compact_zone
+                                                                      |          
+                                                                       --0.59%--migrate_pages
+                                                                                 |          
+                                                                                  --0.59%--migrate_pages_batch
+
+     1.00%     0.00%  programa  libc.so.6             [.] __libc_write (inlined)
+            |
+            ---__libc_write (inlined)
+               __syscall_cancel_arch (inlined)
+               entry_SYSCALL_64_after_hwframe
+               do_syscall_64
+               x64_sys_call
+               __x64_sys_write
+               ksys_write
+               vfs_write
+               ext4_file_write_iter
+               ext4_buffered_write_iter
+               generic_perform_write
+               |          
+                --0.83%--ext4_da_write_begin
+                          |          
+                           --0.75%--__filemap_get_folio_mpol
+                                     filemap_alloc_folio_noprof
+                                     folio_alloc_noprof
+                                     alloc_pages_mpol
+                                     __alloc_frozen_pages_noprof
+                                     |          
+                                      --0.75%--__alloc_pages_slowpath.constprop.0
+                                                |          
+                                                 --0.74%--__alloc_pages_direct_compact
+                                                           |          
+                                                            --0.62%--try_to_compact_pages
+                                                                      compact_zone_order
+                                                                      compact_zone
+                                                                      |          
+                                                                       --0.59%--migrate_pages
+                                                                                 |          
+                                                                                  --0.59%--migrate_pages_batch
+
+     1.00%     0.00%  programa  libc.so.6             [.] __syscall_cancel_arch (inlined)
+            |
+            ---__syscall_cancel_arch (inlined)
+               entry_SYSCALL_64_after_hwframe
+               do_syscall_64
+               x64_sys_call
+               __x64_sys_write
+               ksys_write
+               vfs_write
+               ext4_file_write_iter
+               ext4_buffered_write_iter
+               generic_perform_write
+               |          
+                --0.83%--ext4_da_write_begin
+                          |          
+                           --0.75%--__filemap_get_folio_mpol
+                                     filemap_alloc_folio_noprof
+                                     folio_alloc_noprof
+                                     alloc_pages_mpol
+                                     __alloc_frozen_pages_noprof
+                                     |          
+                                      --0.75%--__alloc_pages_slowpath.constprop.0
+                                                |          
+                                                 --0.74%--__alloc_pages_direct_compact
+                                                           |          
+                                                            --0.62%--try_to_compact_pages
+                                                                      compact_zone_order
+                                                                      compact_zone
+                                                                      |          
+                                                                       --0.59%--migrate_pages
+                                                                                 |          
+                                                                                  --0.59%--migrate_pages_batch
+
+     1.00%     0.00%  programa  [kernel.kallsyms]     [.] __x64_sys_write
+            |
+            ---__x64_sys_write
+               ksys_write
+               vfs_write
+               ext4_file_write_iter
+               ext4_buffered_write_iter
+               generic_perform_write
+               |          
+                --0.83%--ext4_da_write_begin
+                          |          
+                           --0.75%--__filemap_get_folio_mpol
+                                     filemap_alloc_folio_noprof
+                                     folio_alloc_noprof
+                                     alloc_pages_mpol
+                                     __alloc_frozen_pages_noprof
+                                     |          
+                                      --0.75%--__alloc_pages_slowpath.constprop.0
+                                                |          
+                                                 --0.74%--__alloc_pages_direct_compact
+                                                           |          
+                                                            --0.62%--try_to_compact_pages
+                                                                      compact_zone_order
+                                                                      compact_zone
+                                                                      |          
+                                                                       --0.59%--migrate_pages
+                                                                                 |          
+                                                                                  --0.59%--migrate_pages_batch
+
+     1.00%     0.00%  programa  [kernel.kallsyms]     [.] ksys_write
+            |
+            ---ksys_write
+               vfs_write
+               ext4_file_write_iter
+               ext4_buffered_write_iter
+               generic_perform_write
+               |          
+                --0.83%--ext4_da_write_begin
+                          |          
+                           --0.75%--__filemap_get_folio_mpol
+                                     filemap_alloc_folio_noprof
+                                     folio_alloc_noprof
+                                     alloc_pages_mpol
+                                     __alloc_frozen_pages_noprof
+                                     |          
+                                      --0.75%--__alloc_pages_slowpath.constprop.0
+                                                |          
+                                                 --0.74%--__alloc_pages_direct_compact
+                                                           |          
+                                                            --0.62%--try_to_compact_pages
+                                                                      compact_zone_order
+                                                                      compact_zone
+                                                                      |          
+                                                                       --0.59%--migrate_pages
+                                                                                 |          
+                                                                                  --0.59%--migrate_pages_batch
+
+     1.00%     0.00%  programa  [kernel.kallsyms]     [.] vfs_write
+            |
+            ---vfs_write
+               ext4_file_write_iter
+               ext4_buffered_write_iter
+               generic_perform_write
+               |          
+                --0.83%--ext4_da_write_begin
+                          |          
+                           --0.75%--__filemap_get_folio_mpol
+                                     filemap_alloc_folio_noprof
+                                     folio_alloc_noprof
+                                     alloc_pages_mpol
+                                     __alloc_frozen_pages_noprof
+                                     |          
+                                      --0.75%--__alloc_pages_slowpath.constprop.0
+                                                |          
+                                                 --0.74%--__alloc_pages_direct_compact
+                                                           |          
+                                                            --0.62%--try_to_compact_pages
+                                                                      compact_zone_order
+                                                                      compact_zone
+                                                                      |          
+                                                                       --0.59%--migrate_pages
+                                                                                 |          
+                                                                                  --0.59%--migrate_pages_batch
+
+     1.00%     0.00%  programa  [kernel.kallsyms]     [.] ext4_file_write_iter
+            |
+            ---ext4_file_write_iter
+               ext4_buffered_write_iter
+               generic_perform_write
+               |          
+                --0.83%--ext4_da_write_begin
+                          |          
+                           --0.75%--__filemap_get_folio_mpol
+                                     filemap_alloc_folio_noprof
+                                     folio_alloc_noprof
+                                     alloc_pages_mpol
+                                     __alloc_frozen_pages_noprof
+                                     |          
+                                      --0.75%--__alloc_pages_slowpath.constprop.0
+                                                |          
+                                                 --0.74%--__alloc_pages_direct_compact
+                                                           |          
+                                                            --0.62%--try_to_compact_pages
+                                                                      compact_zone_order
+                                                                      compact_zone
+                                                                      |          
+                                                                       --0.59%--migrate_pages
+                                                                                 |          
+                                                                                  --0.59%--migrate_pages_batch
+
+     1.00%     0.00%  programa  [kernel.kallsyms]     [.] ext4_buffered_write_iter
+            |
+            ---ext4_buffered_write_iter
+               generic_perform_write
+               |          
+                --0.83%--ext4_da_write_begin
+                          |          
+                           --0.75%--__filemap_get_folio_mpol
+                                     filemap_alloc_folio_noprof
+                                     folio_alloc_noprof
+                                     alloc_pages_mpol
+                                     __alloc_frozen_pages_noprof
+                                     |          
+                                      --0.75%--__alloc_pages_slowpath.constprop.0
+                                                |          
+                                                 --0.74%--__alloc_pages_direct_compact
+                                                           |          
+                                                            --0.62%--try_to_compact_pages
+                                                                      compact_zone_order
+                                                                      compact_zone
+                                                                      |          
+                                                                       --0.59%--migrate_pages
+                                                                                 |          
+                                                                                  --0.59%--migrate_pages_batch
+
+     1.00%     0.00%  programa  [kernel.kallsyms]     [.] generic_perform_write
+            |
+            ---generic_perform_write
+               |          
+                --0.83%--ext4_da_write_begin
+                          |          
+                           --0.75%--__filemap_get_folio_mpol
+                                     filemap_alloc_folio_noprof
+                                     folio_alloc_noprof
+                                     alloc_pages_mpol
+                                     __alloc_frozen_pages_noprof
+                                     |          
+                                      --0.75%--__alloc_pages_slowpath.constprop.0
+                                                |          
+                                                 --0.74%--__alloc_pages_direct_compact
+                                                           |          
+                                                            --0.62%--try_to_compact_pages
+                                                                      compact_zone_order
+                                                                      compact_zone
+                                                                      |          
+                                                                       --0.59%--migrate_pages
+                                                                                 |          
+                                                                                  --0.59%--migrate_pages_batch
+
+     0.87%     0.00%  programa  [kernel.kallsyms]     [.] __alloc_frozen_pages_noprof
+            |          
+             --0.87%--__alloc_frozen_pages_noprof
+                       |          
+                        --0.75%--__alloc_pages_slowpath.constprop.0
+                                  |          
+                                   --0.74%--__alloc_pages_direct_compact
+                                             |          
+                                              --0.62%--try_to_compact_pages
+                                                        compact_zone_order
+                                                        compact_zone
+                                                        |          
+                                                         --0.59%--migrate_pages
+                                                                   |          
+                                                                    --0.59%--migrate_pages_batch
+
+     0.86%     0.00%  programa  [kernel.kallsyms]     [k] alloc_pages_mpol
+            |          
+             --0.86%--alloc_pages_mpol
+                       __alloc_frozen_pages_noprof
+                       |          
+                        --0.75%--__alloc_pages_slowpath.constprop.0
+                                  |          
+                                   --0.74%--__alloc_pages_direct_compact
+                                             |          
+                                              --0.62%--try_to_compact_pages
+                                                        compact_zone_order
+                                                        compact_zone
+                                                        |          
+                                                         --0.59%--migrate_pages
+                                                                   |          
+                                                                    --0.59%--migrate_pages_batch
+
+     0.83%     0.00%  programa  [kernel.kallsyms]     [.] ext4_da_write_begin
+            |
+            ---ext4_da_write_begin
+               |          
+                --0.75%--__filemap_get_folio_mpol
+                          filemap_alloc_folio_noprof
+                          folio_alloc_noprof
+                          alloc_pages_mpol
+                          __alloc_frozen_pages_noprof
+                          |          
+                           --0.75%--__alloc_pages_slowpath.constprop.0
+                                     |          
+                                      --0.74%--__alloc_pages_direct_compact
+                                                |          
+                                                 --0.62%--try_to_compact_pages
+                                                           compact_zone_order
+                                                           compact_zone
+                                                           |          
+                                                            --0.59%--migrate_pages
+                                                                      |          
+                                                                       --0.59%--migrate_pages_batch
+
+     0.82%     0.00%  programa  libm.so.6             [.] do_sin (inlined)
+            |
+            ---do_sin (inlined)
+
+     0.75%     0.00%  programa  [kernel.kallsyms]     [.] __filemap_get_folio_mpol
+            |
+            ---__filemap_get_folio_mpol
+               filemap_alloc_folio_noprof
+               folio_alloc_noprof
+               alloc_pages_mpol
+               __alloc_frozen_pages_noprof
+               |          
+                --0.75%--__alloc_pages_slowpath.constprop.0
+                          |          
+                           --0.74%--__alloc_pages_direct_compact
+                                     |          
+                                      --0.62%--try_to_compact_pages
+                                                compact_zone_order
+                                                compact_zone
+                                                |          
+                                                 --0.59%--migrate_pages
+                                                           |          
+                                                            --0.59%--migrate_pages_batch
+
+     0.75%     0.00%  programa  [kernel.kallsyms]     [.] filemap_alloc_folio_noprof
+            |
+            ---filemap_alloc_folio_noprof
+               folio_alloc_noprof
+               alloc_pages_mpol
+               __alloc_frozen_pages_noprof
+               |          
+                --0.75%--__alloc_pages_slowpath.constprop.0
+                          |          
+                           --0.74%--__alloc_pages_direct_compact
+                                     |          
+                                      --0.62%--try_to_compact_pages
+                                                compact_zone_order
+                                                compact_zone
+                                                |          
+                                                 --0.59%--migrate_pages
+                                                           |          
+                                                            --0.59%--migrate_pages_batch
+
+     0.75%     0.00%  programa  [kernel.kallsyms]     [.] folio_alloc_noprof
+            |
+            ---folio_alloc_noprof
+               alloc_pages_mpol
+               __alloc_frozen_pages_noprof
+               |          
+                --0.75%--__alloc_pages_slowpath.constprop.0
+                          |          
+                           --0.74%--__alloc_pages_direct_compact
+                                     |          
+                                      --0.62%--try_to_compact_pages
+                                                compact_zone_order
+                                                compact_zone
+                                                |          
+                                                 --0.59%--migrate_pages
+                                                           |          
+                                                            --0.59%--migrate_pages_batch
+
+     0.75%     0.00%  programa  [kernel.kallsyms]     [.] __alloc_pages_slowpath.constprop.0
+            |
+            ---__alloc_pages_slowpath.constprop.0
+               |          
+                --0.74%--__alloc_pages_direct_compact
+                          |          
+                           --0.62%--try_to_compact_pages
+                                     compact_zone_order
+                                     compact_zone
+                                     |          
+                                      --0.59%--migrate_pages
+                                                |          
+                                                 --0.59%--migrate_pages_batch
+
+     0.74%     0.00%  programa  [kernel.kallsyms]     [.] __alloc_pages_direct_compact
+            |
+            ---__alloc_pages_direct_compact
+               |          
+                --0.62%--try_to_compact_pages
+                          compact_zone_order
+                          compact_zone
+                          |          
+                           --0.59%--migrate_pages
+                                     |          
+                                      --0.59%--migrate_pages_batch
+
+     0.62%     0.00%  programa  [kernel.kallsyms]     [.] compact_zone
+            |          
+             --0.62%--compact_zone
+                       |          
+                        --0.59%--migrate_pages
+                                  |          
+                                   --0.59%--migrate_pages_batch
+
+     0.62%     0.00%  programa  [kernel.kallsyms]     [.] try_to_compact_pages
+            |
+            ---try_to_compact_pages
+               compact_zone_order
+               compact_zone
+               |          
+                --0.59%--migrate_pages
+                          |          
+                           --0.59%--migrate_pages_batch
+
+     0.62%     0.00%  programa  [kernel.kallsyms]     [.] compact_zone_order
+            |
+            ---compact_zone_order
+               compact_zone
+               |          
+                --0.59%--migrate_pages
+                          |          
+                           --0.59%--migrate_pages_batch
+
+     0.59%     0.00%  programa  [kernel.kallsyms]     [.] migrate_pages
+            |
+            ---migrate_pages
+               |          
+                --0.59%--migrate_pages_batch
+
+     0.59%     0.00%  programa  [kernel.kallsyms]     [.] migrate_pages_batch
+            |          
+             --0.58%--migrate_pages_batch
+
+     0.40%     0.00%  programa  [kernel.kallsyms]     [.] asm_exc_page_fault
+     0.34%     0.00%  programa  libm.so.6             [.] libc_feholdsetround_sse_ctx (inlined)
+     0.33%     0.00%  programa  [kernel.kallsyms]     [.] exc_page_fault
+     0.33%     0.01%  programa  [kernel.kallsyms]     [.] do_user_addr_fault
+     0.29%     0.00%  programa  [kernel.kallsyms]     [.] handle_mm_fault
+     0.29%     0.00%  programa  [kernel.kallsyms]     [.] migrate_folio_move
+     0.29%     0.00%  programa  [kernel.kallsyms]     [.] __handle_mm_fault
+     0.28%     0.00%  programa  [kernel.kallsyms]     [.] handle_pte_fault
+     0.27%     0.01%  programa  [kernel.kallsyms]     [.] do_anonymous_page
+     0.27%     0.10%  programa  [kernel.kallsyms]     [.] migrate_folio_unmap
+     0.21%     0.00%  programa  libm.so.6             [.] do_cos (inlined)
+     0.20%     0.10%  programa  programa              [.] sin@plt
+     0.20%     0.00%  programa  [kernel.kallsyms]     [.] rmap_walk
+     0.17%     0.00%  programa  [kernel.kallsyms]     [.] move_to_new_folio
+     0.17%     0.00%  programa  libm.so.6             [.] do_sincos (inlined)
+     0.16%     0.01%  programa  [kernel.kallsyms]     [.] __migrate_folio.isra.0
+     0.16%     0.16%  programa  [kernel.kallsyms]     [k] copy_folio_from_iter_atomic
+     0.15%     0.00%  programa  [kernel.kallsyms]     [.] alloc_anon_folio
+     0.14%     0.14%  programa  [kernel.kallsyms]     [k] kernel_init_pages
+     0.14%     0.00%  programa  [kernel.kallsyms]     [.] post_alloc_hook
+     0.13%     0.00%  programa  [kernel.kallsyms]     [.] __rmap_walk_file
+     0.12%     0.01%  programa  [kernel.kallsyms]     [.] __buffer_migrate_folio
+     0.12%     0.00%  programa  [kernel.kallsyms]     [.] buffer_migrate_folio
+     0.12%     0.00%  programa  [kernel.kallsyms]     [.] get_page_from_freelist
+     0.12%     0.00%  programa  [kernel.kallsyms]     [.] vma_alloc_folio_noprof
+     0.11%     0.00%  programa  [kernel.kallsyms]     [.] try_to_migrate
+     0.11%     0.00%  programa  [kernel.kallsyms]     [.] rmqueue.isra.0
+     0.10%     0.00%  programa  [kernel.kallsyms]     [.] asm_sysvec_apic_timer_interrupt
+     0.10%     0.04%  programa  [kernel.kallsyms]     [.] __rmqueue_pcplist
+     0.10%     0.00%  programa  [kernel.kallsyms]     [.] rmqueue_pcplist
+     0.10%     0.00%  programa  [kernel.kallsyms]     [.] folio_mc_copy
+     0.10%     0.10%  programa  [kernel.kallsyms]     [k] copy_mc_enhanced_fast_string
+     0.09%     0.04%  programa  [kernel.kallsyms]     [k] page_vma_mapped_walk
+     0.09%     0.00%  programa  libc.so.6             [.] __munmap
+     0.09%     0.00%  programa  [kernel.kallsyms]     [.] __x64_sys_munmap
+     0.09%     0.00%  programa  [kernel.kallsyms]     [.] __vm_munmap
+     0.09%     0.00%  programa  [kernel.kallsyms]     [.] do_vmi_munmap
+     0.09%     0.00%  programa  [kernel.kallsyms]     [.] do_vmi_align_munmap
+     0.09%     0.00%  programa  [kernel.kallsyms]     [.] vms_complete_munmap_vmas
+     0.09%     0.00%  programa  [kernel.kallsyms]     [.] unmap_region
+     0.09%     0.00%  programa  [kernel.kallsyms]     [.] unmap_vmas
+     0.09%     0.00%  programa  [kernel.kallsyms]     [.] unmap_single_vma
+     0.09%     0.00%  programa  [kernel.kallsyms]     [.] unmap_page_range
+     0.09%     0.00%  programa  [kernel.kallsyms]     [.] zap_pmd_range.isra.0
+     0.09%     0.00%  programa  [kernel.kallsyms]     [.] zap_pte_range
+     0.08%     0.02%  programa  [kernel.kallsyms]     [.] try_to_migrate_one
+     0.08%     0.00%  programa  [kernel.kallsyms]     [.] ext4_block_write_begin
+     0.07%     0.00%  programa  [kernel.kallsyms]     [.] sysvec_apic_timer_interrupt
+     0.07%     0.00%  programa  libm.so.6             [.] reduce_sincos (inlined)
+     0.07%     0.01%  programa  [kernel.kallsyms]     [.] remove_migration_pte
+     0.06%     0.00%  programa  [kernel.kallsyms]     [.] irq_exit_rcu
+     0.06%     0.00%  programa  [kernel.kallsyms]     [.] __irq_exit_rcu
+     0.06%     0.00%  programa  [kernel.kallsyms]     [.] handle_softirqs
+     0.06%     0.01%  programa  [kernel.kallsyms]     [.] ext4_da_get_block_prep
+     0.05%     0.05%  programa  [kernel.kallsyms]     [k] rmqueue_bulk
+     0.05%     0.01%  programa  [kernel.kallsyms]     [.] compaction_alloc_noprof
+     0.05%     0.00%  programa  [kernel.kallsyms]     [.] compaction_alloc
+     0.05%     0.05%  programa  [kernel.kallsyms]     [k] _raw_spin_lock
+     0.05%     0.00%  programa  [kernel.kallsyms]     [.] rmap_walk_anon
+     0.05%     0.00%  programa  [kernel.kallsyms]     [.] folio_add_lru
+     0.05%     0.00%  programa  [kernel.kallsyms]     [.] __tlb_batch_free_encoded_pages
+     0.05%     0.00%  programa  [kernel.kallsyms]     [.] free_pages_and_swap_cache
+     0.05%     0.00%  programa  [kernel.kallsyms]     [.] ext4_da_map_blocks.constprop.0
+     0.05%     0.00%  programa  [kernel.kallsyms]     [k] folios_put_refs
+     0.05%     0.01%  programa  [kernel.kallsyms]     [.] __folio_migrate_mapping
+     0.04%     0.00%  programa  [kernel.kallsyms]     [.] tlb_flush_mmu
+     0.04%     0.00%  programa  [kernel.kallsyms]     [k] __folio_batch_add_and_move
+     0.04%     0.01%  programa  [kernel.kallsyms]     [.] folio_batch_move_lru
+     0.04%     0.03%  programa  [kernel.kallsyms]     [k] zap_present_ptes.constprop.0
+     0.04%     0.02%  programa  [kernel.kallsyms]     [.] pte_offset_map_lock
+     0.04%     0.02%  programa  [kernel.kallsyms]     [k] map_pte
+     0.04%     0.00%  programa  [kernel.kallsyms]     [.] run_timer_softirq
+     0.04%     0.00%  programa  [kernel.kallsyms]     [.] __run_timers
+     0.04%     0.00%  programa  [kernel.kallsyms]     [.] call_timer_fn
+     0.04%     0.00%  programa  [kernel.kallsyms]     [.] fq_flush_timeout
+     0.04%     0.00%  programa  [kernel.kallsyms]     [.] intel_flush_iotlb_all
+     0.04%     0.00%  programa  [kernel.kallsyms]     [.] cache_tag_flush_all
+     0.04%     0.00%  programa  [kernel.kallsyms]     [.] cache_tag_flush_range
+     0.04%     0.00%  programa  [kernel.kallsyms]     [.] qi_batch_flush_descs
+     0.04%     0.00%  programa  [kernel.kallsyms]     [.] tmigr_handle_remote
+     0.04%     0.00%  programa  [kernel.kallsyms]     [.] tmigr_handle_remote_up
+     0.04%     0.00%  programa  [kernel.kallsyms]     [.] tmigr_handle_remote_cpu
+     0.04%     0.00%  programa  [kernel.kallsyms]     [.] timer_expire_remote
+     0.03%     0.01%  programa  [kernel.kallsyms]     [.] qi_submit_sync
+     0.03%     0.00%  programa  [kernel.kallsyms]     [.] asm_common_interrupt
+     0.03%     0.00%  programa  [kernel.kallsyms]     [.] __sysvec_apic_timer_interrupt
+     0.03%     0.00%  programa  [kernel.kallsyms]     [.] common_interrupt
+     0.03%     0.03%  programa  [kernel.kallsyms]     [.] fast_isolate_freepages
+     0.03%     0.00%  programa  [kernel.kallsyms]     [.] isolate_freepages
+     0.03%     0.01%  programa  [kernel.kallsyms]     [k] free_pcppages_bulk
+     0.03%     0.03%  programa  [kernel.kallsyms]     [k] qi_check_fault
+     0.03%     0.03%  programa  [kernel.kallsyms]     [k] sync_regs
+     0.03%     0.00%  programa  [kernel.kallsyms]     [.] hrtimer_interrupt
+     0.03%     0.01%  programa  [kernel.kallsyms]     [.] free_frozen_page_commit.isra.0
+     0.03%     0.00%  programa  [kernel.kallsyms]     [.] lru_add
+     0.03%     0.01%  programa  [kernel.kallsyms]     [k] lruvec_stat_mod_folio
+     0.03%     0.00%  programa  [kernel.kallsyms]     [.] folio_add_lru_vma
+     0.03%     0.00%  programa  [kernel.kallsyms]     [.] __hrtimer_run_queues
+     0.03%     0.00%  programa  [kernel.kallsyms]     [.] tick_nohz_handler
+     0.03%     0.01%  programa  [kernel.kallsyms]     [k] lru_gen_add_folio
+     0.02%     0.02%  programa  [kernel.kallsyms]     [k] smp_call_function_many_cond
+     0.02%     0.00%  programa  [kernel.kallsyms]     [.] native_flush_tlb_multi
+     0.02%     0.00%  programa  [kernel.kallsyms]     [.] on_each_cpu_cond_mask
+     0.02%     0.00%  programa  [kernel.kallsyms]     [.] try_to_unmap_flush
+     0.02%     0.00%  programa  [kernel.kallsyms]     [.] arch_tlbbatch_flush
+     0.02%     0.00%  programa  [kernel.kallsyms]     [.] create_empty_buffers
+     0.02%     0.00%  programa  [kernel.kallsyms]     [.] ext4_insert_delayed_blocks
+     0.02%     0.02%  programa  [kernel.kallsyms]     [k] _raw_spin_lock_irq
+     0.02%     0.00%  programa  [kernel.kallsyms]     [.] free_unref_folios
+     0.02%     0.02%  programa  [kernel.kallsyms]     [k] mod_memcg_lruvec_state
+     0.02%     0.01%  programa  [kernel.kallsyms]     [k] lock_vma_under_rcu
+     0.02%     0.00%  programa  [kernel.kallsyms]     [.] folio_alloc_buffers
+     0.02%     0.00%  programa  [kernel.kallsyms]     [.] isolate_migratepages
+     0.02%     0.00%  programa  [kernel.kallsyms]     [.] folio_add_new_anon_rmap
+     0.02%     0.02%  programa  [kernel.kallsyms]     [k] __free_one_page
+     0.02%     0.00%  programa  [kernel.kallsyms]     [.] isolate_migratepages_block
+     0.02%     0.00%  programa  [kernel.kallsyms]     [.] __folio_throttle_swaprate
+     0.02%     0.00%  programa  [kernel.kallsyms]     [.] alloc_buffer_head
+     0.02%     0.02%  programa  [kernel.kallsyms]     [k] __pte_offset_map
+     0.02%     0.00%  programa  [kernel.kallsyms]     [.] update_process_times
+     0.02%     0.01%  programa  [kernel.kallsyms]     [.] vma_interval_tree_iter_next
+     0.02%     0.00%  programa  [kernel.kallsyms]     [.] tasklet_hi_action
+     0.02%     0.02%  programa  [kernel.kallsyms]     [k] native_irq_return_iret
+     0.02%     0.00%  programa  libm.so.6             [.] libc_feresetround_sse_ctx (inlined)
+     0.02%     0.00%  programa  [kernel.kallsyms]     [.] __page_cache_release.part.0
+     0.02%     0.00%  programa  [kernel.kallsyms]     [.] kmem_cache_alloc_noprof
+     0.02%     0.00%  programa  [kernel.kallsyms]     [.] workqueue_softirq_action
+     0.02%     0.00%  programa  [kernel.kallsyms]     [.] bh_worker
+     0.02%     0.00%  programa  [kernel.kallsyms]     [.] process_one_work
+     0.02%     0.00%  programa  [kernel.kallsyms]     [.] usb_giveback_urb_bh
+     0.02%     0.00%  programa  [kernel.kallsyms]     [.] __usb_hcd_giveback_urb
+     0.02%     0.00%  programa  [kernel.kallsyms]     [.] hid_irq_in
+     0.02%     0.00%  programa  [kernel.kallsyms]     [.] __folio_mod_stat
+     0.02%     0.00%  programa  [kernel.kallsyms]     [.] sched_tick
+     0.02%     0.00%  programa  [kernel.kallsyms]     [.] __mem_cgroup_charge
+     0.01%     0.00%  programa  [kernel.kallsyms]     [.] __folio_put
+     0.01%     0.00%  programa  [kernel.kallsyms]     [.] migrate_folio_done
+     0.01%     0.01%  programa  [kernel.kallsyms]     [.] blk_cgroup_congested
+     0.01%     0.01%  programa  [kernel.kallsyms]     [k] lru_gen_del_folio.constprop.0
+     0.01%     0.01%  programa  [kernel.kallsyms]     [k] vma_interval_tree_subtree_search
+     0.01%     0.00%  programa  [kernel.kallsyms]     [.] free_frozen_pages
+     0.01%     0.00%  programa  [kernel.kallsyms]     [.] __pcs_replace_empty_main
+     0.01%     0.00%  programa  [kernel.kallsyms]     [.] refill_objects
+     0.01%     0.01%  programa  [kernel.kallsyms]     [k] __rcu_read_lock
+     0.01%     0.00%  programa  [kernel.kallsyms]     [.] mod_lruvec_state
+     0.01%     0.00%  programa  [kernel.kallsyms]     [.] ext4_da_do_write_end.isra.0
+     0.01%     0.00%  programa  [kernel.kallsyms]     [.] ext4_da_write_end
+     0.01%     0.01%  programa  [kernel.kallsyms]     [k] lru_gen_del_folio.constprop.0
+     0.01%     0.00%  programa  [kernel.kallsyms]     [.] hid_safe_input_report
+     0.01%     0.00%  programa  [kernel.kallsyms]     [.] folio_remove_rmap_ptes
+     0.01%     0.01%  programa  [kernel.kallsyms]     [k] check_pte
+     0.01%     0.00%  programa  [kernel.kallsyms]     [.] block_commit_write
+     0.01%     0.00%  programa  [kernel.kallsyms]     [.] block_write_end
+     0.01%     0.00%  programa  [kernel.kallsyms]     [.] ext4_da_reserve_space
+     0.01%     0.00%  programa  [kernel.kallsyms]     [.] allocate_slab
+     0.01%     0.00%  programa  [kernel.kallsyms]     [.] __hid_input_report
+     0.01%     0.00%  programa  [kernel.kallsyms]     [.] __common_interrupt
+     0.01%     0.00%  programa  [kernel.kallsyms]     [.] xas_store
+     0.01%     0.00%  programa  [kernel.kallsyms]     [.] hid_report_raw_event
+     0.01%     0.00%  programa  [kernel.kallsyms]     [.] handle_edge_irq
+     0.01%     0.01%  programa  [kernel.kallsyms]     [k] __rcu_read_unlock
+     0.01%     0.00%  programa  [kernel.kallsyms]     [.] drain_pages_zone
+     0.01%     0.00%  programa  [kernel.kallsyms]     [.] __free_frozen_pages
+     0.01%     0.01%  programa  [kernel.kallsyms]     [k] xas_create
+     0.01%     0.01%  programa  [kernel.kallsyms]     [k] try_charge_memcg
+     0.01%     0.00%  programa  [kernel.kallsyms]     [.] handle_irq_event
+     0.01%     0.00%  programa  [kernel.kallsyms]     [.] __handle_irq_event_percpu
+     0.01%     0.01%  programa  [kernel.kallsyms]     [k] __raw_spin_lock_irqsave
+     0.01%     0.00%  programa  [kernel.kallsyms]     [.] _raw_spin_lock_irqsave
+     0.01%     0.00%  programa  [kernel.kallsyms]     [.] lru_add_drain_cpu_zone
+     0.01%     0.01%  programa  [kernel.kallsyms]     [k] mark_buffer_dirty
+     0.01%     0.00%  programa  [kernel.kallsyms]     [.] release_free_list
+     0.01%     0.01%  programa  [kernel.kallsyms]     [k] mas_walk
+     0.01%     0.01%  programa  [kernel.kallsyms]     [k] error_entry
+     0.01%     0.00%  programa  [kernel.kallsyms]     [.] charge_memcg
+     0.01%     0.00%  programa  [kernel.kallsyms]     [.] __wake_up
+     0.01%     0.01%  programa  [kernel.kallsyms]     [k] set_tlb_ubc_flush_pending.isra.0
+     0.01%     0.01%  programa  [kernel.kallsyms]     [k] __dquot_alloc_space
+     0.01%     0.01%  programa  [kernel.kallsyms]     [k] folio_migrate_flags
+     0.01%     0.00%  programa  [kernel.kallsyms]     [.] task_tick_fair
+     0.01%     0.01%  programa  [kernel.kallsyms]     [k] mod_node_page_state
+     0.01%     0.00%  programa  [kernel.kallsyms]     [.] drain_local_pages
+     0.01%     0.00%  programa  [kernel.kallsyms]     [.] ext4_es_insert_delayed_extent
+     0.01%     0.00%  programa  [kernel.kallsyms]     [k] folio_add_anon_rmap_ptes
+     0.01%     0.00%  programa  [kernel.kallsyms]     [.] usb_submit_urb
+     0.01%     0.00%  programa  [kernel.kallsyms]     [.] usb_hcd_submit_urb
+     0.01%     0.00%  programa  [kernel.kallsyms]     [.] gen11_irq_handler
+     0.01%     0.00%  programa  [kernel.kallsyms]     [.] gen11_display_irq_handler
+     0.01%     0.00%  programa  [kernel.kallsyms]     [.] gen8_de_irq_handler
+     0.01%     0.00%  programa  [kernel.kallsyms]     [.] perf_event_task_tick
+     0.01%     0.01%  programa  [kernel.kallsyms]     [k] ext4_es_lookup_extent
+     0.01%     0.00%  programa  [kernel.kallsyms]     [k] folio_add_file_rmap_ptes
+     0.01%     0.01%  programa  [kernel.kallsyms]     [k] anon_vma_interval_tree_iter_first
+     0.01%     0.01%  programa  [kernel.kallsyms]     [k] down_write
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] tick_do_update_jiffies64
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] schedule
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] logi_dj_raw_event
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] logi_dj_recv_forward_input_report
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] logi_dj_recv_forward_report.isra.0
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] hid_input_report
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] xhci_ring_ep_doorbell
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] xhci_urb_enqueue
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] xhci_queue_intr_tx
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] xhci_queue_bulk_tx
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] irqentry_exit
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] hid_process_report
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] native_write_msr
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] __css_rstat_updated
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] perf_adjust_freq_unthr_context
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] _raw_read_unlock
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] _raw_spin_trylock
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] prep_compound_page
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] pte_offset_map_rw_nolock
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] get_mem_cgroup_from_mm
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] count_memcg_events
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] __schedule
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] hidinput_report_event
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] input_event
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] input_handle_event
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] input_event_dispose
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] input_pass_values
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] hiddev_hid_event
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] hid_process_event
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] hiddev_send_event.isra.0
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] x86_pmu_enable
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] intel_pmu_enable_all
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] folio_lruvec_lock_irqsave
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] tlb_finish_mmu
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] folio_not_mapped
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] folio_unlock
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] _raw_read_lock
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] _raw_spin_unlock
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] putback_movable_pages
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] folio_putback_lru
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] __timekeeping_advance
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] update_wall_time
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] kthread_blkcg
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] page_counter_try_charge
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] xhci_irq
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] xhci_msi_irq
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] softleaf_from_pte
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] update_cfs_group
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] vm_normal_page
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] drm_crtc_handle_vblank
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] drm_handle_vblank
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] __wake_up_common
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] ep_poll_callback
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] sched_balance_trigger
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] __mod_zone_page_state
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] _find_next_bit
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] _raw_write_lock
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] setup_object
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] __memcg_slab_post_alloc_hook
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] __mem_cgroup_uncharge_folios
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] folio_mapping
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] __es_insert_extent
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] down_read_trylock
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] up_write
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] folio_xchg_last_cpupid
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] __drain_all_pages.part.0
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] __pi_memset
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] shuffle_freelist
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] pud_val
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] native_queued_spin_lock_slowpath
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] evdev_events
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] evdev_pass_values
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] queue_work_on
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] input_handle_events_default
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] kbd_event
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] schedule_console_callback
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] pfn_pte
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] check_cpu_stall
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] rcu_sched_clock_irq
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] rcu_pending
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] __pte
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] calc_global_load
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] xhci_update_erst_dequeue
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] xhci_handle_events.isra.0
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] timekeeping_update_from_shadow
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] pte_val
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] tick_program_event
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] clockevents_program_event
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] reweight_entity
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] vblank_disable_fn
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] drm_send_event_timestamp_locked
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] intel_dsb_irq_handler
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] drm_crtc_send_vblank_event
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] __bitmap_or
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] __update_load_avg_se
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] nohz_balancer_kick
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] percpu_counter_add_batch
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] migrate_folio
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] obj_cgroup_charge_account
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] ext4_es_can_be_merged.isra.0
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] update_curr
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] psi_memstall_leave
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] __move_freepages_block
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] __isolate_free_page
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] move_freepages_block
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] lru_add_drain_cpu
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] up_read
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] xas_expand.constprop.0
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] folio_lock_anon_vma_read
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] __refill_objects_node
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] buffer_migrate_folio_norefs
+     0.00%     0.00%  programa  ld-linux-x86-64.so.2  [.] _dl_start_user
+     0.00%     0.00%  programa  ld-linux-x86-64.so.2  [.] _dl_start
+     0.00%     0.00%  programa  ld-linux-x86-64.so.2  [.] _dl_start_final (inlined)
+     0.00%     0.00%  programa  ld-linux-x86-64.so.2  [.] _dl_sysdep_start
+     0.00%     0.00%  programa  ld-linux-x86-64.so.2  [.] dl_main
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] hid_field_extract
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] hid_input_fetch_field
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] _nv046188rm
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] policy_nodemask
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] __pte_alloc
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] pte_alloc_one
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] alloc_pages_noprof
+     0.00%     0.00%  programa  libgomp.so.1.0.0      [.] 0x0000000000013384
+     0.00%     0.00%  programa  libgomp.so.1.0.0      [.] 0x00007b860f47038b
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] get_vma_policy
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] __enqueue_entity
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] pick_next_task
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] pick_next_task_fair
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] put_prev_entity
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] pte_mkwrite
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] x86_pmu_disable
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] up
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] psi_group_change
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] usb_hcd_is_primary_hcd
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] irq_work_tick
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] hid_get_report
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] __smp_call_single_queue
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] pollwake
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] default_wake_function
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] try_to_wake_up
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] ttwu_queue_wakelist
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] perf_ctx_disable
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] prepare_task_switch
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] __perf_event_task_sched_out
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] perf_event_context_sched_out
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] raw_spin_rq_lock_nested
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] asm_sysvec_reschedule_ipi
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] sysvec_reschedule_ipi
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] irq_can_handle_pm
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] ktime_get_update_offsets_now
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] read_tsc
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] __remove_hrtimer
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] timerqueue_del
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] p4d_offset
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] lapic_next_deadline
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] wake_up_process
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] __queue_work
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] __queue_work.part.0
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] __calc_delta.constprop.0
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] place_entity
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] hiddev_report_event
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] __tcp_transmit_skb
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] tcp_keepalive_timer
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] tcp_write_wakeup
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] tcp_xmit_probe_skb
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] arch_exit_to_user_mode_prepare.isra.0
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] process_csb
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] tasklet_action_common
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] execlists_submission_tasklet
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] __hrtimer_next_event_base
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] hrtimer_update_next_event
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] __intel_get_crtc_scanline
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] drm_vblank_disable_and_save
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] drm_update_vblank_count
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] drm_crtc_get_last_vbltimestamp
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] intel_crtc_get_vblank_timestamp
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] drm_crtc_vblank_helper_get_vblank_timestamp_internal
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] i915_get_crtc_scanoutpos
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] _find_first_bit
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] __folio_mark_dirty
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] folio_account_dirtied
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] update_vdso_time_data
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] update_vsyscall
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] page_counter_uncharge
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] uncharge_batch
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] ktime_get
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] __irqentry_text_end
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] get_pfnblock_bit
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] fast_find_migrateblock
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] vma_interval_tree_iter_first
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] __nr_to_section
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] __mem_cgroup_uncharge
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] mem_cgroup_wb_stats
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] balance_dirty_pages_ratelimited
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] balance_dirty_pages_ratelimited_flags
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] balance_dirty_pages
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] domain_dirty_avail
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] __es_remove_extent
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] ext4_claim_free_clusters
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] __irqentry_text_start
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] send_vblank_event
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] drm_send_event_helper
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] unlock_buffer
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] wake_up_bit
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] mem_cgroup_migrate
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] timer_recalc_next_expiry
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] folio_get_anon_vma
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] alloc_from_new_slab
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] ___free_pages
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] __free_pages
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] set_ptes.isra.0
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] psi_task_change
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] avg_vruntime
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] update_deadline
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] migrate_hugetlbs
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] folio_mark_dirty
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] slab_update_freelist.isra.0
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] uncharge_folio
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] try_to_free_pages
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] do_try_to_free_pages
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] shrink_node
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] shrink_many
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] shrink_one
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] try_to_shrink_lruvec
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] evict_folios
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] shrink_folio_list
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] get_random_u32
+     0.00%     0.00%  programa  [unknown]             [k] 0000000000000000
+     0.00%     0.00%  programa  libgomp.so.1.0.0      [.] GOMP_parallel
+     0.00%     0.00%  programa  libgomp.so.1.0.0      [.] 0x00007b860f4811bb
+     0.00%     0.00%  programa  libc.so.6             [.] __pthread_create_2_1 (inlined)
+     0.00%     0.00%  programa  libc.so.6             [.] internal_signal_restore_set (inlined)
+     0.00%     0.00%  programa  libc.so.6             [.] create_thread
+     0.00%     0.00%  programa  libc.so.6             [.] __clone3 (inlined)
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] __x64_sys_clone3
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] __do_sys_clone3
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] kernel_clone
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] copy_process
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] perf_event_init_task
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] perf_event_init_context.constprop.0
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] inherit_task_group.isra.0
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] inherit_event.isra.0
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] perf_event_alloc
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] kmem_cache_alloc_node_noprof
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] __get_random_u32_below
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] fsnotify_insert_event
+     0.00%     0.00%  programa  libc.so.6             [.] _IO_new_fopen (inlined)
+     0.00%     0.00%  programa  libc.so.6             [.] __fopen_internal (inlined)
+     0.00%     0.00%  programa  libc.so.6             [.] _IO_new_file_fopen (inlined)
+     0.00%     0.00%  programa  libc.so.6             [.] _IO_file_open
+     0.00%     0.00%  programa  libc.so.6             [.] __libc_open64 (inlined)
+     0.00%     0.00%  programa  libc.so.6             [.] __syscall_cancel
+     0.00%     0.00%  programa  libc.so.6             [.] __internal_syscall_cancel (inlined)
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] __x64_sys_openat
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] do_sys_openat2
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] do_file_open
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] path_openat
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] open_last_lookups
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] fsnotify
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] send_to_group
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] fsnotify_handle_inode_event.isra.0
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] inotify_handle_inode_event
+     0.00%     0.00%  programa  [unknown]             [k] 0x00007604eaef7f0b
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] __x64_sys_execve
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] do_execveat_common.isra.0
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] bprm_execve
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] bprm_execve.part.0
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] exec_binprm
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] load_elf_binary
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] __memmove
+     0.00%     0.00%  programa  ld-linux-x86-64.so.2  [.] __mprotect (inlined)
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] __x64_sys_mprotect
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] do_mprotect_pkey
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] mprotect_fixup
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] vma_modify_flags
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] vma_modify
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] __split_vma
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] vma_complete
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] mas_store_prealloc
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] mas_wr_store_entry
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] mas_wr_bnode
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] mas_split
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] mas_push_data
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] wp_page_copy
+     0.00%     0.00%  programa  ld-linux-x86-64.so.2  [.] rtld_timer_accum (inlined)
+     0.00%     0.00%  programa  ld-linux-x86-64.so.2  [.] rtld_timer_stop (inlined)
+     0.00%     0.00%  programa  ld-linux-x86-64.so.2  [.] _dl_map_object_deps
+     0.00%     0.00%  programa  ld-linux-x86-64.so.2  [.] _dl_catch_exception
+     0.00%     0.00%  programa  ld-linux-x86-64.so.2  [.] set_catch (inlined)
+     0.00%     0.00%  programa  ld-linux-x86-64.so.2  [.] openaux
+     0.00%     0.00%  programa  ld-linux-x86-64.so.2  [.] _dl_map_new_object
+     0.00%     0.00%  programa  ld-linux-x86-64.so.2  [.] _dl_map_object_from_fd
+     0.00%     0.00%  programa  ld-linux-x86-64.so.2  [.] elf_get_dynamic_info (inlined)
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] do_wp_page
+     0.00%     0.00%  programa  ld-linux-x86-64.so.2  [.] __minimal_malloc
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] setup_arg_pages
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] relocate_vma_down
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] move_page_tables
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] move_ptes
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] flush_tlb_mm_range
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] __vma_start_write
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] load_elf_interp.isra.0
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] elf_load
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] vm_brk_flags
+     0.00%     0.00%  programa  [kernel.kallsyms]     [.] do_brk_flags
+
+
+#
+# (Cannot load tips.txt file, please install perf!)
+#
