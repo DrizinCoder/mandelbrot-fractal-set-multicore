@@ -1,0 +1,368 @@
+# To display the perf.data header info, please use --header/--header-only options.
+#
+#
+# Total Lost Samples: 0
+#
+# Samples: 128K of event 'cycles'
+# Event count (approx.): 143308662865
+#
+# Children      Self  Command   Shared Object         Symbol                                      
+# ........  ........  ........  ....................  ............................................
+#
+    96.46%    96.35%  programa  programa              [.] check_mandelbrot
+            |          
+             --96.35%--check_mandelbrot
+
+     1.89%     1.82%  programa  libm.so.6             [.] __sin_fma
+            |          
+             --1.83%--__sin_fma
+
+     1.27%     0.96%  programa  programa              [.] main._omp_fn.0
+            |          
+             --1.10%--main._omp_fn.0
+
+     0.52%     0.00%  programa  [kernel.kallsyms]     [k] entry_SYSCALL_64_after_hwframe
+            |
+            ---entry_SYSCALL_64_after_hwframe
+               do_syscall_64
+               |          
+                --0.52%--ksys_write
+                          vfs_write
+                          ext4_buffered_write_iter
+                          generic_perform_write
+
+     0.52%     0.00%  programa  [kernel.kallsyms]     [k] do_syscall_64
+            |
+            ---do_syscall_64
+               |          
+                --0.52%--ksys_write
+                          vfs_write
+                          ext4_buffered_write_iter
+                          generic_perform_write
+
+     0.52%     0.00%  programa  [unknown]             [k] 0x8c8c8c8c8c8c8c8c
+            |
+            ---0x8c8c8c8c8c8c8c8c
+               __GI___libc_write
+               entry_SYSCALL_64_after_hwframe
+               do_syscall_64
+               ksys_write
+               vfs_write
+               ext4_buffered_write_iter
+               generic_perform_write
+
+     0.52%     0.00%  programa  libc.so.6             [.] __GI___libc_write
+            |
+            ---__GI___libc_write
+               entry_SYSCALL_64_after_hwframe
+               do_syscall_64
+               ksys_write
+               vfs_write
+               ext4_buffered_write_iter
+               generic_perform_write
+
+     0.52%     0.00%  programa  [kernel.kallsyms]     [k] ksys_write
+            |
+            ---ksys_write
+               vfs_write
+               ext4_buffered_write_iter
+               generic_perform_write
+
+     0.52%     0.00%  programa  [kernel.kallsyms]     [k] vfs_write
+            |
+            ---vfs_write
+               ext4_buffered_write_iter
+               generic_perform_write
+
+     0.52%     0.00%  programa  [kernel.kallsyms]     [k] ext4_buffered_write_iter
+            |
+            ---ext4_buffered_write_iter
+               generic_perform_write
+
+     0.52%     0.00%  programa  [kernel.kallsyms]     [k] generic_perform_write
+            |          
+             --0.52%--generic_perform_write
+
+     0.24%     0.00%  programa  [kernel.kallsyms]     [k] ext4_da_write_begin
+     0.17%     0.08%  programa  programa              [.] sin@plt
+     0.16%     0.00%  programa  [kernel.kallsyms]     [k] pagecache_get_page
+     0.16%     0.00%  programa  [kernel.kallsyms]     [k] __filemap_get_folio
+     0.14%     0.00%  programa  [kernel.kallsyms]     [k] asm_exc_page_fault
+     0.14%     0.00%  programa  [kernel.kallsyms]     [k] exc_page_fault
+     0.14%     0.00%  programa  [kernel.kallsyms]     [k] do_user_addr_fault
+     0.14%     0.00%  programa  [kernel.kallsyms]     [k] handle_mm_fault
+     0.14%     0.00%  programa  [kernel.kallsyms]     [k] __handle_mm_fault
+     0.14%     0.00%  programa  [kernel.kallsyms]     [k] do_huge_pmd_anonymous_page
+     0.13%     0.13%  programa  [kernel.kallsyms]     [k] clear_page_erms
+     0.13%     0.00%  programa  [kernel.kallsyms]     [k] __alloc_pages
+     0.12%     0.01%  programa  [kernel.kallsyms]     [k] get_page_from_freelist
+     0.12%     0.00%  programa  [kernel.kallsyms]     [k] generic_write_end
+     0.11%     0.00%  programa  [kernel.kallsyms]     [k] filemap_add_folio
+     0.10%     0.00%  programa  [kernel.kallsyms]     [k] copy_page_from_iter_atomic
+     0.10%     0.10%  programa  [kernel.kallsyms]     [k] copy_user_enhanced_fast_string
+     0.10%     0.00%  programa  [unknown]             [k] 0000000000000000
+     0.09%     0.04%  programa  [kernel.kallsyms]     [k] __filemap_add_folio
+     0.09%     0.00%  programa  [kernel.kallsyms]     [k] vma_alloc_folio
+     0.09%     0.00%  programa  [kernel.kallsyms]     [k] __folio_alloc
+     0.08%     0.08%  programa  libgomp.so.1.0.0      [.] 0x000000000001f620
+     0.08%     0.00%  programa  libgomp.so.1.0.0      [.] 0x00007fa966851622
+     0.08%     0.00%  programa  [kernel.kallsyms]     [k] __mark_inode_dirty
+     0.07%     0.01%  programa  [kernel.kallsyms]     [k] ext4_block_write_begin
+     0.07%     0.00%  programa  [kernel.kallsyms]     [k] ext4_dirty_inode
+     0.05%     0.01%  programa  [kernel.kallsyms]     [k] clear_huge_page
+     0.05%     0.00%  programa  [kernel.kallsyms]     [k] __ext4_mark_inode_dirty
+     0.05%     0.00%  programa  [kernel.kallsyms]     [k] fault_in_iov_iter_readable
+     0.04%     0.04%  programa  [kernel.kallsyms]     [k] fault_in_readable
+     0.04%     0.00%  programa  [kernel.kallsyms]     [k] folio_alloc
+     0.04%     0.01%  programa  [kernel.kallsyms]     [k] __mem_cgroup_charge
+     0.04%     0.01%  programa  [kernel.kallsyms]     [k] ext4_da_get_block_prep
+     0.03%     0.01%  programa  [kernel.kallsyms]     [k] ext4_mark_iloc_dirty
+     0.03%     0.01%  programa  [kernel.kallsyms]     [k] __block_commit_write.constprop.0.isra.0
+     0.03%     0.00%  programa  [kernel.kallsyms]     [k] asm_sysvec_apic_timer_interrupt
+     0.03%     0.02%  programa  [kernel.kallsyms]     [k] its_return_thunk
+     0.03%     0.00%  programa  [kernel.kallsyms]     [k] sysvec_apic_timer_interrupt
+     0.03%     0.00%  programa  [kernel.kallsyms]     [k] create_empty_buffers
+     0.02%     0.00%  programa  [kernel.kallsyms]     [k] mark_buffer_dirty
+     0.02%     0.01%  programa  [kernel.kallsyms]     [k] charge_memcg
+     0.02%     0.01%  programa  [kernel.kallsyms]     [k] kmem_cache_alloc
+     0.02%     0.00%  programa  [kernel.kallsyms]     [k] __sysvec_apic_timer_interrupt
+     0.02%     0.00%  programa  [kernel.kallsyms]     [k] __ext4_journal_start_sb
+     0.02%     0.00%  programa  [kernel.kallsyms]     [k] hrtimer_interrupt
+     0.02%     0.00%  programa  [kernel.kallsyms]     [k] jbd2__journal_start
+     0.02%     0.00%  programa  [kernel.kallsyms]     [k] ext4_fill_raw_inode
+     0.02%     0.00%  programa  [kernel.kallsyms]     [k] alloc_page_buffers
+     0.02%     0.00%  programa  [kernel.kallsyms]     [k] folio_add_lru
+     0.02%     0.00%  programa  [kernel.kallsyms]     [k] __hrtimer_run_queues
+     0.02%     0.00%  programa  [kernel.kallsyms]     [k] __folio_mark_dirty
+     0.02%     0.00%  programa  [kernel.kallsyms]     [k] tick_sched_timer
+     0.02%     0.00%  programa  [kernel.kallsyms]     [k] tick_sched_handle
+     0.02%     0.00%  programa  [kernel.kallsyms]     [k] update_process_times
+     0.02%     0.01%  programa  [kernel.kallsyms]     [k] __rcu_read_unlock
+     0.02%     0.00%  programa  [kernel.kallsyms]     [k] alloc_buffer_head
+     0.02%     0.00%  programa  [kernel.kallsyms]     [k] folio_batch_move_lru
+     0.01%     0.00%  programa  [kernel.kallsyms]     [k] ext4_inode_csum
+     0.01%     0.00%  programa  [kernel.kallsyms]     [k] ext4_inode_csum_set
+     0.01%     0.00%  programa  [kernel.kallsyms]     [k] ext4_reserve_inode_write
+     0.01%     0.00%  programa  [kernel.kallsyms]     [k] scheduler_tick
+     0.01%     0.00%  programa  [kernel.kallsyms]     [k] __ext4_journal_stop
+     0.01%     0.01%  programa  [kernel.kallsyms]     [k] start_this_handle
+     0.01%     0.01%  programa  [kernel.kallsyms]     [k] get_mem_cgroup_from_mm
+     0.01%     0.00%  programa  [kernel.kallsyms]     [k] __mod_lruvec_page_state
+     0.01%     0.00%  programa  [kernel.kallsyms]     [k] jbd2_journal_stop
+     0.01%     0.00%  programa  [kernel.kallsyms]     [k] ext4_da_reserve_space
+     0.01%     0.00%  programa  [kernel.kallsyms]     [k] lru_add_fn
+     0.01%     0.01%  programa  [kernel.kallsyms]     [k] crc32c_pcl_intel_update
+     0.01%     0.01%  programa  [kernel.kallsyms]     [k] _raw_spin_lock
+     0.01%     0.00%  programa  [kernel.kallsyms]     [k] balance_dirty_pages_ratelimited_flags
+     0.01%     0.00%  programa  [kernel.kallsyms]     [k] task_tick_fair
+     0.01%     0.01%  programa  [kernel.kallsyms]     [k] rmqueue_bulk
+     0.01%     0.00%  programa  [kernel.kallsyms]     [k] ext4_es_insert_delayed_block
+     0.01%     0.00%  programa  [kernel.kallsyms]     [k] __mod_lruvec_state
+     0.01%     0.00%  programa  [kernel.kallsyms]     [k] stop_this_handle
+     0.01%     0.00%  programa  [kernel.kallsyms]     [k] __ext4_journal_get_write_access
+     0.01%     0.00%  programa  [kernel.kallsyms]     [k] ext4_get_inode_loc
+     0.01%     0.00%  programa  [kernel.kallsyms]     [k] __ext4_get_inode_loc
+     0.01%     0.00%  programa  [kernel.kallsyms]     [k] ext4_es_lookup_extent
+     0.01%     0.00%  programa  [kernel.kallsyms]     [k] __getblk_gfp
+     0.01%     0.00%  programa  [kernel.kallsyms]     [k] __rcu_read_lock
+     0.01%     0.01%  programa  [kernel.kallsyms]     [k] __mod_node_page_state
+     0.01%     0.01%  programa  libgomp.so.1.0.0      [.] 0x000000000001f622
+     0.01%     0.00%  programa  libgomp.so.1.0.0      [.] 0x00007fa966851626
+     0.01%     0.00%  programa  [kernel.kallsyms]     [k] __dquot_alloc_space
+     0.01%     0.01%  programa  [kernel.kallsyms]     [k] try_charge_memcg
+     0.01%     0.00%  programa  [kernel.kallsyms]     [k] xas_load
+     0.01%     0.00%  programa  [kernel.kallsyms]     [k] ___slab_alloc
+     0.01%     0.01%  programa  [kernel.kallsyms]     [k] __list_del_entry_valid
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] memset_erms
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] xas_descend
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] _raw_spin_lock_irqsave
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] jbd2_journal_get_write_access
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] __wake_up_common_lock
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] __es_insert_extent
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] balance_dirty_pages
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] mem_cgroup_wb_stats
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] __mem_cgroup_flush_stats
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] cgroup_rstat_flush_irqsafe
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] cgroup_rstat_flush_locked
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] memcg_slab_post_alloc_hook
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] __mod_memcg_lruvec_state
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] update_load_avg
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] __irq_exit_rcu
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] __xa_set_mark
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] __cond_resched
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] allocate_slab
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] release_pages
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] __find_get_block
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] jbd2_write_access_granted
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] native_irq_return_iret
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] alloc_pages
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] __count_memcg_events
+     0.00%     0.00%  programa  libgomp.so.1.0.0      [.] 0x000000000001f7d8
+     0.00%     0.00%  programa  libgomp.so.1.0.0      [.] 0x00007fa9668517da
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] _raw_read_lock
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] node_dirty_ok
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] __ext4_handle_dirty_metadata
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] up_write
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] _raw_read_unlock
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] _raw_spin_trylock
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] down_write
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] update_curr
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] handle_softirqs
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] mem_cgroup_css_rstat_flush
+     0.00%     0.00%  programa  libgomp.so.1.0.0      [.] 0x000000000001f62b
+     0.00%     0.00%  programa  libgomp.so.1.0.0      [.] 0x00007fa96685162d
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] do_mas_munmap
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] do_mas_align_munmap
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] __vm_munmap
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] percpu_counter_add_batch
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] xas_store
+     0.00%     0.00%  programa  libc.so.6             [.] __munmap
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] __x64_sys_munmap
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] unmap_region
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] tlb_finish_mmu
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] tlb_batch_pages_flush
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] should_fail_alloc_page
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] __mod_zone_page_state
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] _raw_spin_unlock_irqrestore
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] _raw_spin_lock_irq
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] __update_load_avg_se
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] native_write_msr
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] note_gp_changes
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] rcu_core
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] perf_event_task_tick
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] ext4_es_can_be_merged.isra.0
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] cgroup_rstat_updated
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] __radix_tree_lookup
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] __brelse
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] add_transaction_credits
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] jbd2_journal_dirty_metadata
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] free_pcppages_bulk
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] map_id_up
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] _raw_write_lock
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] free_unref_page
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] xas_create
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] ext4_claim_free_clusters
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] get_obj_cgroup_from_current
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] get_random_u32
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] __get_random_u32_below
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] __es_remove_extent
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] xas_set_mark
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] folio_mark_accessed
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] inode_to_bdi
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] xas_find_conflict
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] folio_mapping
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] __next_zones_zonelist
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] __calc_delta
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] __intel_pmu_enable_all.constprop.0
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] trigger_load_balance
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] __update_load_avg_cfs_rq
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] update_cfs_group
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] account_user_time
+     0.00%     0.00%  programa  libgomp.so.1.0.0      [.] 0x000000000001f626
+     0.00%     0.00%  programa  libgomp.so.1.0.0      [.] 0x00007fa96685162b
+     0.00%     0.00%  programa  [unknown]             [k] 0x00007fa9669b08a8
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] __split_vma
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] __vma_adjust
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] memset
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] memcg_alloc_slab_cgroups
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] __kmalloc_node
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] __kmem_cache_alloc_node
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] ext4_fc_track_inode
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] xas_start
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] blkcg_rstat_flush
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] 0x00007fffc00f8d69
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] xas_alloc
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] kmem_cache_alloc_lru
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] folio_memcg_lock.part.0
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] obj_cgroup_charge
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] errseq_check
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] folio_unlock
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] from_kuid
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] policy_node
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] ext4_es_can_be_merged.isra.0.cold
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] _find_next_bit
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] balance_dirty_pages_ratelimited
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] __free_one_page
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] free_unref_page_list
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] ext4_da_write_end
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] wait_for_stable_page
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] free_pcp_prepare
+     0.00%     0.00%  programa  programa              [.] __do_global_dtors_aux
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] ext4_journal_check_start
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] mark_page_accessed
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] __get_obj_cgroup_from_memcg
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] ext4_has_free_clusters
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] cache_from_obj
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] kmem_cache_free
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] should_failslab
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] rcu_sched_clock_irq
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] blk_cgroup_congested
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] __cgroup_throttle_swaprate
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] native_apic_msr_eoi_write
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] idle_cpu
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] __cgroup_account_cputime_field
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] sync_regs
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] error_entry
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] arch_scale_freq_tick
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] update_min_vruntime
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] clockevents_program_event
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] lapic_next_deadline
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] reweight_entity
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] update_rq_clock
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] mod_lruvec_page_state.constprop.0
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] pte_alloc_one
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] update_sd_lb_stats.constprop.0
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] rebalance_domains
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] load_balance
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] find_busiest_group
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] _raw_spin_unlock
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] policy_nodemask
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] PageHeadHuge
+     0.00%     0.00%  programa  ld-linux-x86-64.so.2  [.] _dl_start_user
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] grab_cache_page_write_begin
+     0.00%     0.00%  programa  ld-linux-x86-64.so.2  [.] _dl_sysdep_start
+     0.00%     0.00%  programa  libgomp.so.1.0.0      [.] 0x000000000001d398
+     0.00%     0.00%  programa  [unknown]             [.] 0x3ff0000000000000
+     0.00%     0.00%  programa  libgomp.so.1.0.0      [.] GOMP_parallel
+     0.00%     0.00%  programa  libgomp.so.1.0.0      [.] 0x00007fa96684f3a0
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] vma_interval_tree_insert
+     0.00%     0.00%  programa  ld-linux-x86-64.so.2  [.] dl_main
+     0.00%     0.00%  programa  ld-linux-x86-64.so.2  [.] mprotect
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] __x64_sys_mprotect
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] do_mprotect_pkey
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] mprotect_fixup
+     0.00%     0.00%  programa  ld-linux-x86-64.so.2  [.] _dl_map_object
+     0.00%     0.00%  programa  ld-linux-x86-64.so.2  [.] mmap64
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] ksys_mmap_pgoff
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] vm_mmap_pgoff
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] do_mmap
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] mmap_region
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] mas_preallocate
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] mas_alloc_nodes
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] kmem_cache_alloc_bulk
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] get_partial_node.part.0
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] __d_lookup_rcu
+     0.00%     0.00%  programa  ld-linux-x86-64.so.2  [.] access
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] do_faccessat
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] user_path_at_empty
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] filename_lookup
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] path_lookupat
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] link_path_walk.part.0.constprop.0
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] walk_component
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] lookup_fast
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] mas_is_span_wr
+     0.00%     0.00%  programa  [unknown]             [k] 0x00007f69696f2ad7
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] __x64_sys_execve
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] do_execveat_common.isra.0
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] bprm_execve
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] load_elf_binary
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] elf_map
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] mas_store_prealloc
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] mas_wr_store_entry.isra.0
+     0.00%     0.00%  programa  ld-linux-x86-64.so.2  [.] _dl_sysdep_parse_arguments
+     0.00%     0.00%  programa  [kernel.kallsyms]     [k] mas_wr_walk
+
+
+#
+# (Tip: Print event counts in CSV format with: perf stat -x,)
+#

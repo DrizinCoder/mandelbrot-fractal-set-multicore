@@ -1,0 +1,176 @@
+--------------------------------------------------------------------------------
+I1 cache:         32768 B, 64 B, 8-way associative
+D1 cache:         49152 B, 64 B, 12-way associative
+LL cache:         25165824 B, 64 B, 12-way associative
+Command:          ./build/programa 768 432 -2 1 -1 1 100 pictures/debian/fractal_valgrind_768_432_iter100_20260915_054355.ppm
+Data file:        reports/debian/c-serial/valgrind/cachegrind.out
+Events recorded:  Ir I1mr ILmr Dr D1mr DLmr Dw D1mw DLmw
+Events shown:     Ir I1mr ILmr Dr D1mr DLmr Dw D1mw DLmw
+Event sort order: Ir I1mr ILmr Dr D1mr DLmr Dw D1mw DLmw
+Thresholds:       0.1 100 100 100 100 100 100 100 100
+Include dirs:     
+User annotated:   
+Auto-annotation:  on
+
+--------------------------------------------------------------------------------
+Ir                   I1mr           ILmr           Dr                  D1mr           DLmr           Dw                 D1mw         DLmw         
+--------------------------------------------------------------------------------
+234,858,739 (100.0%) 1,658 (100.0%) 1,591 (100.0%) 16,254,389 (100.0%) 1,465 (100.0%) 1,240 (100.0%) 8,567,636 (100.0%) 481 (100.0%) 455 (100.0%)  PROGRAM TOTALS
+
+--------------------------------------------------------------------------------
+Ir                   I1mr        ILmr        Dr                 D1mr         DLmr         Dw                 D1mw        DLmw         file:function
+--------------------------------------------------------------------------------
+185,725,224 (79.08%)  3 ( 0.18%)  3 ( 0.19%)   663,552 ( 4.08%)   0            0            995,328 (11.62%)  0           0           /home/gui/Documentos/UEFS/HPC/mandelbrot-fractal-set-multicore/serial_c_code/mandelbrot.c:check_mandelbrot
+ 19,906,317 ( 8.48%)  4 ( 0.24%)  4 ( 0.25%) 6,967,053 (42.86%)   0            0          4,976,154 (58.08%) 63 (13.10%) 63 (13.85%)  ./libio/./libio/fputc.c:fputc
+ 15,042,077 ( 6.40%) 20 ( 1.21%) 20 ( 1.26%) 4,684,411 (28.82%)  60 ( 4.10%)  60 ( 4.84%)   508,054 ( 5.93%)  0           0           ./math/../sysdeps/ieee754/dbl-64/s_sin.c:__sin_fma
+ 10,269,540 ( 4.37%) 11 ( 0.66%) 11 ( 0.69%) 2,400,457 (14.77%)   0            0          1,573,739 (18.37%)  0           0           /home/gui/Documentos/UEFS/HPC/mandelbrot-fractal-set-multicore/serial_c_code/image_generator.c:main
+  2,461,780 ( 1.05%)  3 ( 0.18%)  3 ( 0.19%)   246,178 ( 1.51%)   0            0            492,356 ( 5.75%)  0           0           ./math/../sysdeps/x86/fpu/fenv_private.h:__sin_fma
+  1,241,801 ( 0.53%) 42 ( 2.53%) 30 ( 1.89%) 1,241,679 ( 7.64%)   6 ( 0.41%)   0                 36 ( 0.00%)  1 ( 0.21%)  1 ( 0.22%)  ???:???
+
+--------------------------------------------------------------------------------
+-- Auto-annotated source: /home/gui/Documentos/UEFS/HPC/mandelbrot-fractal-set-multicore/serial_c_code/mandelbrot.c
+--------------------------------------------------------------------------------
+Ir                  I1mr       ILmr       Dr               D1mr       DLmr       Dw               D1mw       DLmw       
+
+         .          .          .                .          .          .                .          .          .           #include <stdio.h>
+         .          .          .                .          .          .                .          .          .           #include "complex.h"
+         .          .          .                .          .          .                .          .          .           #include "mandelbrot.h"
+         .          .          .                .          .          .                .          .          .           
+   331,776 ( 0.14%) 1 ( 0.06%) 1 ( 0.06%)       0          0          0                0          0          0           Mandelbrot_check_return check_mandelbrot(Complex_number c, int max_iter){
+ 1,658,880 ( 0.71%) 0          0                0          0          0                0          0          0               double fr = 0.0, fi = 0.0;
+         .          .          .                .          .          .                .          .          .           
+20,963,066 ( 8.93%) 0          0          331,776 ( 2.04%) 0          0                0          0          0               for(int i = 0; i < max_iter; i++){
+         .          .          .                .          .          .                .          .          .                   // (fr + fi*i)² + c  →  (fr²-fi²) + (2·fr·fi)·i + c
+         .          .          .                .          .          .                .          .          .                   double fr2 = fr * fr;
+         .          .          .                .          .          .                .          .          .                   double fi2 = fi * fi;
+30,192,573 (12.86%) 0          0                0          0          0                0          0          0                   fi = 2.0 * fr * fi + c.imag;
+40,256,764 (17.14%) 1 ( 0.06%) 1 ( 0.06%)       0          0          0                0          0          0                   fr = fr2 - fi2 + c.real;
+         .          .          .                .          .          .                .          .          .           
+80,759,738 (34.39%) 0          0                0          0          0                0          0          0                   if (fr * fr + fi * fi > 4.0) {
+         .          .          .                .          .          .                .          .          .                       Complex_number fval = {fr, fi};
+11,059,519 ( 4.71%) 1 ( 0.06%) 1 ( 0.06%)       0          0          0          995,328 (11.62%) 0          0                       return (Mandelbrot_check_return){0, fval, i+1};
+         .          .          .                .          .          .                .          .          .                   }
+         .          .          .                .          .          .                .          .          .               }
+         .          .          .                .          .          .                .          .          .           
+         .          .          .                .          .          .                .          .          .               Complex_number fval = {fr, fi};
+   171,132 ( 0.07%) 0          0                0          0          0                0          0          0               return (Mandelbrot_check_return){1, fval, max_iter};
+   331,776 ( 0.14%) 0          0          331,776 ( 2.04%) 0          0                0          0          0           }
+
+--------------------------------------------------------------------------------
+-- Auto-annotated source: /home/gui/Documentos/UEFS/HPC/mandelbrot-fractal-set-multicore/serial_c_code/image_generator.c
+--------------------------------------------------------------------------------
+Ir                 I1mr       ILmr       Dr               D1mr       DLmr       Dw               D1mw       DLmw       
+
+-- line 6 ----------------------------------------
+        .          .          .                .          .          .                .          .          .           #include "mandelbrot.h"
+        .          .          .                .          .          .                .          .          .           
+        .          .          .                .          .          .                .          .          .           int mandelbrot(int px, int py, int width, int height, double minX, double maxX, double minY, double maxY, int max_iter) {
+        .          .          .                .          .          .                .          .          .               Complex_number c;
+        .          .          .                .          .          .                .          .          .           
+        .          .          .                .          .          .                .          .          .               double unidades_largura = maxX - minX; // Quantidade de unidades de largura do plano
+        .          .          .                .          .          .                .          .          .               double unidades_altura = maxY - minY; // Quantidade de unidades de altura do plano
+        .          .          .                .          .          .                .          .          .           
+  995,328 ( 0.42%) 0          0          331,776 ( 2.04%) 0          0                0          0          0               double proporcao_x = (px / (double)width); // De 0 a 1
+    1,296 ( 0.00%) 1 ( 0.06%) 1 ( 0.06%)     864 ( 0.01%) 0          0                0          0          0               double proporcao_y = (py / (double)height); // De 0 a 1
+        .          .          .                .          .          .                .          .          .           
+        .          .          .                .          .          .                .          .          .               // Multiplica a proporção pelo tamanho total do plano matemático
+  663,552 ( 0.28%) 1 ( 0.06%) 1 ( 0.06%) 331,776 ( 2.04%) 0          0                0          0          0               double deslocamento_x = unidades_largura * proporcao_x; 
+      432 ( 0.00%) 0          0              432 ( 0.00%) 0          0                0          0          0               double deslocamento_y = unidades_altura * proporcao_y;
+        .          .          .                .          .          .                .          .          .           
+        .          .          .                .          .          .                .          .          .               // Soma o ponto de início (minX) para o X, mas subtrai do topo (maxY) para o Y
+  331,776 ( 0.14%) 0          0          331,776 ( 2.04%) 0          0                0          0          0               double enquadramento_eixo_x = minX + deslocamento_x;
+    1,728 ( 0.00%) 0          0              432 ( 0.00%) 0          0              432 ( 0.01%) 0          0               double enquadramento_eixo_y = maxY - deslocamento_y;
+        .          .          .                .          .          .                .          .          .           
+        .          .          .                .          .          .                .          .          .               // Número complexo que será calculado
+        .          .          .                .          .          .                .          .          .               c = (Complex_number){enquadramento_eixo_x, enquadramento_eixo_y};
+        .          .          .                .          .          .                .          .          .           
+1,327,104 ( 0.57%) 0          0          331,776 ( 2.04%) 0          0          331,776 ( 3.87%) 0          0               Mandelbrot_check_return result = check_mandelbrot(c, max_iter);
+        .          .          .                .          .          .                .          .          .               
+  331,776 ( 0.14%) 0          0          331,776 ( 2.04%) 0          0                0          0          0               int iter = result.iterations_to_scape;
+        .          .          .                .          .          .                .          .          .           
+        .          .          .                .          .          .                .          .          .               return iter;
+        .          .          .                .          .          .                .          .          .           }
+        .          .          .                .          .          .                .          .          .           
+        8 ( 0.00%) 1 ( 0.06%) 1 ( 0.06%)       0          0          0                6 ( 0.00%) 0          0           int main(int argc, char *argv[]) {
+        2 ( 0.00%) 0          0                0          0          0                0          0          0               if (argc < 9) {
+        .          .          .                .          .          .                .          .          .                   printf("Uso: %s <width> <height> <minX> <maxX> <minY> <maxY> <max_iter> <output_filename>\n", argv[0]);
+        .          .          .                .          .          .                .          .          .                   return 1;
+        .          .          .                .          .          .                .          .          .               }
+        .          .          .                .          .          .                .          .          .           
+        .          .          .                .          .          .                .          .          .               int width = atoi(argv[1]);
+        4 ( 0.00%) 0          0                0          0          0                1 ( 0.00%) 0          0               printf("width: %d\n", width);
+        .          .          .                .          .          .                .          .          .               int height = atoi(argv[2]);
+        3 ( 0.00%) 1 ( 0.06%) 1 ( 0.06%)       0          0          0                1 ( 0.00%) 0          0               printf("height: %d\n", height);
+        .          .          .                .          .          .                .          .          .               double minX = atof(argv[3]);
+        3 ( 0.00%) 0          0                0          0          0                1 ( 0.00%) 0          0               printf("minX: %f\n", minX);
+        .          .          .                .          .          .                .          .          .               double maxX = atof(argv[4]);
+        3 ( 0.00%) 0          0                0          0          0                1 ( 0.00%) 0          0               printf("maxX: %f\n", maxX);
+        .          .          .                .          .          .                .          .          .               double minY = atof(argv[5]);
+        3 ( 0.00%) 0          0                0          0          0                1 ( 0.00%) 0          0               printf("minY: %f\n", minY);
+        .          .          .                .          .          .                .          .          .               double maxY = atof(argv[6]);
+        3 ( 0.00%) 1 ( 0.06%) 1 ( 0.06%)       0          0          0                1 ( 0.00%) 0          0               printf("maxY: %f\n", maxY);
+        .          .          .                .          .          .                .          .          .               int max_iter = atoi(argv[7]);
+        4 ( 0.00%) 0          0                0          0          0                1 ( 0.00%) 0          0               printf("max_iter: %d\n", max_iter);
+        1 ( 0.00%) 0          0                1 ( 0.00%) 0          0                0          0          0               char *filename = argv[8];
+        .          .          .                .          .          .                .          .          .           
+        4 ( 0.00%) 1 ( 0.06%) 1 ( 0.06%)       0          0          0                1 ( 0.00%) 0          0               FILE *file_image = fopen(filename, "wb");
+        2 ( 0.00%) 0          0                0          0          0                0          0          0               if (!file_image) {
+        .          .          .                .          .          .                .          .          .                   perror("Erro ao abrir arquivo");
+        .          .          .                .          .          .                .          .          .                   return 1;
+        .          .          .                .          .          .                .          .          .               }
+        4 ( 0.00%) 0          0                0          0          0                1 ( 0.00%) 0          0               printf("Salvando imagem em: %s\n", filename);
+        .          .          .                .          .          .                .          .          .           
+        6 ( 0.00%) 0          0                1 ( 0.00%) 0          0                1 ( 0.00%) 0          0               fprintf(file_image, "P6\n%d %d\n255\n", width, height);
+        .          .          .                .          .          .                .          .          .           
+        .          .          .                .          .          .                .          .          .               // --- Medição interna de tempo (clock_gettime) ---
+        .          .          .                .          .          .                .          .          .               struct timespec t_start, t_end;
+        3 ( 0.00%) 1 ( 0.06%) 1 ( 0.06%)       0          0          0                1 ( 0.00%) 0          0               clock_gettime(CLOCK_MONOTONIC, &t_start);
+        .          .          .                .          .          .                .          .          .           
+    1,744 ( 0.00%) 2 ( 0.12%) 2 ( 0.13%)   1,300 ( 0.01%) 0          0                5 ( 0.00%) 0          0               for (int py = 0; py < height; py++) {
+        .          .          .                .          .          .                .          .          .           
+  995,764 ( 0.42%) 0          0                1 ( 0.00%) 0          0                0          0          0                    for (int px = 0; px < width; px++) {
+        .          .          .                .          .          .                .          .          .           
+        .          .          .                .          .          .                .          .          .                       int iter = mandelbrot(px, py, width, height, minX, maxX, minY, maxY, max_iter);
+        .          .          .                .          .          .                .          .          .                      
+        .          .          .                .          .          .                .          .          .                       unsigned char r, g, b;
+        .          .          .                .          .          .                .          .          .           
+        .          .          .                .          .          .                .          .          .                       //  dentro do limite (faz parte do conjunto)
+  663,552 ( 0.28%) 0          0                0          0          0                0          0          0                       if (iter == max_iter) { 
+        .          .          .                .          .          .                .          .          .                           r = g = b = 0;
+        .          .          .                .          .          .                .          .          .                       } 
+        .          .          .                .          .          .                .          .          .                       // fora do limite (não faz parte do conjunto)
+        .          .          .                .          .          .                .          .          .                       else {
+  492,356 ( 0.21%) 0          0                0          0          0                0          0          0                           double iterm = iter / (double)max_iter;
+        .          .          .                .          .          .                .          .          .                           
+1,230,890 ( 0.52%) 0          0          738,534 ( 4.54%) 0          0          246,178 ( 2.87%) 0          0                           unsigned char tom = (unsigned char)(sin(0.1 * iter) * 127.5 + 127.5);
+        .          .          .                .          .          .                .          .          .                           r = g = b = tom;
+        .          .          .                .          .          .                .          .          .                       }       
+        .          .          .                .          .          .                .          .          .           
+1,241,506 ( 0.53%) 1 ( 0.06%) 1 ( 0.06%)       0          0          0          331,776 ( 3.87%) 0          0                       fputc(r, file_image);
+  995,328 ( 0.42%) 0          0                0          0          0          331,776 ( 3.87%) 0          0                       fputc(g, file_image);
+  995,328 ( 0.42%) 0          0                0          0          0          331,776 ( 3.87%) 0          0                       fputc(b, file_image);
+        .          .          .                .          .          .                .          .          .                    }
+        .          .          .                .          .          .                .          .          .               }
+        .          .          .                .          .          .                .          .          .           
+        3 ( 0.00%) 0          0                0          0          0                1 ( 0.00%) 0          0               clock_gettime(CLOCK_MONOTONIC, &t_end);
+        5 ( 0.00%) 0          0                2 ( 0.00%) 0          0                0          0          0               double elapsed = (t_end.tv_sec - t_start.tv_sec) +
+        5 ( 0.00%) 0          0                3 ( 0.00%) 0          0                0          0          0                                (t_end.tv_nsec - t_start.tv_nsec) / 1e9;
+        3 ( 0.00%) 1 ( 0.06%) 1 ( 0.06%)       0          0          0                1 ( 0.00%) 0          0               printf("Tempo de processamento (clock_gettime): %.6f segundos\n", elapsed);
+        .          .          .                .          .          .                .          .          .               // -------------------------------------------------
+        .          .          .                .          .          .                .          .          .           
+        2 ( 0.00%) 0          0                0          0          0                1 ( 0.00%) 0          0               fclose(file_image);
+        1 ( 0.00%) 0          0                0          0          0                0          0          0               return 0;
+        8 ( 0.00%) 0          0                7 ( 0.00%) 0          0                0          0          0           }
+
+--------------------------------------------------------------------------------
+The following files chosen for auto-annotation could not be found:
+--------------------------------------------------------------------------------
+  ./libio/./libio/fputc.c
+  ./math/../sysdeps/ieee754/dbl-64/s_sin.c
+  ./math/../sysdeps/x86/fpu/fenv_private.h
+
+--------------------------------------------------------------------------------
+Ir                   I1mr        ILmr        Dr                 D1mr       DLmr       Dw                 D1mw       DLmw       
+--------------------------------------------------------------------------------
+195,994,764 (83.45%) 14 ( 0.84%) 14 ( 0.88%) 3,064,009 (18.85%) 0          0          2,569,067 (29.99%) 0          0           events annotated
+

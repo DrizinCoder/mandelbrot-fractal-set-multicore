@@ -1,0 +1,20 @@
+# started on Tue Sep 15 08:40:39 2026
+
+
+ Performance counter stats for 'python3 python_pararell/python_pararell_multiprocessing/python_pararell_multiprocessing.py 15360 10240 -2 1 -1 1 250 pictures/debian/fractal_py_mp_15360_10240_iter250_perf_4procs_20260915_080912.ppm 4':
+
+ 3.128.044.565.632      cycles                                                             
+12.651.841.233.664      instructions                     #    4,04  insn per cycle         
+        38.934.395      cache-misses                     #   54,229 % of all cache refs    
+        71.796.167      cache-references                                                   
+       239.784.951      branch-misses                    #    0,01% of all branches        
+ 1.989.741.468.787      branches                                                           
+       149.734.128      L1-dcache-load-misses                                              
+         6.920.024      LLC-load-misses                                                    
+
+     199,284024438 seconds time elapsed
+
+     795,663815000 seconds user
+       0,615864000 seconds sys
+
+

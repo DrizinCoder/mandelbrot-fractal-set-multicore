@@ -1,0 +1,20 @@
+# started on Tue Sep 15 05:47:43 2026
+
+
+ Performance counter stats for './build/programa 15360 10240 -2 1 -1 1 250 pictures/debian/fractal_omp_15360_10240_iter250_perf_4threads_20260915_054643.ppm':
+
+   143.023.195.915      cycles                                                             
+   209.898.652.822      instructions                     #    1,47  insn per cycle         
+        26.688.325      cache-misses                     #   75,695 % of all cache refs    
+        35.257.617      cache-references                                                   
+        49.886.842      branch-misses                    #    0,21% of all branches        
+    23.760.297.099      branches                                                           
+        44.386.518      L1-dcache-load-misses                                              
+         6.106.522      LLC-load-misses                                                    
+
+       8,106021683 seconds time elapsed
+
+      31,738775000 seconds user
+       0,207991000 seconds sys
+
+

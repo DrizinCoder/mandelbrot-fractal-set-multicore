@@ -1,0 +1,20 @@
+# started on Tue Sep 15 06:25:20 2026
+
+
+ Performance counter stats for 'python3 python_serial_code/python_serial.py 15360 10240 -2 1 -1 1 250 pictures/debian/fractal_15360_10240_iter250_20260915_054801.ppm':
+
+ 3.287.253.055.502      cycles                                                             
+12.174.988.295.716      instructions                     #    3,70  insn per cycle         
+         9.940.905      cache-misses                     #   40,262 % of all cache refs    
+        24.690.421      cache-references                                                   
+       136.271.051      branch-misses                    #    0,01% of all branches        
+ 1.899.958.031.933      branches                                                           
+        77.734.815      L1-dcache-load-misses                                              
+           270.392      LLC-load-misses                                                    
+
+     734,833776227 seconds time elapsed
+
+     734,445572000 seconds user
+       0,204002000 seconds sys
+
+
