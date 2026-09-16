@@ -18,7 +18,9 @@
    <not supported>      cpu_atom/L1-dcache-load-misses/                                       
         13,179,830      cpu_core/L1-dcache-load-misses/                                         (99.71%)
             44,599      cpu_atom/LLC-load-misses/                                               (0.29%)
-           443,233      cpu_core/LLC-load-misses/                                               (99.71%)
+           443,233      cpu_core/LLC-load-misses/    
+                66      cpu-migrations                                                          (99.71%)
+               921      context-switches                                                        (99.71%)
 
       27.169227392 seconds time elapsed
 

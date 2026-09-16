@@ -105,7 +105,7 @@ gprof: compile-profile hardware-info
 perf: compile hardware-info
 	mkdir -p pictures/$(MACHINE_NAME) reports/$(MACHINE_NAME)/c-serial/perf
 	@echo "Executando com perf stat (coletando métricas de hardware)..."
-	perf stat -e cycles,instructions,cache-misses,cache-references,branch-misses,branches,L1-dcache-load-misses,LLC-load-misses -o reports/$(MACHINE_NAME)/c-serial/perf/perf_stat.txt ./build/programa $(ARGS)
+	perf stat -e cycles,instructions,cache-misses,cache-references,branch-misses,branches,L1-dcache-load-misses,LLC-load-misses,cpu-migrations,context-switches -o reports/$(MACHINE_NAME)/c-serial/perf/perf_stat.txt ./build/programa $(ARGS)
 	@echo "Executando com perf record (coletando call graph)..."
 	perf record -o reports/$(MACHINE_NAME)/c-serial/perf/perf.data -g ./build/programa $(ARGS)
 	@echo "Gerando relatório do perf..."
@@ -270,7 +270,7 @@ perf-c-parallel: compile-openmp hardware-info
 	mkdir -p pictures/$(MACHINE_NAME) reports/$(MACHINE_NAME)/c-parallel/perf
 	@echo "Executando perf stat no C Paralelo (4 threads)..."
 	OUTPUT_FILE=pictures/$(MACHINE_NAME)/fractal_omp_$(WIDTH)_$(HEIGHT)_iter$(MAX_ITER)_perf_4threads_$(TIMESTAMP).ppm; \
-	OMP_NUM_THREADS=4 perf stat -e cycles,instructions,cache-misses,cache-references,branch-misses,branches,L1-dcache-load-misses,LLC-load-misses -o reports/$(MACHINE_NAME)/c-parallel/perf/perf_stat.txt ./build/programa $(WIDTH) $(HEIGHT) $(MIN_X) $(MAX_X) $(MIN_Y) $(MAX_Y) $(MAX_ITER) $$OUTPUT_FILE
+	OMP_NUM_THREADS=4 perf stat -e cycles,instructions,cache-misses,cache-references,branch-misses,branches,L1-dcache-load-misses,LLC-load-misses,cpu-migrations,context-switches -o reports/$(MACHINE_NAME)/c-parallel/perf/perf_stat.txt ./build/programa $(WIDTH) $(HEIGHT) $(MIN_X) $(MAX_X) $(MIN_Y) $(MAX_Y) $(MAX_ITER) $$OUTPUT_FILE
 	@echo "Executando perf record no C Paralelo (4 threads)..."
 	OUTPUT_FILE=pictures/$(MACHINE_NAME)/fractal_omp_$(WIDTH)_$(HEIGHT)_iter$(MAX_ITER)_perf_record_4threads_$(TIMESTAMP).ppm; \
 	OMP_NUM_THREADS=4 perf record -o reports/$(MACHINE_NAME)/c-parallel/perf/perf.data -g ./build/programa $(WIDTH) $(HEIGHT) $(MIN_X) $(MAX_X) $(MIN_Y) $(MAX_Y) $(MAX_ITER) $$OUTPUT_FILE
